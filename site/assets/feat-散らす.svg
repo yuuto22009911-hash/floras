@@ -1,0 +1,568 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#F9F4EE"/>
+  <g class="bloom bloom-かべん" transform="translate(767.31 15.76) rotate(194.18) scale(0.23)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.58" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.58" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.58" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.58" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.58" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(330.04 140.62) rotate(190.93) scale(0.24)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.55" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.55" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.55" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.55" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.55" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(883.77 426.32) rotate(116.7) scale(0.08)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="7.49" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="7.49" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="7.49" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="7.49" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="7.49" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(1070.62 54.77) rotate(334.48) scale(0.08)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="7.15" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="7.15" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="7.15" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="7.15" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="7.15" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(506.31 18.77) rotate(299.4) scale(0.26)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.35" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.35" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.35" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.35" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.35" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(262.37 318.37) rotate(20.85) scale(0.14)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.24" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.24" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.24" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.24" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.24" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(31.84 125.27) rotate(340.9) scale(0.26)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.35" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.35" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.35" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.35" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.35" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(779.86 343.31) rotate(174.96) scale(0.1)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.18" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.18" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.18" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.18" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.18" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(264.53 371.24) rotate(273.82) scale(0.09)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.39" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.39" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.39" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.39" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.39" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(971.32 4.09) rotate(46.22) scale(0.23)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.57" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.57" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.57" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.57" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.57" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(966.98 439.83) rotate(197.93) scale(0.18)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.43" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.43" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.43" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.43" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.43" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(408.3 97.95) rotate(314.08) scale(0.13)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.51" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.51" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.51" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.51" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.51" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(1148.66 212.05) rotate(76.25) scale(0.16)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.64" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.64" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.64" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.64" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.64" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(111.3 60.93) rotate(262.78) scale(0.19)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.19" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.19" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.19" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.19" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.19" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(1016.99 380.35) rotate(112.22) scale(0.12)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.99" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.99" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.99" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.99" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.99" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(968.55 459.73) rotate(233.96) scale(0.28)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.15" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.15" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.15" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.15" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.15" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(643.47 613.06) rotate(186.33) scale(0.17)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.58" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.58" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.58" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.58" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.58" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(454.24 347.79) rotate(80.89) scale(0.1)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.76" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.76" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.76" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.76" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.76" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(995.29 389.67) rotate(211.79) scale(0.15)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.06" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.06" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.06" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.06" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.06" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(1034.05 363.73) rotate(79.28) scale(0.13)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.76" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.76" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.76" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.76" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.76" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(845.49 28.87) rotate(227.2) scale(0.09)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.37" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.37" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.37" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.37" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.37" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(273.48 182.31) rotate(325.95) scale(0.13)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.77" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.77" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.77" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.77" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.77" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(95.75 146.66) rotate(25.51) scale(0.25)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.38" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.38" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.38" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.38" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.38" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(121.2 175.12) rotate(240.83) scale(0.13)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.7" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.7" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.7" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.7" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.7" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(762.82 229.84) rotate(47.63) scale(0.12)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.88" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.88" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.88" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.88" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.88" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(444.22 131.99) rotate(205.58) scale(0.27)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.25" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.25" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.25" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.25" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.25" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(320.37 590.09) rotate(282.46) scale(0.17)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.44" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.44" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.44" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.44" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.44" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(777.64 383.75) rotate(68.55) scale(0.24)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.48" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.48" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.48" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.48" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.48" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(205.37 459.35) rotate(155.18) scale(0.1)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.04" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.04" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.04" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.04" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.04" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(196.08 239.06) rotate(168.13) scale(0.16)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.64" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.64" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.64" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.64" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.64" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(1187.43 403.2) rotate(242.41) scale(0.23)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.66" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.66" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.66" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.66" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.66" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(668.34 431.31) rotate(35.43) scale(0.28)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.17" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.17" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.17" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.17" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.17" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(1011.42 488.88) rotate(122.15) scale(0.16)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.74" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.74" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.74" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.74" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.74" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(274.86 20.22) rotate(89.52) scale(0.25)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.38" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.38" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.38" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.38" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.38" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(378.54 168.68) rotate(161.5) scale(0.12)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.08" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.08" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.08" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.08" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.08" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(253.18 594.03) rotate(100.28) scale(0.16)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.65" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.65" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.65" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.65" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.65" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(1051.64 198.25) rotate(332.38) scale(0.13)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.62" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.62" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.62" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.62" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.62" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(786.53 249.25) rotate(310.09) scale(0.17)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.56" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.56" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.56" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.56" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.56" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(1097.46 289.08) rotate(18.21) scale(0.19)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.16" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.16" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.16" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.16" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.16" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(317.86 155.38) rotate(300.97) scale(0.28)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.14" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.14" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.14" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.14" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.14" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(673.64 165.53) rotate(333.49) scale(0.27)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.19" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.19" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.19" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.19" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.19" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(701.5 565.63) rotate(59.87) scale(0.25)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.4" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.4" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.4" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.4" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.4" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(479.28 138.17) rotate(76.95) scale(0.18)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.39" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.39" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.39" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.39" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.39" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(1197.05 321) rotate(21.11) scale(0.16)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.75" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.75" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.75" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.75" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.75" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(109.09 29.68) rotate(354.71) scale(0.16)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.85" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.85" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.85" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.85" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.85" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(131.58 395.29) rotate(282.27) scale(0.13)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.51" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.51" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.51" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.51" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.51" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(950.5 265.96) rotate(152.28) scale(0.17)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.51" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.51" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.51" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.51" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.51" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(76.23 240.42) rotate(358.35) scale(0.27)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.21" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.21" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.21" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.21" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.21" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(1195.35 333.34) rotate(258.63) scale(0.19)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.14" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.14" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.14" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.14" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.14" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(1165.29 542.29) rotate(106.81) scale(0.11)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.41" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.41" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.41" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.41" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.41" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(13.78 454.05) rotate(208.5) scale(0.27)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.19" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.19" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.19" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.19" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.19" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(818.05 338.29) rotate(269.27) scale(0.19)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.18" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.18" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.18" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.18" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.18" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(320.19 403.81) rotate(210.3) scale(0.09)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.56" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.56" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.56" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.56" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.56" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(133.86 273.9) rotate(306.98) scale(0.18)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.32" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.32" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.32" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.32" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.32" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(544.47 600.9) rotate(345.88) scale(0.11)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.38" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.38" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.38" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.38" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="5.38" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(1051.02 165.94) rotate(66.9) scale(0.1)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.25" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.25" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.25" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.25" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="6.25" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(600.7 112.55) rotate(243.08) scale(0.2)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.01" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.01" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.01" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.01" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.01" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(1095.15 548.43) rotate(43.16) scale(0.13)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.72" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.72" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.72" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.72" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="4.72" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(358.13 402.54) rotate(88.64) scale(0.26)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.33" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.33" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.33" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.33" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="2.33" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-かべん" transform="translate(730.76 96.29) rotate(222.98) scale(0.2)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.02" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.02" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.02" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.02" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="3.02" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+  </g>
+  <g class="bloom bloom-しゅやくざくら" transform="translate(600 315) rotate(0) scale(1.6)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FFB3BC" stroke="#231715" stroke-width="0.75" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FFB3BC" stroke="#231715" stroke-width="0.75" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FFB3BC" stroke="#231715" stroke-width="0.75" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FFB3BC" stroke="#231715" stroke-width="0.75" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FFB3BC" stroke="#231715" stroke-width="0.75" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+    <g class="stamens" fill="#231715">
+      <circle cx="0" cy="-5" r="1.56"/>
+      <circle cx="2.17" cy="-4.5" r="1.56"/>
+      <circle cx="3.91" cy="-3.12" r="1.56"/>
+      <circle cx="4.87" cy="-1.11" r="1.56"/>
+      <circle cx="4.87" cy="1.11" r="1.56"/>
+      <circle cx="3.91" cy="3.12" r="1.56"/>
+      <circle cx="2.17" cy="4.5" r="1.56"/>
+      <circle cx="0" cy="5" r="1.56"/>
+      <circle cx="-2.17" cy="4.5" r="1.56"/>
+      <circle cx="-3.91" cy="3.12" r="1.56"/>
+      <circle cx="-4.87" cy="1.11" r="1.56"/>
+      <circle cx="-4.87" cy="-1.11" r="1.56"/>
+      <circle cx="-3.91" cy="-3.12" r="1.56"/>
+      <circle cx="-2.17" cy="-4.5" r="1.56"/>
+    </g>
+  </g>
+</svg>

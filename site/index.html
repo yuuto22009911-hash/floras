@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Floras Bloom — 花を、日本語で。</title>
+<meta name="description" content="花を宣言的に書いて SVG / HTML / CSS に出力する、全構文日本語のデザイナー DSL。Pyodide でブラウザだけで試せます。">
+<meta property="og:title" content="Floras Bloom — 花を、日本語で。">
+<meta property="og:description" content="花を宣言的に書いて SVG に出力する、全構文日本語のデザイナー DSL。">
+<meta property="og:image" content="./assets/hero.svg">
+<meta property="og:type" content="website">
+<style>
+  /* ==================================================================
+     Floras Bloom — Marketing Site
+     Design: spacious, monochrome, mincho-led typography.
+     The flowers themselves are the only colour on the page.
+     ================================================================== */
+  :root {
+    color-scheme: light;
+    --paper:    oklch(0.985 0.005 80);
+    --paper-2:  oklch(0.975 0.005 80);
+    --ink:      oklch(0.18 0.02 30);
+    --ink-soft: oklch(0.32 0.015 30);
+    --muted:    oklch(0.55 0.02 30);
+    --rule:     oklch(0.88 0.01 30);
+    --accent:   oklch(0.50 0.18 25);
+    --serif:    "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", "BIZ UDPMincho", serif;
+    --sans:     -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+                "Yu Gothic UI", "Noto Sans JP", system-ui, sans-serif;
+    --mono:     ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  ::selection { background: var(--ink); color: var(--paper); }
+
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-color: var(--accent); }
+  img, svg { max-width: 100%; height: auto; display: block; }
+
+  /* ---------------- nav ---------------- */
+  nav.top {
+    position: sticky; top: 0; z-index: 10;
+    background: oklch(0.985 0.005 80 / 0.85);
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  nav.top .inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 14px clamp(20px, 4vw, 48px);
+    display: flex; align-items: center; gap: 24px;
+  }
+  nav.top .brand {
+    font-family: var(--serif);
+    font-size: 17px;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+  }
+  nav.top .brand small {
+    margin-left: 10px;
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    font-weight: 400;
+  }
+  nav.top .spacer { flex: 1; }
+  nav.top a.link {
+    font-size: 13px; letter-spacing: 0.12em;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  nav.top a.link:hover { color: var(--ink); }
+
+  /* ---------------- shared section frame ---------------- */
+  section {
+    padding: clamp(72px, 10vw, 160px) clamp(20px, 4vw, 48px);
+  }
+  .container {
+    max-width: 1240px; margin: 0 auto;
+  }
+  .container.narrow { max-width: 760px; }
+
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.4em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin: 0 0 18px;
+    font-feature-settings: "palt";
+  }
+  .eyebrow.ink { color: var(--ink-soft); }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.15;
+    letter-spacing: 0.04em;
+    margin: 0 0 28px;
+    font-weight: 600;
+  }
+  h2 small {
+    display: block;
+    font-family: var(--serif);
+    font-size: 14px;
+    letter-spacing: 0.5em;
+    color: var(--muted);
+    margin-top: 14px;
+    font-weight: 400;
+  }
+
+  .lead {
+    font-family: var(--serif);
+    font-size: clamp(15px, 1.4vw, 18px);
+    line-height: 2;
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  /* ---------------- hero ---------------- */
+  .hero {
+    padding: 0;
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    position: relative;
+  }
+  .hero .inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: clamp(48px, 8vw, 96px) clamp(20px, 4vw, 48px);
+    display: grid;
+    gap: clamp(40px, 6vw, 80px);
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+  @media (min-width: 920px) {
+    .hero .inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+  }
+  .hero .vis {
+    aspect-ratio: 1920 / 800;
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 6px;
+    border: 1px solid var(--rule);
+    box-shadow: 0 30px 80px -50px oklch(0.18 0.02 30 / 0.35);
+  }
+  .hero .vis svg { width: 100%; height: 100%; display: block; }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(48px, 8.5vw, 108px);
+    line-height: 1;
+    letter-spacing: 0.06em;
+    margin: 0 0 20px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .hero .reading {
+    font-family: var(--serif);
+    font-size: 13px; letter-spacing: 0.5em;
+    color: var(--muted); margin: 0 0 28px;
+  }
+  .hero .tag {
+    font-family: var(--serif);
+    font-size: clamp(16px, 1.5vw, 20px);
+    color: var(--ink-soft);
+    line-height: 1.9;
+    max-width: 32ch;
+    margin: 0 0 36px;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 26px; border-radius: 999px;
+    font: inherit; font-size: 13px; letter-spacing: 0.18em;
+    text-decoration: none; cursor: pointer;
+    transition: transform 120ms ease, background 120ms ease, color 120ms ease;
+    border: 1px solid var(--ink);
+  }
+  .btn.primary { background: var(--ink); color: var(--paper); }
+  .btn.primary:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .btn.ghost:hover { background: var(--ink); color: var(--paper); }
+  .btn .arrow { transition: transform 120ms ease; }
+  .btn:hover .arrow { transform: translateX(2px); }
+
+  /* ---------------- story ---------------- */
+  .story {
+    background: var(--paper);
+  }
+  .story .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(40px, 5vw, 80px);
+  }
+  @media (min-width: 880px) {
+    .story .grid { grid-template-columns: minmax(0, 380px) 1fr; }
+  }
+  .story .lead { max-width: none; }
+
+  .pillars {
+    display: grid; gap: 0;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    margin-top: clamp(48px, 8vw, 96px);
+    border-top: 1px solid var(--rule);
+  }
+  .pillar {
+    padding: 36px clamp(20px, 3vw, 36px);
+    border-bottom: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+  }
+  .pillar:last-child { border-right: 0; }
+  @media (max-width: 720px) { .pillar { border-right: 0; } }
+  .pillar .num {
+    font-family: var(--serif);
+    font-size: 13px; letter-spacing: 0.4em;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .pillar h3 {
+    font-family: var(--serif);
+    font-size: 22px; line-height: 1.5;
+    margin: 0 0 12px;
+    font-weight: 600;
+  }
+  .pillar p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 14px; line-height: 1.9;
+  }
+
+  /* ---------------- live playground ---------------- */
+  .live { background: var(--paper-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .live .frame {
+    margin-top: clamp(40px, 6vw, 64px);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--paper);
+    aspect-ratio: 16 / 10;
+    box-shadow: 0 30px 80px -50px oklch(0.18 0.02 30 / 0.4);
+  }
+  .live iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .live .hint {
+    margin-top: 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  kbd {
+    display: inline-block;
+    padding: 2px 7px;
+    border: 1px solid var(--rule);
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 11px;
+    background: var(--paper);
+  }
+
+  /* ---------------- capabilities ---------------- */
+  .feats .head { display: flex; align-items: end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .feats .grid {
+    margin-top: clamp(40px, 6vw, 80px);
+    display: grid;
+    gap: 0;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    border-top: 1px solid var(--rule);
+  }
+  .feat {
+    padding: 32px clamp(18px, 2.5vw, 32px);
+    border-bottom: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+    display: grid; gap: 18px;
+    align-content: start;
+  }
+  .feat:last-child { border-right: 0; }
+  @media (max-width: 720px) { .feat { border-right: 0; } }
+  .feat .vis {
+    aspect-ratio: 1;
+    background: var(--paper-2);
+    border-radius: 8px;
+    display: grid; place-items: center;
+    overflow: hidden;
+    background-image:
+      repeating-linear-gradient(45deg, transparent 0 6px, oklch(0.18 0.02 30 / 0.022) 6px 7px);
+  }
+  .feat .vis svg { width: 92%; height: 92%; }
+  .feat .name {
+    display: flex; align-items: baseline; gap: 12px;
+    font-family: var(--serif);
+  }
+  .feat .name .ja { font-size: 22px; font-weight: 600; letter-spacing: 0.06em; }
+  .feat .name .en { font-size: 11px; letter-spacing: 0.3em; color: var(--muted); }
+  .feat p {
+    margin: 0; font-size: 13px; line-height: 1.85; color: var(--ink-soft);
+  }
+  .feat code {
+    font-family: var(--mono);
+    font-size: 11px;
+    background: var(--paper-2);
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--rule);
+    white-space: pre;
+    overflow-x: auto;
+    color: var(--ink-soft);
+  }
+
+  /* ---------------- showcase: 十二花暦 ---------------- */
+  .showcase { background: var(--paper); border-top: 1px solid var(--rule); }
+  .showcase .grid {
+    display: grid; gap: clamp(40px, 6vw, 80px);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 880px) {
+    .showcase .grid { grid-template-columns: 360px 1fr; align-items: start; }
+  }
+  .showcase .vis {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: clamp(20px, 3vw, 40px);
+    box-shadow: 0 30px 80px -60px oklch(0.18 0.02 30 / 0.5);
+  }
+  .showcase .vis svg { width: 100%; height: auto; aspect-ratio: 1200 / 1600; }
+
+  /* ---------------- code spotlight ---------------- */
+  .code { background: var(--paper-2); border-top: 1px solid var(--rule); }
+  .code .grid {
+    display: grid; gap: clamp(32px, 4vw, 56px);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 880px) {
+    .code .grid { grid-template-columns: 1.1fr 1fr; align-items: stretch; }
+  }
+  .code pre {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 13px; line-height: 1.85;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 28px clamp(16px, 2vw, 28px);
+    overflow-x: auto;
+    color: var(--ink);
+    white-space: pre;
+  }
+  .code .vis {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 32px;
+    display: grid; place-items: center;
+  }
+  .code .vis svg { width: 100%; height: auto; max-width: 360px; }
+  /* very lightweight syntax highlighting via spans */
+  .tok-c  { color: var(--muted); font-style: italic; }
+  .tok-k  { color: var(--accent); font-weight: 600; }
+  .tok-n  { color: oklch(0.40 0.04 230); }
+  .tok-s  { color: oklch(0.42 0.06 145); }
+  .tok-i  { color: var(--ink); }
+
+  /* ---------------- get started ---------------- */
+  .get { border-top: 1px solid var(--rule); }
+  .get .grid {
+    display: grid; gap: clamp(32px, 4vw, 64px);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 880px) { .get .grid { grid-template-columns: repeat(2, 1fr); } }
+  .get .card {
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: clamp(24px, 3vw, 36px);
+    background: var(--paper);
+  }
+  .get .card h3 {
+    font-family: var(--serif); font-size: 22px; margin: 0 0 14px;
+    letter-spacing: 0.04em;
+  }
+  .get .card .step {
+    font-size: 12px; letter-spacing: 0.3em;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .get pre {
+    margin: 18px 0 0;
+    font-family: var(--mono); font-size: 13px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 16px 20px;
+    color: var(--ink); line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .get .card p {
+    margin: 0; color: var(--ink-soft);
+    font-size: 14px; line-height: 1.85;
+  }
+
+  /* ---------------- creator ---------------- */
+  .creator { background: var(--paper-2); border-top: 1px solid var(--rule); }
+  .creator .grid {
+    display: grid; gap: clamp(32px, 4vw, 80px);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 880px) { .creator .grid { grid-template-columns: 280px 1fr; align-items: start; } }
+  .creator .photo {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 30%, oklch(0.85 0.10 12), oklch(0.60 0.18 25));
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+  }
+  .creator .photo::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      repeating-radial-gradient(circle at center, transparent 0 9px, oklch(0.20 0.02 30 / 0.06) 9px 10px);
+  }
+  .creator h2 small { letter-spacing: 0.4em; }
+  .creator dl {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 12px 24px;
+    margin: 32px 0 0;
+    font-size: 14px;
+    line-height: 1.85;
+  }
+  .creator dt { color: var(--muted); font-size: 12px; letter-spacing: 0.16em; padding-top: 2px; }
+  .creator dd { margin: 0; color: var(--ink-soft); }
+  .creator dd a { text-decoration: underline; text-underline-offset: 4px; color: var(--ink); }
+
+  /* ---------------- footer ---------------- */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 56px clamp(20px, 4vw, 48px) 80px;
+    background: var(--paper);
+  }
+  footer .inner {
+    max-width: 1240px; margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 12px 32px;
+    align-items: center;
+  }
+  footer .brand {
+    font-family: var(--serif);
+    font-size: 16px; letter-spacing: 0.18em;
+    font-weight: 600;
+  }
+  footer .meta { color: var(--muted); font-size: 12px; letter-spacing: 0.06em; }
+  footer .spacer { flex: 1; }
+  footer a { color: var(--ink-soft); font-size: 13px; text-decoration: none; }
+  footer a:hover { color: var(--ink); text-decoration: underline; }
+
+  /* gentle decorative thin lines */
+  .rule {
+    width: 64px; height: 1px;
+    background: var(--accent);
+    margin: 0 0 24px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="inner">
+    <span class="brand">Floras Bloom <small>v1.0.0</small></span>
+    <span class="spacer"></span>
+    <a class="link" href="#what">特徴</a>
+    <a class="link" href="#try">遊び場</a>
+    <a class="link" href="#showcase">作品</a>
+    <a class="link" href="#start">はじめる</a>
+    <a class="link" href="https://github.com/yuuto22009911-hash/floras" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</nav>
+
+<!-- ============================================================
+     Hero
+     ============================================================ -->
+<section class="hero" aria-label="hero">
+  <div class="inner">
+    <div>
+      <p class="reading">FLORAS&nbsp;BLOOM</p>
+      <h1>花を、<br>日本語で。</h1>
+      <p class="tag">花を宣言的に書いて SVG / HTML / CSS に出力する、全構文日本語のデザイナー DSL。</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#try">遊び場で試す <span class="arrow">→</span></a>
+        <a class="btn ghost" href="https://github.com/yuuto22009911-hash/floras" target="_blank" rel="noopener">GitHub で見る</a>
+      </div>
+    </div>
+    <div class="vis" id="hero-vis"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Story / Why
+     ============================================================ -->
+<section class="story" id="what">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <p class="eyebrow">A FLOWER, AS DATA</p>
+        <h2>花は、構造である。<small>HANA WA, KOUZOU DEARU</small></h2>
+      </div>
+      <div>
+        <p class="lead">
+          花弁の数、反り、切込みの深さ、雄蕊の半径。
+          ─ 花の見え方を決める要素を pure data で宣言すれば、拡大も色替えも量産も無料。
+          Tailwind が CSS に対して提供したものを、Floras Bloom は装飾フローラル SVG に対して提供する。
+        </p>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <p class="num">01</p>
+        <h3>全構文を日本語で。</h3>
+        <p>キーワード・識別子・色・単位・コメントすべて日本語。
+        アルファベットを 1 文字も使わない。
+        <code style="font-family: var(--mono); font-size: 11px; background: var(--paper-2); padding: 2px 6px; border-radius: 3px;">花 さくら { 花弁数 5; 大きさ 240; }</code></p>
+      </div>
+      <div class="pillar">
+        <p class="num">02</p>
+        <h3>知覚色のみ。</h3>
+        <p>16 進色を意図的に廃止し、OKLCH (<code style="font-family: var(--mono); font-size: 11px;">知覚色(0.85 0.10 12)</code>) と色見本の 2 通りに統一。
+        混色も知覚均等空間で計算され、ブランド色のグラデが綺麗。</p>
+      </div>
+      <div class="pillar">
+        <p class="num">03</p>
+        <h3>決定論的。</h3>
+        <p>散らす(scatter) には 種(seed) 必須。同じ <code style="font-family: var(--mono); font-size: 11px;">.bloom</code> は bit-identical な SVG を出す。
+        snapshot test がそのまま使える。</p>
+      </div>
+      <div class="pillar">
+        <p class="num">04</p>
+        <h3>依存ゼロ。</h3>
+        <p>Python 標準ライブラリのみ実装。Pyodide 互換の pure Python wheel として配布。
+        ブラウザにそのまま乗る。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Live playground
+     ============================================================ -->
+<section class="live" id="try">
+  <div class="container">
+    <div class="rule"></div>
+    <p class="eyebrow">PLAYGROUND</p>
+    <h2>今すぐ、ブラウザで。<small>RIGHT NOW, IN YOUR BROWSER</small></h2>
+    <p class="lead">
+      バックエンド不要・インストール不要。
+      Pyodide でブラウザだけで Python が動き、Floras Bloom がそのまま走る。
+      左で書いて、右に SVG が出る。<kbd>⌘</kbd>+<kbd>Enter</kbd> で再描画。
+    </p>
+
+    <div class="frame">
+      <iframe src="../playground/index.html" title="Floras Bloom 遊び場" loading="lazy"></iframe>
+    </div>
+    <p class="hint">※ Pyodide の初回ロードに 5〜10 秒かかります。 ステータスが「● live」になったら描画可能です。</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     Capabilities — 4 cards
+     ============================================================ -->
+<section class="feats" id="feats">
+  <div class="container">
+    <div class="head">
+      <div>
+        <div class="rule"></div>
+        <p class="eyebrow">CAPABILITIES</p>
+        <h2>4 つの動詞だけで、<br>花の世界を作る。</h2>
+      </div>
+      <p class="lead" style="max-width: 36ch;">
+        花を <em>作り</em>、束ね、散らし、ひとまとまりにする ─
+        Floras Bloom にはこの 4 つの動詞しかない。
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="feat">
+        <div class="vis"><img src="./assets/feat-花.svg" alt="さくらの花" loading="lazy"></div>
+        <div class="name"><span class="ja">花</span><span class="en">BLOOM</span></div>
+        <p>1 つの花の構造をパラメトリックに宣言する。花弁数・反り・切込・雄蕊・茎・葉。</p>
+        <code>花 さくら {
+  花弁数 5;
+  大きさ 240;
+  花弁切込 0.45;
+  色 春.桜色;
+}</code>
+      </div>
+      <div class="feat">
+        <div class="vis"><img src="./assets/feat-花束.svg" alt="ヒーロー花束" loading="lazy"></div>
+        <div class="name"><span class="ja">花束</span><span class="en">BOUQUET</span></div>
+        <p>複数の花を 1 つのキャンバスに配置。位置ごとに大きさ・色をオーバーライド可能。</p>
+        <code>花束 ヒーロー {
+  画布 1200 × 630;
+  置く さくら に 中央;
+  置く ゆり   に (380, 320);
+}</code>
+      </div>
+      <div class="feat">
+        <div class="vis"><img src="./assets/feat-散らす.svg" alt="桜吹雪 (scatter)" loading="lazy"></div>
+        <div class="name"><span class="ja">散らす</span><span class="en">SCATTER</span></div>
+        <p>procedural に量産。種(seed) 必須で同じ入力は同じ出力。手描き感を量産できる。</p>
+        <code>散らす {
+  元 かべん;
+  数 60;
+  領域 画布;
+  大きさ 16..56;
+  種 42;
+}</code>
+      </div>
+      <div class="feat">
+        <div class="vis"><img src="./assets/feat-模様.svg" alt="枝 (motif)" loading="lazy"></div>
+        <div class="name"><span class="ja">模様</span><span class="en">MOTIF</span></div>
+        <p>「花 + 蕾 + 葉」のような複合要素を 1 単位で再利用。置く / 散らす から呼べる。</p>
+        <code>模様 ひとえだ {
+  置く さくら に (0, 0);
+  置く つぼみ に (-50, -30);
+  置く つぼみ に (45, 35);
+}</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Showcase — 十二花暦
+     ============================================================ -->
+<section class="showcase" id="showcase">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="rule"></div>
+        <p class="eyebrow">SHOWCASE — 一葉の作品</p>
+        <h2>十二花暦。<small>JŪNI KAREKI</small></h2>
+        <p class="lead">
+          1 つの <code style="font-family: var(--mono); font-size: 12px; background: var(--paper-2); padding: 2px 5px; border-radius: 3px;">.bloom</code> ファイルから、12 種の花を Floras Bloom 言語の<em>パラメータの組み合わせだけ</em>で描き分けた一葉。<br><br>
+          つばき・うめ・さくら・ぼたん・すずらん・あじさい・あさがお・ひまわり・ききょう・こすもす・きく・すいせん。
+          すべて同じ geometry プリミティブから生まれ、花弁数 5〜24、反り 0.15〜0.9、切込 0〜0.45、並び 輪 / 螺旋 の組み合わせで「あ、その花だ」と分かる差を作っている。
+        </p>
+      </div>
+      <div class="vis">
+        <img src="./assets/十二花暦.svg" alt="十二花暦 ─ 12 種の花が並ぶカレンダー" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Code spotlight
+     ============================================================ -->
+<section class="code">
+  <div class="container">
+    <div class="rule"></div>
+    <p class="eyebrow">CODE</p>
+    <h2>1 行 1 行が、<br>そのまま意味になる。<small>READ IT AS-IS</small></h2>
+    <p class="lead" style="margin-top: 24px;">
+      実際の <code style="font-family: var(--mono); font-size: 12px; background: var(--paper); padding: 2px 5px; border: 1px solid var(--rule); border-radius: 3px;">.bloom</code> ソースと、それが生成する SVG。Floras Bloom の言語表面は<em>プログラムというより設計書</em>に近い。
+    </p>
+
+    <div class="grid" style="margin-top: clamp(40px, 6vw, 64px);">
+<pre><span class="tok-c">※ 5 弁桜 ─ 切れ込みのある花弁</span>
+<span class="tok-k">色見本</span> <span class="tok-i">春</span> {
+  <span class="tok-i">桜色</span> <span class="tok-k">知覚色</span>(<span class="tok-n">0.85</span> <span class="tok-n">0.10</span> <span class="tok-n">12</span>);
+  <span class="tok-i">墨</span>   <span class="tok-k">知覚色</span>(<span class="tok-n">0.20</span> <span class="tok-n">0.02</span> <span class="tok-n">30</span>);
+  <span class="tok-i">紅</span>   <span class="tok-k">知覚色</span>(<span class="tok-n">0.55</span> <span class="tok-n">0.18</span> <span class="tok-n">25</span>);
+}
+
+<span class="tok-k">花</span> <span class="tok-i">さくら</span> {
+  <span class="tok-k">花弁数</span> <span class="tok-n">5</span>;
+  <span class="tok-k">大きさ</span> <span class="tok-n">240</span>;
+  <span class="tok-k">色</span> <span class="tok-i">春</span>.<span class="tok-i">桜色</span>;
+  <span class="tok-k">花弁反り</span> <span class="tok-n">0.4</span>;
+  <span class="tok-k">花弁切込</span> <span class="tok-n">0.45</span>;
+  <span class="tok-k">雄蕊数</span> <span class="tok-n">14</span>;
+  <span class="tok-k">雄蕊色</span> <span class="tok-i">春</span>.<span class="tok-i">紅</span>;
+  <span class="tok-k">輪郭</span> <span class="tok-i">春</span>.<span class="tok-i">墨</span> <span class="tok-k">幅</span> <span class="tok-n">1.2</span>;
+}</pre>
+      <div class="vis"><img src="./assets/feat-花.svg" alt="さくら" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Get started
+     ============================================================ -->
+<section class="get" id="start">
+  <div class="container">
+    <div class="rule"></div>
+    <p class="eyebrow">GET STARTED</p>
+    <h2>はじめる。<small>2 つの道</small></h2>
+
+    <div class="grid" style="margin-top: clamp(40px, 6vw, 64px);">
+      <div class="card">
+        <p class="step">A — ブラウザだけで</p>
+        <h3>すぐ書きたい人へ</h3>
+        <p>Pyodide でブラウザだけで動きます。サンプルが 6 つ入っているので、好きな花を選んで描画ボタンを押すだけ。</p>
+<pre>open ./playground/index.html
+# または:
+python -m http.server \
+  --directory playground 7879</pre>
+      </div>
+
+      <div class="card">
+        <p class="step">B — ローカルで本格的に</p>
+        <h3>CLI を入れる</h3>
+        <p>Python 3.11+。外部依存ゼロ。<code style="font-family: var(--mono); font-size: 12px;">floras render / preview / tokens</code> の 3 サブコマンド。</p>
+<pre>git clone https://github.com/\
+  yuuto22009911-hash/floras.git
+cd floras
+pip install -e .
+
+floras render examples/さくら.bloom
+floras preview examples/
+floras tokens examples/ヒーロー.bloom \
+  --format tailwind</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Creator
+     ============================================================ -->
+<section class="creator" id="creator">
+  <div class="container">
+    <div class="grid">
+      <div class="photo" aria-hidden="true"></div>
+      <div>
+        <div class="rule"></div>
+        <p class="eyebrow">CREATOR</p>
+        <h2>yuuto<small>FLORAL DSL · DESIGN · ENGINEERING</small></h2>
+        <p class="lead">
+          設計から言語処理系まで、ひとりで作るデザイナーエンジニア。
+          MonoFloras（自社アパレルブランド）の運営と並行して、Web デザインの実務に必要な道具を自作する。
+          Floras Bloom はその一環で、自分のサイトのフローラルアセットを「コードで量産する」ために生まれた。
+        </p>
+
+        <dl>
+          <dt>主な活動</dt>
+          <dd>Floras Bloom（本作品） / MonoFloras（アパレル） / Web デザイン</dd>
+
+          <dt>得意領域</dt>
+          <dd>HP / SaaS / LIFF の UI 設計、デザイントークン、OKLCH ベースのブランドカラー設計</dd>
+
+          <dt>技術スタック</dt>
+          <dd>Python · TypeScript · Tailwind v4 · shadcn/ui · Squarespace · Vercel</dd>
+
+          <dt>連絡</dt>
+          <dd>
+            <a href="https://github.com/yuuto22009911-hash" target="_blank" rel="noopener">GitHub</a> ・
+            <a href="mailto:yuuto22009911@gmail.com">Email</a>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Footer
+     ============================================================ -->
+<footer>
+  <div class="inner">
+    <span class="brand">Floras Bloom</span>
+    <span class="meta">v1.0.0 · MIT</span>
+    <span class="meta">© 2026 yuuto</span>
+    <span class="spacer"></span>
+    <a href="https://github.com/yuuto22009911-hash/floras" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://github.com/yuuto22009911-hash/floras/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a>
+    <a href="https://github.com/yuuto22009911-hash/floras/releases/tag/v1.0.0" target="_blank" rel="noopener">v1.0.0 リリース</a>
+  </div>
+</footer>
+
+<script>
+  // Inline-load the hero SVG so it scales fluidly inside the hero pane
+  // and inherits the page's transparent background.
+  fetch('./assets/hero.svg')
+    .then(r => r.text())
+    .then(svg => { document.getElementById('hero-vis').innerHTML = svg; });
+</script>
+
+</body>
+</html>

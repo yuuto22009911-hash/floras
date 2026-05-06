@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#F9F4EE"/>
+  <g class="bloom bloom-ゆり" transform="translate(380 320) rotate(0) scale(1.2)">
+    <g class="petals">
+      <path d="M 0 0 C 20.83 -21.77, 9.38 -73.33, 0 -91.67 C -9.38 -73.33, -20.83 -21.77, 0 0 Z" fill="#E6C99A" stroke="#231715" stroke-width="1" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 20.83 -21.77, 9.38 -73.33, 0 -91.67 C -9.38 -73.33, -20.83 -21.77, 0 0 Z" fill="#E6C99A" stroke="#231715" stroke-width="1" stroke-linejoin="round" transform="rotate(60)"/>
+      <path d="M 0 0 C 20.83 -21.77, 9.38 -73.33, 0 -91.67 C -9.38 -73.33, -20.83 -21.77, 0 0 Z" fill="#E6C99A" stroke="#231715" stroke-width="1" stroke-linejoin="round" transform="rotate(120)"/>
+      <path d="M 0 0 C 20.83 -21.77, 9.38 -73.33, 0 -91.67 C -9.38 -73.33, -20.83 -21.77, 0 0 Z" fill="#E6C99A" stroke="#231715" stroke-width="1" stroke-linejoin="round" transform="rotate(180)"/>
+      <path d="M 0 0 C 20.83 -21.77, 9.38 -73.33, 0 -91.67 C -9.38 -73.33, -20.83 -21.77, 0 0 Z" fill="#E6C99A" stroke="#231715" stroke-width="1" stroke-linejoin="round" transform="rotate(240)"/>
+      <path d="M 0 0 C 20.83 -21.77, 9.38 -73.33, 0 -91.67 C -9.38 -73.33, -20.83 -21.77, 0 0 Z" fill="#E6C99A" stroke="#231715" stroke-width="1" stroke-linejoin="round" transform="rotate(300)"/>
+    </g>
+    <g class="stamens" fill="#CC7722">
+      <circle cx="0" cy="-6.67" r="2.08"/>
+      <circle cx="5.77" cy="-3.33" r="2.08"/>
+      <circle cx="5.77" cy="3.33" r="2.08"/>
+      <circle cx="0" cy="6.67" r="2.08"/>
+      <circle cx="-5.77" cy="3.33" r="2.08"/>
+      <circle cx="-5.77" cy="-3.33" r="2.08"/>
+    </g>
+  </g>
+  <g class="bloom bloom-さくら" transform="translate(820 320) rotate(0) scale(1.4)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FFB3BC" stroke="#231715" stroke-width="0.86" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FFB3BC" stroke="#231715" stroke-width="0.86" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FFB3BC" stroke="#231715" stroke-width="0.86" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FFB3BC" stroke="#231715" stroke-width="0.86" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FFB3BC" stroke="#231715" stroke-width="0.86" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+    <g class="stamens" fill="#C53637">
+      <circle cx="0" cy="-5" r="1.79"/>
+      <circle cx="2.17" cy="-4.5" r="1.79"/>
+      <circle cx="3.91" cy="-3.12" r="1.79"/>
+      <circle cx="4.87" cy="-1.11" r="1.79"/>
+      <circle cx="4.87" cy="1.11" r="1.79"/>
+      <circle cx="3.91" cy="3.12" r="1.79"/>
+      <circle cx="2.17" cy="4.5" r="1.79"/>
+      <circle cx="0" cy="5" r="1.79"/>
+      <circle cx="-2.17" cy="4.5" r="1.79"/>
+      <circle cx="-3.91" cy="3.12" r="1.79"/>
+      <circle cx="-4.87" cy="1.11" r="1.79"/>
+      <circle cx="-4.87" cy="-1.11" r="1.79"/>
+      <circle cx="-3.91" cy="-3.12" r="1.79"/>
+      <circle cx="-2.17" cy="-4.5" r="1.79"/>
+    </g>
+  </g>
+  <g class="bloom bloom-さくら" transform="translate(1080 470) rotate(0) scale(0.7)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="1.71" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="1.71" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="1.71" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="1.71" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FDCDD0" stroke="#231715" stroke-width="1.71" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+    <g class="stamens" fill="#C53637">
+      <circle cx="0" cy="-5" r="3.57"/>
+      <circle cx="2.17" cy="-4.5" r="3.57"/>
+      <circle cx="3.91" cy="-3.12" r="3.57"/>
+      <circle cx="4.87" cy="-1.11" r="3.57"/>
+      <circle cx="4.87" cy="1.11" r="3.57"/>
+      <circle cx="3.91" cy="3.12" r="3.57"/>
+      <circle cx="2.17" cy="4.5" r="3.57"/>
+      <circle cx="0" cy="5" r="3.57"/>
+      <circle cx="-2.17" cy="4.5" r="3.57"/>
+      <circle cx="-3.91" cy="3.12" r="3.57"/>
+      <circle cx="-4.87" cy="1.11" r="3.57"/>
+      <circle cx="-4.87" cy="-1.11" r="3.57"/>
+      <circle cx="-3.91" cy="-3.12" r="3.57"/>
+      <circle cx="-2.17" cy="-4.5" r="3.57"/>
+    </g>
+  </g>
+  <g class="bloom bloom-さくら" transform="translate(160 480) rotate(0) scale(0.6)">
+    <g class="petals">
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FCD4D5" stroke="#231715" stroke-width="2" stroke-linejoin="round" transform="rotate(0)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FCD4D5" stroke="#231715" stroke-width="2" stroke-linejoin="round" transform="rotate(72)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FCD4D5" stroke="#231715" stroke-width="2" stroke-linejoin="round" transform="rotate(144)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FCD4D5" stroke="#231715" stroke-width="2" stroke-linejoin="round" transform="rotate(216)"/>
+      <path d="M 0 0 C 18.40 -20.58, 4.95 -68.88, 1.62 -81.73 L 0 -80.37 L -1.62 -81.73 C -4.95 -68.88, -18.40 -20.58, 0 0 Z" fill="#FCD4D5" stroke="#231715" stroke-width="2" stroke-linejoin="round" transform="rotate(288)"/>
+    </g>
+    <g class="stamens" fill="#C53637">
+      <circle cx="0" cy="-5" r="4.17"/>
+      <circle cx="2.17" cy="-4.5" r="4.17"/>
+      <circle cx="3.91" cy="-3.12" r="4.17"/>
+      <circle cx="4.87" cy="-1.11" r="4.17"/>
+      <circle cx="4.87" cy="1.11" r="4.17"/>
+      <circle cx="3.91" cy="3.12" r="4.17"/>
+      <circle cx="2.17" cy="4.5" r="4.17"/>
+      <circle cx="0" cy="5" r="4.17"/>
+      <circle cx="-2.17" cy="4.5" r="4.17"/>
+      <circle cx="-3.91" cy="3.12" r="4.17"/>
+      <circle cx="-4.87" cy="1.11" r="4.17"/>
+      <circle cx="-4.87" cy="-1.11" r="4.17"/>
+      <circle cx="-3.91" cy="-3.12" r="4.17"/>
+      <circle cx="-2.17" cy="-4.5" r="4.17"/>
+    </g>
+  </g>
+</svg>
