@@ -43,6 +43,10 @@ pip install -e ".[dev]"
 
 Python 3.11+ 必須。外部依存ゼロ（dev のみ pytest / mypy / ruff）。
 
+## 作品集
+
+[`showcase/十二花暦`](showcase/) — 1 つの `.bloom` ファイルから 12 種の花（つばき / うめ / さくら / ぼたん / すずらん / あじさい / あさがお / ひまわり / ききょう / こすもす / きく / すいせん）をパラメータだけで描き分けた印刷可能カレンダー作品。Floras Bloom の表現力を 1 枚で示す showcase。
+
 ## ブラウザで試す
 
 `playground/index.html` を開けば、インストール不要で Floras Bloom が動きます（Pyodide でブラウザだけで Python を動かしています）。
