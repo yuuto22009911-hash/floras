@@ -1,8 +1,14 @@
 # Floras Language Core — Requirements
 
+> ⚠️ **Status: SUPERSEDED (2026-05-07)**
+> 本 spec は v0.1.0 として実装済み (commit `4755d9f`) だが、プロジェクト方針が
+> 「全構文要素を花名にする汎用言語」から「花テーマのデザイナー DSL」へ転換した。
+> 後継: [.claude/specs/bloom-dsl/](../bloom-dsl/)
+> 本書は履歴・参照用として保持する。Lexer / Parser インフラの一部は新 spec で再利用予定。
+
 | 項目 | 値 |
 |------|-----|
-| Status | Draft / In Review / **Approved** |
+| Status | Draft / In Review / Approved / **Superseded** |
 | Author | yuuto |
 | Reviewer | yuuto (個人ポートフォリオのため自己レビュー) |
 | Last Updated | 2026-05-03 |

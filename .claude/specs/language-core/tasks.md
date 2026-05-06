@@ -1,8 +1,11 @@
 # Floras Language Core — Implementation Tasks
 
+> ⚠️ **Status: SUPERSEDED (2026-05-07)** — Phase 1〜7 (v0.1.0) は完遂済 (`4755d9f`)。
+> Phase 8〜14 は破棄、新 spec [.claude/specs/bloom-dsl/](../bloom-dsl/) に切替。
+
 | 項目 | 値 |
 |------|-----|
-| Status | Draft / **Approved (Ready to Implement)** / In Progress / Done |
+| Status | Draft / Approved / In Progress / Done / **Superseded** |
 | Author | yuuto |
 | Last Updated | 2026-05-03 |
 | Approved On | 2026-05-03 |

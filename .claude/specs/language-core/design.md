@@ -1,8 +1,10 @@
 # Floras Language Core — Design
 
+> ⚠️ **Status: SUPERSEDED (2026-05-07)** — see [.claude/specs/bloom-dsl/](../bloom-dsl/)
+
 | 項目 | 値 |
 |------|-----|
-| Status | Draft / In Review / **Approved** |
+| Status | Draft / In Review / Approved / **Superseded** |
 | Author | yuuto |
 | Last Updated | 2026-05-03 |
 | Approved On | 2026-05-03 |

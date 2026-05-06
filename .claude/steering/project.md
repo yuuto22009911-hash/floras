@@ -3,35 +3,46 @@
 > プロジェクト全体に適用される不変ルール。全 Spec が本書を参照する。
 
 ## Vision
-**Floras** は、すべての構文要素（キーワード・括弧・演算子・記号）が**花の名前**で構成される、Python 製の小さなインタプリタ言語である。読むと花畑を歩いているような体験を提供しつつ、言語処理系の基本構造（Lexer / Parser / Evaluator）を学習・展示できる作品とする。
+**Floras** は、花を宣言的に描いて束ね、**SVG / HTML / CSS** に出力する、デザイナー向けの花テーマ DSL である。
+ヒーローセクション、ブランド装飾、ロゴ、パターン背景など、Web デザイン現場で「花の絵」を必要とする場面で、Tailwind の color token のような感覚で「花の構造そのもの」をコードで宣言できる。
+
+### コンセプト 3 軸
+1. **花は構造である**: 花弁数・反り・雄しべ・配置を pure data で宣言する → 同じ宣言から拡大・縮小・色替え・量産が無料。
+2. **デザイナー語彙で書く**: 「`bloom sakura`」「`scatter petals`」「`bouquet hero`」など、CSS や Figma の延長で読める命名。プログラミングが目的ではない。
+3. **出力は標準形式のみ**: SVG / HTML / CSS。独自フォーマットを作らない。Figma / Vercel / Squarespace / Tailwind とそのまま共存する。
+
+### 旧方針との関係
+旧 spec [`.claude/specs/language-core/`](../specs/language-core/) は「花名で全構文を表現する Tree-walking Interpreter」を v0.1.0 まで実装したが、**「デザイナー言語」へ方針転換した** (2026-05-07)。Lexer / Parser インフラの一部は本 DSL でも再利用するが、ターゲット領域は完全に新規。
 
 ## Tech Stack
 - **実装ホスト言語**: Python 3.11+
-- **依存**: 標準ライブラリのみ（外部ライブラリ原則ゼロ）
+- **依存**: Python 標準ライブラリのみ（外部依存ゼロ）
 - **テスト**: `pytest`
 - **型**: `mypy --strict`
 - **Lint/Format**: `ruff` (lint + format 統合)
-- **配布**: `pyproject.toml` (PEP 621) / `pip install -e .` でローカル実行
+- **配布**: `pyproject.toml` (PEP 621) / `pip install -e .`
 - **CI**: GitHub Actions (test + mypy + ruff)
-- **REPL**: 標準 `code.InteractiveConsole` ベース
+- **出力フォーマット**: SVG (主軸) / HTML (preview) / CSS (custom properties)
+- **プレビュー**: 標準ライブラリ `http.server` ベースのライブリロード（v0.6.0 以降）
 
 ## Code Style
 ```python
-# 良い例: 型を明示し、純粋関数を主体に
 from dataclasses import dataclass
 
 @dataclass(frozen=True)
-class Token:
-    kind: str
-    lexeme: str
-    line: int
+class Petal:
+    width: float
+    height: float
+    curl: float
+    notch: float = 0.0
 
-def tokenize(source: str) -> list[Token]:
+def render_petal(p: Petal) -> str:
+    """Return an SVG <path> string for one petal."""
     ...
 ```
-- すべての public 関数は型注釈必須
+- 全 public 関数に型注釈必須
 - イミュータブル優先（`@dataclass(frozen=True)` / `tuple` / `Mapping`）
-- 早期 return（else を避ける）
+- 早期 return（`else` を避ける）
 - マジックナンバー禁止（モジュール定数化）
 - コメントは WHY のみ。WHAT は命名で表現
 
@@ -43,87 +54,104 @@ def tokenize(source: str) -> list[Token]:
 | typecheck | `mypy floras tests` |
 | lint | `ruff check .` |
 | format | `ruff format .` |
-| run script | `floras run examples/hello.floras` |
-| repl | `floras repl` |
-| build (sdist/wheel) | `python -m build` |
+| 1 ファイルを SVG に変換 | `floras render examples/sakura.bloom --out sakura.svg` |
+| プレビューサーバ起動 (v0.6.0+) | `floras preview examples/` |
+| パレットを CSS 変数に書き出す (v0.7.0+) | `floras tokens examples/brand.bloom --out tokens.css` |
 
 ## Project Layout
 ```
 floras/
-├── floras/                  # Python package
+├── floras/
 │   ├── __init__.py
-│   ├── tokens.py            # TokenKind / Token
+│   ├── tokens.py            # TokenKind / Token (新キーワードで再構築)
 │   ├── lexer.py             # source → Token[]
-│   ├── ast_nodes.py         # AST ノード定義
+│   ├── ast_nodes.py         # AST 定義（Bloom / Bouquet / Scatter / ...）
 │   ├── parser.py            # Token[] → AST
-│   ├── environment.py       # スコープ管理
-│   ├── evaluator.py         # AST 評価
-│   ├── errors.py            # 例外型
-│   ├── repl.py              # 対話モード
-│   └── cli.py               # エントリーポイント
+│   ├── geometry/            # 幾何形状の生成器
+│   │   ├── petal.py         # 花弁 SVG path
+│   │   ├── stamen.py        # 雄しべ
+│   │   └── leaf.py          # 葉
+│   ├── compose/             # AST → SceneGraph 変換
+│   │   ├── resolver.py      # シンボル解決（palette / bloom 参照）
+│   │   ├── scatter.py       # procedural 配置
+│   │   └── scene.py         # SceneGraph 中間表現
+│   ├── render/              # SceneGraph → 出力
+│   │   ├── svg.py
+│   │   ├── html.py
+│   │   └── css.py
+│   ├── preview.py           # ローカル HTTP サーバ (v0.6.0)
+│   ├── errors.py
+│   └── cli.py
 ├── tests/
-│   ├── test_lexer.py
-│   ├── test_parser.py
-│   ├── test_evaluator.py
-│   └── fixtures/            # .floras サンプル
 ├── examples/
-│   ├── hello.floras
-│   ├── fizzbuzz.floras
-│   └── fib.floras
+│   ├── sakura.bloom
+│   ├── hero.bloom
+│   └── brand-tokens.bloom
 ├── docs/
-│   └── language-reference.md
 ├── pyproject.toml
-├── README.md
-└── .claude/                 # Spec & Steering（本書含む）
+└── README.md
 ```
 
 ## Naming Convention
 - Python モジュール: `snake_case.py`
 - Python クラス: `PascalCase`
-- Floras キーワード: 全て**花の日本語ローマ字名**（例: `sakura`, `bara`, `kobushi`）
-- Floras 識別子: ユーザー任意（花以外も可、ただし慣例として花を推奨）
-- ファイル拡張子: `.floras`
+- Floras DSL のソース拡張子: `.bloom`
+- Floras DSL キーワード: 英単語 + 花テーマで意味が直感的に通るもの（`bloom` `bouquet` `scatter` `palette` `motif` `canvas` `place` `export`）
+- Floras DSL 識別子: `[a-zA-Z_][a-zA-Z0-9_-]*`（ハイフン許可、kebab-case 慣例）
 
 ## Testing
 - **配置**: `tests/test_<module>.py`（実装と並列）
-- **粒度**: lexer/parser/evaluator それぞれ独立にユニットテスト
-- **End-to-End**: `examples/*.floras` を実行して期待出力と比較
+- **粒度**: lexer / parser / geometry / compose / render それぞれ独立にユニットテスト
+- **Snapshot**: SVG 出力は固定 fixture と diff（座標は小数点 2 桁丸め）
+- **End-to-End**: `examples/*.bloom` をすべて render して期待 SVG と比較
+- **Visual**: 主要 fixture を `docs/gallery.html` に並べ、CI で Playwright スクリーンショット差分（v1.0.0+ で追加）
 - **カバレッジ**: 主要ロジック 85% 以上
-- **必須**: 新トークン・新構文を追加したらテストも同時に追加
 
 ## Git Workflow
 - **ブランチ**: `feature/<spec-slug>`, `fix/<issue>`
 - **コミット**: Conventional Commits (`feat`, `fix`, `refactor`, `test`, `docs`, `chore`)
-- **コミット粒度**: Lexer / Parser / Evaluator は機能単位で別コミット
+- **コミット粒度**: lexer / parser / geometry / render は機能単位で別コミット
 - **PR**: 1 機能 = 1 PR、tasks.md のチェックリストを本文に転記
-- **マージ前**: `pytest && mypy && ruff check` を全パス必須
+- **マージ前**: `pytest && mypy && ruff check` 全パス必須
 
 ## Boundaries (Always / Ask first / Never)
 
 ### Always
 - 型注釈を全 public 関数に付与
-- 新キーワード追加時は `requirements.md` のトークン表も更新
+- 新 DSL キーワード追加時は `requirements.md` の Glossary も更新
 - pytest を通してから commit
-- Floras エラーメッセージは「行番号 + 該当トークン + 期待値」を必ず含める
+- SVG 出力は座標小数点 2 桁丸め（snapshot 安定性）
+- 出力 SVG は `viewBox` 必須（レスポンシブ前提）
 
 ### Ask first（人間確認必須）
 - 外部ライブラリの追加（標準ライブラリ縛りを破る場合）
-- 文法の breaking change（既存 .floras スクリプトが動かなくなる変更）
-- 新キーワードの花名割り当て（命名は作品性に直結するため）
+- 新 DSL キーワードの追加（語彙はデザイナー学習コストに直結）
+- 文法の breaking change（既存 `.bloom` ファイルが render 不可になる変更）
+- 出力 SVG の構造変更（既存ユーザーの DOM 依存に影響）
 
 ### Never
-- `eval()` / `exec()` で Floras を実装すること（学習目的を破壊）
+- 出力に PNG / JPG / 動画形式を加える（v0.1.0 スコープ外、外部ツールで変換）
+- ランダム要素を seed なしで使う（同じ `.bloom` は同じ SVG を出すべき）
 - ホスト Python のスタックトレースをユーザーに直接見せる（Floras 用エラーで包む）
 - main / master への force push
-- テストなしで Lexer/Parser/Evaluator を変更
+- テストなしで Lexer / Parser / Renderer を変更
 
 ## Constraints / Conventions
-- すべての構文要素を花の名前にする原則は**絶対**（記号・括弧・演算子も含む）
-- 数値リテラル（0-9, .）と文字列リテラル（"..."）のみ非花トークン
-- コメントは `shion ...` で行末まで（`shion` = 紫苑）
-- インデントは意味を持たない（ブロックは `ajisai` ... `kikyou` で囲む）
+- 新 DSL は **宣言的**: 制御構文（if / while）は v0.1.0 では持たない。デザインに必要な「分岐」は palette と複数 bouquet で表現する。
+- 数値リテラル: 整数 / 小数 / `12px` / `50%` / `0..1` (range) / `random` / `auto`
+- カラー: `#RRGGBB` / `oklch(L C H)` / `palette.token` 参照（`brand.500` のようなドット記法）
+- 座標系: SVG 標準（左上 0,0、Y 下向き）。`at center` のようなショートカットも提供
+- 単位: `px` 既定、`%` は親要素相対、`vw/vh` は canvas 相対
+- 角度: 度数法 (`deg`)、`turn`（1 turn = 360deg）も許容
+- すべての乱数は `seed` 必須（決定論性）
 
 ## Versioning
 - SemVer 準拠
-- v0.1.0: FizzBuzz が動く最小構成（本 spec の到達点）
-- v0.2.0+: 配列・高階関数・REPL 拡張など別 spec で扱う
+- v0.1.0: 単一 bloom → SVG（最小完動品）
+- v0.2.0: palette トークン
+- v0.3.0: bouquet（複数の bloom を構成）
+- v0.4.0: scatter（procedural 配置）
+- v0.5.0: motif（再利用可能パターン）
+- v0.6.0: HTML preview + ライブリロード
+- v0.7.0: CSS export
+- v1.0.0: Web プレイグラウンド
