@@ -46,11 +46,16 @@ Python 3.11+ 必須。外部依存ゼロ（dev のみ pytest / mypy / ruff）。
 ## Quickstart
 
 ```bash
-floras render examples/桜.bloom --out 桜.svg     # ファイル出力
-floras render examples/桜吹雪.bloom              # 標準出力
-floras render examples/桜吹雪.bloom --ast         # AST を JSON で
+floras render examples/さくら.bloom --out さくら.svg     # ファイル出力
+floras render examples/桜吹雪.bloom                     # 標準出力
+floras render examples/桜吹雪.bloom --ast               # AST を JSON で
+floras preview examples/                               # ライブリロードプレビュー
 floras --version
 ```
+
+`floras preview` は `examples/` 配下の全 `.bloom` をブラウザに並べて表示し、
+ファイルを保存するたびに該当 SVG だけが SSE 経由で差し替わります（フルリロード
+不要、~1 秒以内）。`http://127.0.0.1:7878` を開くだけ。
 
 ## 言語仕様（〜 v0.4.0）
 
@@ -145,8 +150,8 @@ Floras SyntaxError at line 5: scatter requires '種 <integer>;' for determinism
 | v0.1.0 | 単一 花 + 色見本 → SVG |
 | v0.3.0 | 花束（複数の花を 1 キャンバスに配置） |
 | v0.4.0 | 散らす（procedural 配置）+ 全構文日本語化 |
-| **v0.5.0**（現在） | **模様（再利用可能パターン）+ 花名ひらがな化 + 負数座標** |
-| v0.6.0 | preview ライブリロードサーバ |
+| v0.5.0 | 模様（再利用可能パターン）+ 花名ひらがな化 + 負数座標 |
+| **v0.6.0**（現在） | **`floras preview` ライブリロードサーバ** |
 | v0.7.0 | 色見本 → CSS / Tailwind / JSON 書出 |
 | v1.0.0 | Web プレイグラウンド |
 

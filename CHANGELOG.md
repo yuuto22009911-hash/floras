@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-05-07
+
+### Added — `floras preview` (live reload)
+- New CLI subcommand `floras preview <directory> [--port N]` (defaults to
+  port 7878) that:
+  - Serves an HTML gallery of every `.bloom` in `<directory>` with each SVG
+    rendered inline.
+  - Watches the directory by polling mtimes (default: 1.0 s) and pushes a
+    Server-Sent Event whenever a file is added, modified, or removed.
+  - The browser swaps just the affected `<svg>` without a full reload (~1 s
+    end-to-end). A "live" indicator in the bottom-right shows the SSE state.
+  - If a `.bloom` has a syntax / validation error, the matching card switches
+    to a red "error" panel showing the message — the server itself never
+    crashes, and recovers as soon as the file becomes valid again.
+  - Falls back to the next free port if `--port` is taken (tries
+    `port .. port+10`); accepts `--port 0` to ask the OS for any port
+    (used by tests).
+- Implementation is pure Python standard library (`http.server`,
+  `threading`, `queue`); no new runtime dependency.
+- 7 new tests cover gallery HTML / SVG endpoint / unknown file fallback /
+  SSE change events / syntax-error rendering / missing directory / port
+  collision. All 87 tests pass; ruff and mypy strict still green.
+
 ## [0.5.0] - 2026-05-07
 
 ### Added — 模様 (motif)

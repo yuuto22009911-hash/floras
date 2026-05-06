@@ -14,6 +14,7 @@ from floras.compose import compose
 from floras.errors import FlorasError, FlorasInternalError
 from floras.lexer import tokenize
 from floras.parser import Parser
+from floras.preview import run_preview
 from floras.renderers.svg import render_svg
 
 
@@ -33,10 +34,22 @@ def main(argv: list[str] | None = None) -> int:
         "--ast", action="store_true", help="emit the parsed AST as JSON instead of SVG"
     )
 
+    preview_p = sub.add_parser(
+        "preview", help="serve a live-reload gallery of .bloom files"
+    )
+    preview_p.add_argument(
+        "directory", type=str, help="directory containing .bloom files"
+    )
+    preview_p.add_argument(
+        "--port", type=int, default=7878, help="HTTP port (default: 7878)"
+    )
+
     args = parser.parse_args(argv)
 
     if args.command == "render":
         return _cmd_render(args.file, out=args.out, entry=args.entry, dump_ast=args.ast)
+    if args.command == "preview":
+        return run_preview(Path(args.directory), port=args.port)
 
     parser.print_help()
     return 0
