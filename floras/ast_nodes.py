@@ -132,6 +132,7 @@ class BloomDecl:
 class Program:
     palettes: list[PaletteDecl] = field(default_factory=list)
     blooms: list[BloomDecl] = field(default_factory=list)
+    motifs: list[MotifDecl] = field(default_factory=list)
     bouquets: list[BouquetDecl] = field(default_factory=list)
     exports: list[ExportDecl] = field(default_factory=list)
     line: int = 1
@@ -203,6 +204,20 @@ class ScatterDecl:
     size: Value | None = None
     rotation: Value | None = None
     color: ColorValue | None = None
+    line: int = 0
+
+
+@dataclass
+class MotifDecl:
+    """A reusable composite (`模様 ... { ... }`).
+
+    Motifs may contain `置く` placements that reference blooms or other
+    motifs (cycles are detected at compose time). Coordinates inside a motif
+    are local — they get translated when the motif itself is placed.
+    """
+
+    name: str
+    placements: list[Placement] = field(default_factory=list)
     line: int = 0
 
 

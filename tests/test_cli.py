@@ -9,7 +9,7 @@ import pytest
 from floras.cli import main
 
 EXAMPLES = Path(__file__).resolve().parents[1] / "examples"
-SAKURA = EXAMPLES / "桜.bloom"
+SAKURA = EXAMPLES / "さくら.bloom"
 
 
 def test_render_to_stdout(capsys: pytest.CaptureFixture[str]) -> None:
@@ -22,7 +22,7 @@ def test_render_to_stdout(capsys: pytest.CaptureFixture[str]) -> None:
 def test_render_writes_out_file(
     tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:
-    out = tmp_path / "桜.svg"
+    out = tmp_path / "さくら.svg"
     rc = main(["render", str(SAKURA), "--out", str(out)])
     assert rc == 0
     assert out.exists()
@@ -42,7 +42,7 @@ def test_render_syntax_error_returns_one(
     tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:
     bad = tmp_path / "bad.bloom"
-    bad.write_text("花 桜 { 花弁数 5", encoding="utf-8")
+    bad.write_text("花 さくら { 花弁数 5", encoding="utf-8")
     rc = main(["render", str(bad)])
     captured = capsys.readouterr()
     assert rc == 1

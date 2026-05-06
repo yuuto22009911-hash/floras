@@ -88,13 +88,13 @@ def test_palette_dot_reference_lexes_three_tokens() -> None:
 
 
 def test_japanese_identifier_with_digits() -> None:
-    tokens = tokenize("桜500 五百")
-    assert tokens[0].kind == TokenKind.IDENT and tokens[0].lexeme == "桜500"
+    tokens = tokenize("さくら500 五百")
+    assert tokens[0].kind == TokenKind.IDENT and tokens[0].lexeme == "さくら500"
     assert tokens[1].kind == TokenKind.IDENT and tokens[1].lexeme == "五百"
 
 
 def test_komejirushi_starts_a_line_comment() -> None:
-    tokens = tokenize("※ これはコメント\n花 桜")
+    tokens = tokenize("※ これはコメント\n花 さくら")
     assert tokens[0].kind == TokenKind.HANA
     assert tokens[0].line == 2
 
@@ -123,3 +123,18 @@ def test_unknown_character_raises() -> None:
 def test_chikaku_iro_lexes_as_keyword() -> None:
     tokens = tokenize("知覚色(0.78 0.13 12)")
     assert tokens[0].kind == TokenKind.CHIKAKU_IRO
+
+
+def test_negative_number() -> None:
+    tokens = tokenize("(-50, -30)")
+    assert tokens[0].kind == TokenKind.LPAREN
+    assert tokens[1].kind == TokenKind.NUMBER
+    assert tokens[1].value == -50.0
+    assert tokens[3].kind == TokenKind.NUMBER
+    assert tokens[3].value == -30.0
+
+
+def test_motif_keyword_lexes() -> None:
+    tokens = tokenize("模様 ひとえだ {}")
+    assert tokens[0].kind == TokenKind.MOYOU
+    assert tokens[1].kind == TokenKind.IDENT and tokens[1].lexeme == "ひとえだ"

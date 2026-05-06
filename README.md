@@ -59,7 +59,8 @@ floras --version
 |---|---|
 | `色見本 名前 { ... }` | パレット（ブランド色を一括管理） |
 | `花 名前 { ... }` | 単一の花の構造定義 |
-| `花束 名前 { ... }` | 複数の花を 1 キャンバスに構成 |
+| `模様 名前 { ... }` | 「花 + 蕾 + 葉」など複数要素を 1 単位として再利用 |
+| `花束 名前 { ... }` | 複数の花 / 模様を 1 キャンバスに構成 |
 | `書出 対象 へ "path";` | 出力先指定 |
 
 ### 花のプロパティ
@@ -117,13 +118,14 @@ floras --version
 
 | ファイル | 内容 |
 |---|---|
-| [`examples/桜.bloom`](examples/桜.bloom) | 5 弁・切れ込み付きの桜 |
-| [`examples/薔薇.bloom`](examples/薔薇.bloom) | 28 弁螺旋の薔薇 / 知覚色 |
-| [`examples/菊.bloom`](examples/菊.bloom) | 24 弁の細長い菊 |
-| [`examples/コスモス.bloom`](examples/コスモス.bloom) | 茎+葉つきのコスモス |
-| [`examples/百合.bloom`](examples/百合.bloom) | 色見本連携の百合 |
+| [`examples/さくら.bloom`](examples/さくら.bloom) | 5 弁・切れ込み付きのさくら |
+| [`examples/ばら.bloom`](examples/ばら.bloom) | 28 弁螺旋のばら / 知覚色 |
+| [`examples/きく.bloom`](examples/きく.bloom) | 24 弁の細長いきく |
+| [`examples/こすもす.bloom`](examples/こすもす.bloom) | 茎+葉つきのこすもす |
+| [`examples/ゆり.bloom`](examples/ゆり.bloom) | 色見本連携のゆり |
 | [`examples/ヒーロー.bloom`](examples/ヒーロー.bloom) | 1200×630 花束 |
 | [`examples/桜吹雪.bloom`](examples/桜吹雪.bloom) | **散らす** で桜吹雪を演出 |
+| [`examples/枝.bloom`](examples/枝.bloom) | **模様** で「さくら+蕾」を 8 枝散布 |
 
 `python docs/build_gallery.py` で `docs/gallery.html` を生成すると、全サンプルと出力 SVG とソースコードを 1 ページで確認できます。
 
@@ -142,8 +144,8 @@ Floras SyntaxError at line 5: scatter requires '種 <integer>;' for determinism
 |---|---|
 | v0.1.0 | 単一 花 + 色見本 → SVG |
 | v0.3.0 | 花束（複数の花を 1 キャンバスに配置） |
-| **v0.4.0**（現在） | **散らす（procedural 配置）+ 全構文日本語化** |
-| v0.5.0 | 模様（再利用可能パターン） |
+| v0.4.0 | 散らす（procedural 配置）+ 全構文日本語化 |
+| **v0.5.0**（現在） | **模様（再利用可能パターン）+ 花名ひらがな化 + 負数座標** |
 | v0.6.0 | preview ライブリロードサーバ |
 | v0.7.0 | 色見本 → CSS / Tailwind / JSON 書出 |
 | v1.0.0 | Web プレイグラウンド |

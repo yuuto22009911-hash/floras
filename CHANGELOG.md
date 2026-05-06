@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-05-07
+
+### Added — 模様 (motif)
+- New top-level declaration `模様 名前 { 置く ... に (x, y); ... }`. A motif
+  is a reusable group of placements with local coordinates (origin = 0, 0).
+- A motif can be placed in a 花束 with `置く 模様名 に (x, y)` or `置く 模様名 に
+  中央`. Each child placement is translated to (x, y).
+- `散らす` accepts a motif as `元`; every generated position spawns a full
+  copy of the motif.
+- A motif may reference other motifs; circular references are detected at
+  compose time and raise FlorasValidationError with the cycle chain.
+- `examples/枝.bloom`: combines 模様 + 散らす — 1 main sakura + 8 scattered
+  "branch" motifs each consisting of 1 sakura + 2 buds.
+
+### Changed
+- All flower (`花`) names in shipped examples are now hiragana / katakana
+  only:
+  桜 → さくら, 薔薇 → ばら, 菊 → きく, コスモス → こすもす, 百合 → ゆり,
+  花弁 → かべん, 主役桜 → しゅやくざくら.
+- Filenames renamed accordingly: `examples/{さくら,ばら,きく,こすもす,ゆり}.bloom`.
+- The lexer now accepts a leading `-` followed by a digit as a negative
+  number literal so motif coordinates like `(-50, -30)` parse correctly.
+
+### Tests
+- 8 new tests cover motif decl, motif at center, unknown target,
+  circular references, scatter-of-motif expansion, and the negative number
+  literal. All 80 tests pass; ruff/mypy strict 0 errors.
+
 ## [0.4.0] - 2026-05-07
 
 ### Changed — Language surface is now fully Japanese

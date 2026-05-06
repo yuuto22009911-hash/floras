@@ -19,40 +19,40 @@ def _scene(source: str, **kwargs: Any) -> Scene:
 
 
 def test_minimal_bloom_produces_scene_with_one_instance() -> None:
-    scene = _scene("花 桜 { 花弁数 5; 大きさ 200; 色 知覚色(0.85 0.10 12); }")
+    scene = _scene("花 さくら { 花弁数 5; 大きさ 200; 色 知覚色(0.85 0.10 12); }")
     assert len(scene.items) == 1
     inst = scene.items[0]
-    assert inst.bloom_name == "桜"
+    assert inst.bloom_name == "さくら"
     assert inst.size == 200.0
 
 
 def test_palette_reference_resolves_to_hex() -> None:
     scene = _scene(
         "色見本 春 { 桜色 知覚色(0.85 0.10 12); }\n"
-        "花 桜 { 大きさ 200; 色 春.桜色; }"
+        "花 さくら { 大きさ 200; 色 春.桜色; }"
     )
     assert scene.items[0].color.hex.startswith("#")
 
 
 def test_palette_token_unknown_raises() -> None:
-    src = "色見本 春 { 桜色 知覚色(0.85 0.10 12); }\n花 桜 { 色 春.見つからない; }"
+    src = "色見本 春 { 桜色 知覚色(0.85 0.10 12); }\n花 さくら { 色 春.見つからない; }"
     with pytest.raises(FlorasNameError):
         _scene(src)
 
 
 def test_unknown_palette_raises() -> None:
     with pytest.raises(FlorasNameError):
-        _scene("花 桜 { 色 幻.桜色; }")
+        _scene("花 さくら { 色 幻.桜色; }")
 
 
 def test_invalid_petals_raises_validation() -> None:
     with pytest.raises(FlorasValidationError):
-        _scene("花 桜 { 花弁数 0; }")
+        _scene("花 さくら { 花弁数 0; }")
 
 
 def test_invalid_curl_raises() -> None:
     with pytest.raises(FlorasValidationError):
-        _scene("花 桜 { 花弁反り 1.5; }")
+        _scene("花 さくら { 花弁反り 1.5; }")
 
 
 def test_no_bloom_raises() -> None:
@@ -71,17 +71,17 @@ def test_explicit_entry_selects_named_bloom() -> None:
 
 def test_unknown_entry_raises() -> None:
     with pytest.raises(FlorasNameError):
-        _scene("花 桜 { 花弁数 5; }", entry="幻")
+        _scene("花 さくら { 花弁数 5; }", entry="幻")
 
 
 def test_bouquet_renders_with_canvas_size_and_background() -> None:
     src = (
-        "花 桜 { 花弁数 5; 大きさ 200; 色 知覚色(0.85 0.10 12); }\n"
+        "花 さくら { 花弁数 5; 大きさ 200; 色 知覚色(0.85 0.10 12); }\n"
         "花束 ヒーロー {\n"
         "  画布 1200 × 630;\n"
         "  背景 知覚色(0.97 0.01 80);\n"
-        "  置く 桜 に (300, 315);\n"
-        "  置く 桜 に (900, 315);\n"
+        "  置く さくら に (300, 315);\n"
+        "  置く さくら に (900, 315);\n"
         "}"
     )
     scene = _scene(src)
@@ -92,8 +92,8 @@ def test_bouquet_renders_with_canvas_size_and_background() -> None:
 
 def test_bouquet_at_center_resolves_to_canvas_centre() -> None:
     src = (
-        "花 桜 { 花弁数 5; 大きさ 200; 色 知覚色(0.85 0.10 12); }\n"
-        "花束 束 { 画布 1000 × 600; 置く 桜 に 中央; }"
+        "花 さくら { 花弁数 5; 大きさ 200; 色 知覚色(0.85 0.10 12); }\n"
+        "花束 束 { 画布 1000 × 600; 置く さくら に 中央; }"
     )
     scene = _scene(src)
     inst = scene.items[0]
@@ -163,8 +163,68 @@ def test_oklch_red_converts_to_recognisable_hex() -> None:
     assert out.hex.startswith("#FF") or out.hex.startswith("#FE")
 
 
+def test_motif_expands_into_translated_blooms() -> None:
+    src = (
+        "花 さくら { 花弁数 5; 大きさ 100; 色 知覚色(0.85 0.10 12); }\n"
+        "花 つぼみ { 花弁数 5; 大きさ 50; 色 知覚色(0.78 0.13 5); }\n"
+        "模様 ひとえだ { 置く さくら に (0, 0); 置く つぼみ に (-50, -30); }\n"
+        "花束 束 { 画布 600 × 600; 置く ひとえだ に (300, 300); }"
+    )
+    scene = _scene(src)
+    # The motif placement at (300, 300) yields さくら at (300, 300) and つぼみ
+    # at (250, 270) after the local-coordinate translation.
+    assert len(scene.items) == 2
+    assert {(round(i.x), round(i.y)) for i in scene.items} == {(300, 300), (250, 270)}
+
+
+def test_motif_at_center_resolves_then_translates() -> None:
+    src = (
+        "花 さくら { 花弁数 5; 大きさ 80; 色 知覚色(0.85 0.10 12); }\n"
+        "模様 一輪 { 置く さくら に (10, 0); }\n"
+        "花束 束 { 画布 600 × 400; 置く 一輪 に 中央; }"
+    )
+    scene = _scene(src)
+    assert len(scene.items) == 1
+    assert round(scene.items[0].x) == 310
+    assert round(scene.items[0].y) == 200
+
+
+def test_motif_unknown_target_raises_name_error() -> None:
+    src = (
+        "模様 もよう { 置く 幻 に (0, 0); }\n"
+        "花束 束 { 画布 200 × 200; 置く もよう に (100, 100); }"
+    )
+    with pytest.raises(FlorasNameError):
+        _scene(src)
+
+
+def test_circular_motif_raises_validation() -> None:
+    src = (
+        "花 さくら { 花弁数 5; 色 知覚色(0.85 0.10 12); }\n"
+        "模様 甲 { 置く 乙 に (0, 0); }\n"
+        "模様 乙 { 置く 甲 に (0, 0); }\n"
+        "花束 束 { 画布 200 × 200; 置く 甲 に (0, 0); }"
+    )
+    with pytest.raises(FlorasValidationError):
+        _scene(src)
+
+
+def test_scatter_can_use_motif_as_source() -> None:
+    src = (
+        "花 さくら { 花弁数 5; 大きさ 60; 色 知覚色(0.85 0.10 12); }\n"
+        "花 つぼみ { 花弁数 5; 大きさ 30; 色 知覚色(0.78 0.13 5); }\n"
+        "模様 ひとえだ { 置く さくら に (0, 0); 置く つぼみ に (20, 10); }\n"
+        "花束 束 { 画布 1000 × 1000;\n"
+        "  散らす { 元 ひとえだ; 数 5; 領域 画布; 種 9; }\n"
+        "}"
+    )
+    scene = _scene(src)
+    # 5 motif copies × 2 children each = 10 BloomInstances.
+    assert len(scene.items) == 10
+
+
 def test_spiral_arrange_uses_golden_angle() -> None:
-    scene = _scene("花 薔薇 { 花弁数 24; 並び 螺旋; 色 知覚色(0.62 0.18 12); }")
+    scene = _scene("花 ばら { 花弁数 24; 並び 螺旋; 色 知覚色(0.62 0.18 12); }")
     inst = scene.items[0]
     assert inst.arrange == "螺旋"
     assert abs(inst.arrange_rotation - 137.508) < 0.01

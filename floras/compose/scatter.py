@@ -14,13 +14,13 @@ from floras.ast_nodes import (
     BloomDecl,
     Coord,
     HexColor,
+    MotifDecl,
     Placement,
     Range,
     ScatterDecl,
     StrokeSpec,
     Value,
 )
-from floras.compose.resolver import resolve_placement
 from floras.compose.scene import BloomInstance
 from floras.errors import FlorasNameError, FlorasValidationError
 
@@ -28,19 +28,29 @@ from floras.errors import FlorasNameError, FlorasValidationError
 def expand_scatter(
     scatter: ScatterDecl,
     blooms: dict[str, BloomDecl],
+    motifs: dict[str, MotifDecl],
     palettes: dict[str, dict[str, HexColor]],
     canvas_width: float,
     canvas_height: float,
 ) -> list[BloomInstance]:
-    """Turn a `散らす` declaration into a deterministic list of BloomInstances."""
-    if scatter.source not in blooms:
+    """Turn a `散らす` declaration into a deterministic list of BloomInstances.
+
+    `元` may reference either a bloom or a motif. When it points to a motif
+    each generated position spawns a full copy of the motif, translated to
+    that position.
+    """
+    # Local import to avoid a circular dependency between compose modules.
+    from floras.compose import _expand_placement  # noqa: PLC0415
+
+    if scatter.source not in blooms and scatter.source not in motifs:
         raise FlorasNameError(
-            scatter.line, f"bloom '{scatter.source}' is not defined"
+            scatter.line, f"'{scatter.source}' is not a defined bloom or motif"
         )
-    bloom_decl = blooms[scatter.source]
 
     rng = Random(scatter.seed)
-    positions = _generate_positions(scatter.area, scatter.count, rng, canvas_width, canvas_height)
+    positions = _generate_positions(
+        scatter.area, scatter.count, rng, canvas_width, canvas_height
+    )
 
     instances: list[BloomInstance] = []
     for x, y in positions:
@@ -48,9 +58,11 @@ def expand_scatter(
         if scatter.size is not None:
             overrides["大きさ"] = _resolve_range_or_value(scatter.size, rng)
         if scatter.rotation is not None:
-            overrides["回転"] = _resolve_range_or_value(scatter.rotation, rng, default_min=0.0, default_max=360.0)
+            overrides["回転"] = _resolve_range_or_value(
+                scatter.rotation, rng, default_min=0.0, default_max=360.0
+            )
         if scatter.color is not None:
-            overrides["色"] = scatter.color  # ColorValue not affected by RNG (palette tint amount is fixed)
+            overrides["色"] = scatter.color
 
         placement = Placement(
             target=scatter.source,
@@ -58,10 +70,11 @@ def expand_scatter(
             overrides=overrides,
             line=scatter.line,
         )
-        instances.append(
-            resolve_placement(
-                bloom_decl,
+        instances.extend(
+            _expand_placement(
                 placement,
+                blooms,
+                motifs,
                 palettes,
                 canvas_width,
                 canvas_height,

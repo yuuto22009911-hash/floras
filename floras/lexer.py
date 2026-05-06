@@ -63,6 +63,9 @@ class _Lexer:
             if ch in _DIGITS:
                 self._read_number()
                 continue
+            if ch == "-" and self._next_is_digit():
+                self._read_number(negative=True)
+                continue
             if ch == ".":
                 self._read_dot()
                 continue
@@ -138,9 +141,14 @@ class _Lexer:
 
     # ---- numbers ------------------------------------------------------------
 
-    def _read_number(self) -> None:
+    def _next_is_digit(self) -> bool:
+        return self.pos + 1 < len(self.src) and self.src[self.pos + 1] in _DIGITS
+
+    def _read_number(self, *, negative: bool = False) -> None:
         start_line, start_col = self.line, self.col
         start_pos = self.pos
+        if negative:
+            self._advance()  # consume leading '-'
         while not self._at_end() and self._peek() in _DIGITS:
             self._advance()
         is_float = False

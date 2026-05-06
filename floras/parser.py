@@ -17,6 +17,7 @@ from floras.ast_nodes import (
     ExportDecl,
     HexColor,
     IdentValue,
+    MotifDecl,
     NumberValue,
     OklchColor,
     PaletteDecl,
@@ -54,6 +55,8 @@ class Parser:
                 program.palettes.append(self._parse_palette())
             elif tok.kind == TokenKind.HANA:
                 program.blooms.append(self._parse_bloom())
+            elif tok.kind == TokenKind.MOYOU:
+                program.motifs.append(self._parse_motif())
             elif tok.kind == TokenKind.HANATABA:
                 program.bouquets.append(self._parse_bouquet())
             elif tok.kind == TokenKind.KAKIDASHI:
@@ -62,7 +65,7 @@ class Parser:
                 raise FlorasSyntaxError(
                     tok.line,
                     "expected top-level declaration "
-                    "(色見本 / 花 / 花束 / 書出), "
+                    "(色見本 / 花 / 模様 / 花束 / 書出), "
                     f"got '{tok.lexeme or tok.kind.value}'",
                 )
         return program
@@ -136,6 +139,26 @@ class Parser:
         else:
             bloom.properties[key] = self._parse_value()
         self._consume(TokenKind.SEMI, "expected ';' after bloom property")
+
+    # ------------------------------------------------------------- motif
+
+    def _parse_motif(self) -> MotifDecl:
+        kw = self._consume(TokenKind.MOYOU)
+        name = self._consume_ident("expected motif name").lexeme
+        self._consume(TokenKind.LBRACE, "expected '{' after motif name")
+        placements: list[Placement] = []
+        while not self._check(TokenKind.RBRACE) and not self._check(TokenKind.EOF):
+            tok = self._peek()
+            if tok.kind == TokenKind.OKU:
+                placements.append(self._parse_placement())
+            else:
+                raise FlorasSyntaxError(
+                    tok.line,
+                    "expected '置く' inside motif, "
+                    f"got '{tok.lexeme or tok.kind.value}'",
+                )
+        self._consume(TokenKind.RBRACE, "expected '}' to close motif")
+        return MotifDecl(name=name, placements=placements, line=kw.line)
 
     # ------------------------------------------------------------- bouquet
 
