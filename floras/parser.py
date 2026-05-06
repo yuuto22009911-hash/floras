@@ -1,29 +1,37 @@
-"""Recursive-descent parser for Floras (v0.1.0 Core, EBNF per design.md)."""
+"""Recursive-descent parser for the Floras Bloom DSL (v0.1.0)."""
 
 from __future__ import annotations
 
 from floras.ast_nodes import (
-    Assign,
-    Binary,
-    BoolLit,
-    Call,
-    Expr,
-    ExprStmt,
-    FnDecl,
-    Identifier,
-    IfStmt,
-    LetStmt,
-    Node,
-    NullLit,
-    NumberLit,
+    AngleValue,
+    BloomDecl,
+    BoolValue,
+    ColorValue,
+    ExportDecl,
+    HexColor,
+    IdentValue,
+    NumberValue,
+    OklchColor,
+    PaletteDecl,
+    PaletteRef,
+    PercentValue,
     Program,
-    ReturnStmt,
-    StringLit,
-    Unary,
-    WhileStmt,
+    Range,
+    StringValue,
+    StrokeSpec,
+    Value,
 )
 from floras.errors import FlorasSyntaxError
-from floras.tokens import BINARY_OPS, UNARY_OPS, Token, TokenKind
+from floras.tokens import Token, TokenKind
+
+# Properties whose value is a colour (and therefore must be parsed via the
+# `color_value` non-terminal rather than the generic `value`).
+_COLOR_PROPERTIES: frozenset[str] = frozenset(
+    {"color", "stamen-color", "stem-color", "background"}
+)
+
+# Properties whose value is `<color> width <number>` shorthand.
+_STROKE_PROPERTIES: frozenset[str] = frozenset({"stroke"})
 
 
 class Parser:
@@ -31,188 +39,245 @@ class Parser:
         self.tokens = tokens
         self.pos = 0
 
-    # ------------------------------------------------------------------ entry
+    # ---------------------------------------------------------------- entry
 
     def parse_program(self) -> Program:
-        statements: list[Node] = []
+        program = Program()
         while not self._check(TokenKind.EOF):
-            statements.append(self._parse_statement())
-        return Program(line=1, statements=statements)
-
-    # --------------------------------------------------------------- statements
-
-    def _parse_statement(self) -> Node:
-        kind = self._peek().kind
-        if kind == TokenKind.SAKURA:
-            return self._parse_let()
-        if kind == TokenKind.YURI:
-            return self._parse_fn_decl()
-        if kind == TokenKind.BARA:
-            return self._parse_if()
-        if kind == TokenKind.UME:
-            return self._parse_while()
-        if kind == TokenKind.RAN:
-            return self._parse_return()
-        return self._parse_expr_stmt()
-
-    def _parse_let(self) -> LetStmt:
-        kw = self._consume(TokenKind.SAKURA)
-        name_tok = self._consume(TokenKind.IDENT, "expected variable name after 'sakura'")
-        self._consume(TokenKind.TSUYUKUSA, "expected 'tsuyukusa' (=) in let")
-        value = self._parse_expression()
-        self._consume(TokenKind.NADESHIKO, "expected 'nadeshiko' (;) at end of statement")
-        return LetStmt(line=kw.line, name=name_tok.lexeme, value=value)
-
-    def _parse_fn_decl(self) -> FnDecl:
-        kw = self._consume(TokenKind.YURI)
-        name_tok = self._consume(TokenKind.IDENT, "expected function name after 'yuri'")
-        self._consume(TokenKind.KOBUSHI, "expected '(' (kobushi) after function name")
-        params: list[str] = []
-        if not self._check(TokenKind.MOKUREN):
-            params.append(self._consume(TokenKind.IDENT, "expected parameter name").lexeme)
-            while self._match(TokenKind.KASUMI):
-                params.append(self._consume(TokenKind.IDENT, "expected parameter name").lexeme)
-        self._consume(TokenKind.MOKUREN, "expected ')' (mokuren) after parameters")
-        body = self._parse_block()
-        return FnDecl(line=kw.line, name=name_tok.lexeme, params=params, body=body)
-
-    def _parse_if(self) -> IfStmt:
-        kw = self._consume(TokenKind.BARA)
-        self._consume(TokenKind.KOBUSHI, "expected '(' (kobushi) after 'bara'")
-        cond = self._parse_expression()
-        self._consume(TokenKind.MOKUREN, "expected ')' (mokuren) after if condition")
-        then_branch = self._parse_block()
-        else_branch: list[Node] | None = None
-        if self._match(TokenKind.TSUBAKI):
-            if self._check(TokenKind.BARA):
-                else_branch = [self._parse_if()]
+            tok = self._peek()
+            if tok.kind == TokenKind.PALETTE:
+                program.palettes.append(self._parse_palette())
+            elif tok.kind == TokenKind.BLOOM:
+                program.blooms.append(self._parse_bloom())
+            elif tok.kind == TokenKind.EXPORT:
+                program.exports.append(self._parse_export())
             else:
-                else_branch = self._parse_block()
-        return IfStmt(line=kw.line, cond=cond, then_branch=then_branch, else_branch=else_branch)
-
-    def _parse_while(self) -> WhileStmt:
-        kw = self._consume(TokenKind.UME)
-        self._consume(TokenKind.KOBUSHI, "expected '(' (kobushi) after 'ume'")
-        cond = self._parse_expression()
-        self._consume(TokenKind.MOKUREN, "expected ')' (mokuren) after while condition")
-        body = self._parse_block()
-        return WhileStmt(line=kw.line, cond=cond, body=body)
-
-    def _parse_return(self) -> ReturnStmt:
-        kw = self._consume(TokenKind.RAN)
-        value: Expr | None = None
-        if not self._check(TokenKind.NADESHIKO):
-            value = self._parse_expression()
-        self._consume(TokenKind.NADESHIKO, "expected 'nadeshiko' (;) at end of return")
-        return ReturnStmt(line=kw.line, value=value)
-
-    def _parse_expr_stmt(self) -> ExprStmt:
-        line = self._peek().line
-        expr = self._parse_expression()
-        self._consume(TokenKind.NADESHIKO, "expected 'nadeshiko' (;) at end of statement")
-        return ExprStmt(line=line, expr=expr)
-
-    def _parse_block(self) -> list[Node]:
-        self._consume(TokenKind.AJISAI, "expected '{' (ajisai) at start of block")
-        stmts: list[Node] = []
-        while not self._check(TokenKind.KIKYOU) and not self._check(TokenKind.EOF):
-            stmts.append(self._parse_statement())
-        self._consume(TokenKind.KIKYOU, "expected '}' (kikyou) at end of block")
-        return stmts
-
-    # -------------------------------------------------------------- expressions
-
-    def _parse_expression(self) -> Expr:
-        # Assignment: IDENT 'tsuyukusa' expression — single right-recursive form
-        # that we detect by lookahead. Otherwise fall through to binary.
-        if (
-            self._check(TokenKind.IDENT)
-            and self._check_at(self.pos + 1, TokenKind.TSUYUKUSA)
-        ):
-            name_tok = self._advance()
-            self._advance()  # consume tsuyukusa
-            value = self._parse_expression()
-            return Assign(line=name_tok.line, name=name_tok.lexeme, value=value)
-        return self._parse_binary()
-
-    def _parse_binary(self) -> Expr:
-        left = self._parse_unary()
-        if not self._is_binop():
-            return left
-        op_tok = self._peek()
-        op = op_tok.kind
-        operands: list[Expr] = [left]
-        while self._is_binop():
-            cur = self._peek().kind
-            if cur != op:
-                # D-05: mixed operators of different kinds require parenthesisation.
                 raise FlorasSyntaxError(
-                    self._peek().line,
-                    "mixed operators are not allowed; wrap with 'kobushi ... mokuren' "
-                    "(operator priority is intentionally absent — see ADR-13)",
+                    tok.line,
+                    f"expected top-level declaration "
+                    f"(palette / bloom / export), got '{tok.lexeme or tok.kind.value}'",
                 )
-            self._advance()
-            operands.append(self._parse_unary())
+        return program
 
-        # Left-associative fold.
-        result: Expr = operands[0]
-        for right in operands[1:]:
-            result = Binary(line=op_tok.line, op=op, left=result, right=right)
-        return result
+    # ------------------------------------------------------------ palette
 
-    def _parse_unary(self) -> Expr:
-        if self._peek().kind in UNARY_OPS:
-            op_tok = self._advance()
-            operand = self._parse_unary()
-            return Unary(line=op_tok.line, op=op_tok.kind, operand=operand)
-        return self._parse_call()
+    def _parse_palette(self) -> PaletteDecl:
+        kw = self._consume(TokenKind.PALETTE)
+        name = self._consume_ident("expected palette name").lexeme
+        self._consume(TokenKind.LBRACE, "expected '{' after palette name")
+        tokens: dict[str, ColorValue] = {}
+        while not self._check(TokenKind.RBRACE) and not self._check(TokenKind.EOF):
+            tok_name = self._parse_token_name()
+            color = self._parse_color_value()
+            self._consume(TokenKind.SEMI, "expected ';' after palette entry")
+            if tok_name in tokens:
+                raise FlorasSyntaxError(
+                    color.line,
+                    f"duplicate palette token '{tok_name}' in palette '{name}'",
+                )
+            tokens[tok_name] = color
+        self._consume(TokenKind.RBRACE, "expected '}' to close palette")
+        return PaletteDecl(name=name, tokens=tokens, line=kw.line)
 
-    def _parse_call(self) -> Expr:
-        expr = self._parse_primary()
-        while self._match(TokenKind.KOBUSHI):
-            args: list[Expr] = []
-            if not self._check(TokenKind.MOKUREN):
-                args.append(self._parse_expression())
-                while self._match(TokenKind.KASUMI):
-                    args.append(self._parse_expression())
-            self._consume(TokenKind.MOKUREN, "expected ')' (mokuren) after call arguments")
-            expr = Call(line=expr.line, callee=expr, args=args)
-        return expr
-
-    def _parse_primary(self) -> Expr:
+    def _parse_token_name(self) -> str:
+        """Palette token names may be identifiers (`primary`) or integers (`500`)."""
         tok = self._peek()
+        if tok.kind == TokenKind.IDENT:
+            self._advance()
+            return tok.lexeme
         if tok.kind == TokenKind.NUMBER:
             self._advance()
+            assert isinstance(tok.value, float)
+            return str(int(tok.value))
+        raise FlorasSyntaxError(
+            tok.line, f"expected palette token name, got '{tok.lexeme or tok.kind.value}'"
+        )
+
+    # -------------------------------------------------------------- bloom
+
+    def _parse_bloom(self) -> BloomDecl:
+        kw = self._consume(TokenKind.BLOOM)
+        name = self._consume_ident("expected bloom name").lexeme
+        self._consume(TokenKind.LBRACE, "expected '{' after bloom name")
+        bloom = BloomDecl(name=name, line=kw.line)
+        while not self._check(TokenKind.RBRACE) and not self._check(TokenKind.EOF):
+            self._parse_bloom_property(bloom)
+        self._consume(TokenKind.RBRACE, "expected '}' to close bloom")
+        return bloom
+
+    def _parse_bloom_property(self, bloom: BloomDecl) -> None:
+        key_tok = self._advance()
+        key = key_tok.lexeme
+
+        if key in bloom.properties:
+            raise FlorasSyntaxError(
+                key_tok.line, f"duplicate property '{key}' in bloom '{bloom.name}'"
+            )
+
+        if key in _STROKE_PROPERTIES:
+            color = self._parse_color_value()
+            self._consume(TokenKind.WIDTH, "expected 'width' after stroke colour")
+            width_tok = self._consume_number("expected stroke width number")
+            assert width_tok.value is not None
+            bloom.properties[key] = StrokeSpec(
+                color=color,
+                width=float(width_tok.value),  # type: ignore[arg-type]
+                line=key_tok.line,
+            )
+        elif key in _COLOR_PROPERTIES:
+            bloom.properties[key] = self._parse_color_value()
+        else:
+            bloom.properties[key] = self._parse_value()
+
+        self._consume(TokenKind.SEMI, "expected ';' after bloom property")
+
+    # -------------------------------------------------------------- export
+
+    def _parse_export(self) -> ExportDecl:
+        kw = self._consume(TokenKind.EXPORT)
+        target = self._consume_ident("expected export target name").lexeme
+        self._consume(TokenKind.TO, "expected 'to' after export target")
+        path_tok = self._consume(TokenKind.STRING, "expected output path string")
+        self._consume(TokenKind.SEMI, "expected ';' after export")
+        assert path_tok.value is not None
+        return ExportDecl(target=target, path=str(path_tok.value), line=kw.line)
+
+    # ------------------------------------------------------------ values
+
+    def _parse_value(self) -> Value:
+        tok = self._peek()
+        if tok.kind == TokenKind.NUMBER:
+            return self._parse_number_or_range()
+        if tok.kind == TokenKind.PIXEL:
+            self._advance()
             assert tok.value is not None
-            return NumberLit(line=tok.line, value=float(tok.value))  # type: ignore[arg-type]
+            return NumberValue(value=float(tok.value), line=tok.line)  # type: ignore[arg-type]
+        if tok.kind == TokenKind.PERCENT:
+            self._advance()
+            assert tok.value is not None
+            return PercentValue(value=float(tok.value), line=tok.line)  # type: ignore[arg-type]
+        if tok.kind == TokenKind.DEG:
+            self._advance()
+            assert tok.value is not None
+            return AngleValue(degrees=float(tok.value), line=tok.line)  # type: ignore[arg-type]
+        if tok.kind == TokenKind.TURN:
+            self._advance()
+            assert tok.value is not None
+            return AngleValue(degrees=float(tok.value) * 360.0, line=tok.line)  # type: ignore[arg-type]
+        if tok.kind == TokenKind.HEX_COLOR:
+            self._advance()
+            return HexColor(hex=str(tok.value), line=tok.line)
+        if tok.kind == TokenKind.OKLCH:
+            return self._parse_oklch()
         if tok.kind == TokenKind.STRING:
             self._advance()
-            return StringLit(line=tok.line, value=str(tok.value))
-        if tok.kind == TokenKind.HASU:
+            return StringValue(value=str(tok.value), line=tok.line)
+        if tok.kind == TokenKind.TRUE:
             self._advance()
-            return BoolLit(line=tok.line, value=True)
-        if tok.kind == TokenKind.ASAGAO:
+            return BoolValue(value=True, line=tok.line)
+        if tok.kind == TokenKind.FALSE:
             self._advance()
-            return BoolLit(line=tok.line, value=False)
-        if tok.kind == TokenKind.TANPOPO:
+            return BoolValue(value=False, line=tok.line)
+        if tok.kind == TokenKind.IDENT:
+            # Could be a palette ref `brand.500` or a bare identifier.
+            if (
+                self.pos + 1 < len(self.tokens)
+                and self.tokens[self.pos + 1].kind == TokenKind.DOT
+            ):
+                return self._parse_palette_ref()
             self._advance()
-            return NullLit(line=tok.line)
-        if tok.kind in (TokenKind.IDENT, TokenKind.BOTAN, TokenKind.AYAME):
-            # Builtin functions (botan/ayame) are reserved keywords (FR-10) but
-            # they appear in expression position as ordinary callables; the
-            # Environment binds them to native implementations.
+            return IdentValue(name=tok.lexeme, line=tok.line)
+        if tok.kind in (
+            TokenKind.CENTER,
+            TokenKind.AUTO,
+            TokenKind.RANDOM,
+            TokenKind.NONE_KW,
+            TokenKind.SPIRAL,
+            TokenKind.RING,
+        ):
             self._advance()
-            return Identifier(line=tok.line, name=tok.lexeme)
-        if tok.kind == TokenKind.KOBUSHI:
-            self._advance()
-            inner = self._parse_expression()
-            self._consume(
-                TokenKind.MOKUREN, "expected ')' (mokuren) after parenthesised expression"
-            )
-            return inner
-        raise FlorasSyntaxError(tok.line, f"unexpected token '{tok.lexeme or tok.kind.value}'")
+            return IdentValue(name=tok.lexeme, line=tok.line)
+        raise FlorasSyntaxError(
+            tok.line, f"unexpected token in value position: '{tok.lexeme or tok.kind.value}'"
+        )
 
-    # ------------------------------------------------------------------ helpers
+    def _parse_number_or_range(self) -> Value:
+        first = self._advance()
+        assert first.value is not None
+        first_value = float(first.value)  # type: ignore[arg-type]
+        if self._check(TokenKind.DOTDOT):
+            self._advance()
+            tail = self._consume_number("expected upper bound after '..' in range")
+            assert tail.value is not None
+            return Range(
+                min=first_value, max=float(tail.value), line=first.line  # type: ignore[arg-type]
+            )
+        return NumberValue(value=first_value, line=first.line)
+
+    def _parse_color_value(self) -> ColorValue:
+        tok = self._peek()
+        if tok.kind == TokenKind.HEX_COLOR:
+            self._advance()
+            return HexColor(hex=str(tok.value), line=tok.line)
+        if tok.kind == TokenKind.OKLCH:
+            return self._parse_oklch()
+        if tok.kind == TokenKind.IDENT:
+            return self._parse_palette_ref()
+        raise FlorasSyntaxError(
+            tok.line,
+            f"expected colour value (hex / oklch / palette-ref), "
+            f"got '{tok.lexeme or tok.kind.value}'",
+        )
+
+    def _parse_oklch(self) -> OklchColor:
+        kw = self._consume(TokenKind.OKLCH)
+        self._consume(TokenKind.LPAREN, "expected '(' after 'oklch'")
+        lightness = self._consume_number("expected lightness in oklch()")
+        chroma = self._consume_number("expected chroma in oklch()")
+        hue = self._consume_number("expected hue in oklch()")
+        self._consume(TokenKind.RPAREN, "expected ')' to close oklch()")
+        assert (
+            lightness.value is not None
+            and chroma.value is not None
+            and hue.value is not None
+        )
+        return OklchColor(
+            l=float(lightness.value),  # type: ignore[arg-type]
+            c=float(chroma.value),  # type: ignore[arg-type]
+            h=float(hue.value),  # type: ignore[arg-type]
+            line=kw.line,
+        )
+
+    def _parse_palette_ref(self) -> PaletteRef:
+        head = self._consume(TokenKind.IDENT, "expected palette name")
+        self._consume(TokenKind.DOT, "expected '.' in palette reference")
+        tok_name = self._parse_token_name()
+        ref = PaletteRef(palette=head.lexeme, token=tok_name, line=head.line)
+        if self._check(TokenKind.TINTED):
+            self._advance()
+            tint_palette_or_ref = self._consume_ident("expected tint palette name")
+            tint_token: str
+            if self._check(TokenKind.DOT):
+                self._advance()
+                tint_token = self._parse_token_name()
+                tint_palette = tint_palette_or_ref.lexeme
+            else:
+                # Single-name tint refers to a token in the same palette as `ref`.
+                tint_palette = ref.palette
+                tint_token = tint_palette_or_ref.lexeme
+            amount_tok = self._consume_number("expected tint amount (0..1)")
+            assert amount_tok.value is not None
+            ref = PaletteRef(
+                palette=ref.palette,
+                token=ref.token,
+                tint_palette=tint_palette,
+                tint_token=tint_token,
+                tint_amount=float(amount_tok.value),  # type: ignore[arg-type]
+                line=ref.line,
+            )
+        return ref
+
+    # ----------------------------------------------------------- helpers
 
     def _peek(self) -> Token:
         return self.tokens[self.pos]
@@ -226,23 +291,22 @@ class Parser:
     def _check(self, kind: TokenKind) -> bool:
         return self._peek().kind == kind
 
-    def _check_at(self, idx: int, kind: TokenKind) -> bool:
-        if idx >= len(self.tokens):
-            return False
-        return self.tokens[idx].kind == kind
-
-    def _match(self, kind: TokenKind) -> bool:
-        if self._check(kind):
-            self._advance()
-            return True
-        return False
-
     def _consume(self, kind: TokenKind, message: str | None = None) -> Token:
         if self._check(kind):
             return self._advance()
         tok = self._peek()
-        msg = message or f"expected {kind.value} but got '{tok.lexeme or tok.kind.value}'"
+        msg = (
+            message
+            if message is not None
+            else f"expected {kind.value} but got '{tok.lexeme or tok.kind.value}'"
+        )
         raise FlorasSyntaxError(tok.line, msg)
 
-    def _is_binop(self) -> bool:
-        return self._peek().kind in BINARY_OPS
+    def _consume_ident(self, message: str) -> Token:
+        return self._consume(TokenKind.IDENT, message)
+
+    def _consume_number(self, message: str) -> Token:
+        if self._check(TokenKind.NUMBER):
+            return self._advance()
+        tok = self._peek()
+        raise FlorasSyntaxError(tok.line, message)

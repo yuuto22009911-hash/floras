@@ -1,4 +1,4 @@
-"""End-to-end tests: run example .floras files and compare to fixtures."""
+"""End-to-end render tests for every example .bloom file."""
 
 from __future__ import annotations
 
@@ -9,29 +9,17 @@ import floras
 EXAMPLES = Path(__file__).resolve().parents[1] / "examples"
 
 
-def test_hello_example() -> None:
-    source = (EXAMPLES / "hello.floras").read_text(encoding="utf-8")
-    assert floras.run(source) == "Hello, world\n"
+def test_all_examples_render_without_error() -> None:
+    for path in sorted(EXAMPLES.glob("*.bloom")):
+        source = path.read_text(encoding="utf-8")
+        svg = floras.render(source)
+        assert svg.startswith("<svg "), f"{path.name} did not produce an SVG"
+        assert svg.count("<path") >= 1, f"{path.name} produced no paths"
 
 
-def test_fizzbuzz_example_matches_canonical_output() -> None:
-    source = (EXAMPLES / "fizzbuzz.floras").read_text(encoding="utf-8")
-
-    expected_lines: list[str] = []
-    for i in range(1, 16):
-        if i % 15 == 0:
-            expected_lines.append("FizzBuzz")
-        elif i % 3 == 0:
-            expected_lines.append("Fizz")
-        elif i % 5 == 0:
-            expected_lines.append("Buzz")
-        else:
-            expected_lines.append(str(i))
-    expected = "\n".join(expected_lines) + "\n"
-
-    assert floras.run(source) == expected
-
-
-def test_fib_example() -> None:
-    source = (EXAMPLES / "fib.floras").read_text(encoding="utf-8")
-    assert floras.run(source).strip() == "55"
+def test_examples_render_deterministically() -> None:
+    for path in sorted(EXAMPLES.glob("*.bloom")):
+        source = path.read_text(encoding="utf-8")
+        first = floras.render(source)
+        second = floras.render(source)
+        assert first == second, f"{path.name} render is non-deterministic"

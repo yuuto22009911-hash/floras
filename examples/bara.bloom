@@ -1,0 +1,13 @@
+shion 薔薇 ─ 多弁を黄金角の螺旋で配置
+bloom bara {
+  petals 28;
+  size 260;
+  color oklch(0.62 0.18 12);
+  petal-curl 0.55;
+  petal-notch 0;
+  petal-width 36;
+  petal-height 56;
+  arrange spiral;
+  stamen-count 0;
+  stroke #4A1B1F width 1;
+}

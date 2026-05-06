@@ -1,4 +1,4 @@
-"""Token definitions for the Floras language (v0.1.0 Core)."""
+"""Token definitions for the Floras Bloom DSL (v0.1.0)."""
 
 from __future__ import annotations
 
@@ -8,107 +8,152 @@ from typing import Final
 
 
 class TokenKind(StrEnum):
-    # Literals / atoms
+    # Atoms / literals
     NUMBER = "NUMBER"
-    STRING = "STRING"
+    PIXEL = "PIXEL"          # 12px
+    PERCENT = "PERCENT"      # 50%
+    DEG = "DEG"              # 90deg
+    TURN = "TURN"            # 0.25turn
+    HEX_COLOR = "HEX_COLOR"  # #FFB7C5 / #FFB7C5AA
+    STRING = "STRING"        # "..."
     IDENT = "IDENT"
 
-    # Declarations / control flow
-    SAKURA = "sakura"        # let
-    YURI = "yuri"            # fn
-    BARA = "bara"            # if
-    TSUBAKI = "tsubaki"      # else
-    UME = "ume"              # while
-    RAN = "ran"              # return
-    HIMAWARI = "himawari"    # import (reserved, v0.1.0 unused)
-
-    # Comment marker — the lexer consumes `shion ...` to end-of-line; this kind
-    # exists only so that `shion` cannot accidentally be used as an identifier.
-    SHION = "shion"
-
-    # Literals (boolean / null)
-    HASU = "hasu"            # true
-    ASAGAO = "asagao"        # false
-    TANPOPO = "tanpopo"      # null
-
-    # Builtin functions
-    BOTAN = "botan"          # print
-    AYAME = "ayame"          # input
-
-    # Brackets
-    KOBUSHI = "kobushi"      # (
-    MOKUREN = "mokuren"      # )
-    AJISAI = "ajisai"        # {
-    KIKYOU = "kikyou"        # }
-    KOSUMOSU = "kosumosu"    # [ (reserved)
-    DAHLIA = "dahlia"        # ] (reserved)
-
     # Punctuation
-    NADESHIKO = "nadeshiko"  # ;
-    KASUMI = "kasumi"        # ,
+    LBRACE = "{"
+    RBRACE = "}"
+    LPAREN = "("
+    RPAREN = ")"
+    SEMI = ";"
+    COMMA = ","
+    DOT = "."
+    DOTDOT = ".."
 
-    # Assignment / comparison / arithmetic / logical
-    TSUYUKUSA = "tsuyukusa"        # =
-    WASURENAGUSA = "wasurenagusa"  # ==
-    AZAMI = "azami"                # !=
-    FUKUJUSOU = "fukujusou"        # <
-    TACHIAOI = "tachiaoi"          # >
-    SUIREN = "suiren"              # <=
-    SHOBU = "shobu"                # >=
-    MOMO = "momo"                  # +
-    KEITOU = "keitou"              # - (binary and unary)
-    MARIGOLD = "marigold"          # *
-    SUZURAN = "suzuran"            # /
-    RENGE = "renge"                # %
-    SUMIRE = "sumire"              # &&
-    PANSY = "pansy"                # ||
-    KESHI = "keshi"                # !
+    # Top-level keywords
+    PALETTE = "palette"
+    BLOOM = "bloom"
+    MOTIF = "motif"
+    BOUQUET = "bouquet"
+    EXPORT = "export"
 
-    # String literal pair (D-02 / ADR-11)
-    BARA_KUCHI = "bara_kuchi"
-    BARA_TOJIRU = "bara_tojiru"
+    # Statement keywords
+    CANVAS = "canvas"
+    BACKGROUND = "background"
+    PLACE = "place"
+    AT = "at"
+    SCATTER = "scatter"
+    SOURCE = "source"
+    COUNT = "count"
+    AREA = "area"
+    SEED = "seed"
+    SIZE = "size"
+    ROTATION = "rotation"
+    COLOR = "color"
+    STROKE = "stroke"
+    WIDTH = "width"
+    HEIGHT = "height"
+    FROM = "from"
+    TO = "to"
+    PETALS = "petals"
+    PETAL_WIDTH = "petal-width"
+    PETAL_HEIGHT = "petal-height"
+    PETAL_CURL = "petal-curl"
+    PETAL_NOTCH = "petal-notch"
+    STAMEN_COUNT = "stamen-count"
+    STAMEN_RADIUS = "stamen-radius"
+    STAMEN_COLOR = "stamen-color"
+    STEM = "stem"
+    STEM_LENGTH = "stem-length"
+    STEM_COLOR = "stem-color"
+    LEAF_COUNT = "leaf-count"
+    ARRANGE = "arrange"
+    TINTED = "tinted"
+
+    # Area sub-keywords
+    RING = "ring"
+    RECT = "rect"
+    GRID = "grid"
+    PATH = "path"
+
+    # Arrange sub-keywords
+    SPIRAL = "spiral"
+
+    # Built-in constants
+    CENTER = "center"
+    AUTO = "auto"
+    RANDOM = "random"
+    TRUE = "true"
+    FALSE = "false"
+    NONE_KW = "none"
+
+    # Other reserved words
+    OKLCH = "oklch"  # function-like literal: `oklch(L C H)`
+    COLS = "cols"
+    ROWS = "rows"
+    INNER = "inner"
+    OUTER = "outer"
+    X_KW = "x"  # canvas size separator: `1200 x 630`
 
     # Meta
     EOF = "EOF"
 
 
+# Lexemes that should resolve to a keyword TokenKind. Identifiers not present
+# in this map are emitted as TokenKind.IDENT (ordinary user identifiers).
 KEYWORDS: Final[dict[str, TokenKind]] = {
-    k.value: k
-    for k in TokenKind
-    if k.value
-    not in {
-        "NUMBER",
-        "STRING",
-        "IDENT",
-        "EOF",
-    }
+    "palette": TokenKind.PALETTE,
+    "bloom": TokenKind.BLOOM,
+    "motif": TokenKind.MOTIF,
+    "bouquet": TokenKind.BOUQUET,
+    "export": TokenKind.EXPORT,
+    "canvas": TokenKind.CANVAS,
+    "background": TokenKind.BACKGROUND,
+    "place": TokenKind.PLACE,
+    "at": TokenKind.AT,
+    "scatter": TokenKind.SCATTER,
+    "source": TokenKind.SOURCE,
+    "count": TokenKind.COUNT,
+    "area": TokenKind.AREA,
+    "seed": TokenKind.SEED,
+    "size": TokenKind.SIZE,
+    "rotation": TokenKind.ROTATION,
+    "color": TokenKind.COLOR,
+    "stroke": TokenKind.STROKE,
+    "width": TokenKind.WIDTH,
+    "height": TokenKind.HEIGHT,
+    "from": TokenKind.FROM,
+    "to": TokenKind.TO,
+    "petals": TokenKind.PETALS,
+    "petal-width": TokenKind.PETAL_WIDTH,
+    "petal-height": TokenKind.PETAL_HEIGHT,
+    "petal-curl": TokenKind.PETAL_CURL,
+    "petal-notch": TokenKind.PETAL_NOTCH,
+    "stamen-count": TokenKind.STAMEN_COUNT,
+    "stamen-radius": TokenKind.STAMEN_RADIUS,
+    "stamen-color": TokenKind.STAMEN_COLOR,
+    "stem": TokenKind.STEM,
+    "stem-length": TokenKind.STEM_LENGTH,
+    "stem-color": TokenKind.STEM_COLOR,
+    "leaf-count": TokenKind.LEAF_COUNT,
+    "arrange": TokenKind.ARRANGE,
+    "tinted": TokenKind.TINTED,
+    "ring": TokenKind.RING,
+    "rect": TokenKind.RECT,
+    "grid": TokenKind.GRID,
+    "path": TokenKind.PATH,
+    "spiral": TokenKind.SPIRAL,
+    "center": TokenKind.CENTER,
+    "auto": TokenKind.AUTO,
+    "random": TokenKind.RANDOM,
+    "true": TokenKind.TRUE,
+    "false": TokenKind.FALSE,
+    "none": TokenKind.NONE_KW,
+    "oklch": TokenKind.OKLCH,
+    "cols": TokenKind.COLS,
+    "rows": TokenKind.ROWS,
+    "inner": TokenKind.INNER,
+    "outer": TokenKind.OUTER,
+    "x": TokenKind.X_KW,
 }
-"""Mapping from source lexeme to TokenKind. Used by the lexer to classify
-identifiers either as keywords or as user identifiers (TokenKind.IDENT)."""
-
-
-BINARY_OPS: Final[frozenset[TokenKind]] = frozenset(
-    {
-        TokenKind.MOMO,
-        TokenKind.KEITOU,
-        TokenKind.MARIGOLD,
-        TokenKind.SUZURAN,
-        TokenKind.RENGE,
-        TokenKind.WASURENAGUSA,
-        TokenKind.AZAMI,
-        TokenKind.FUKUJUSOU,
-        TokenKind.TACHIAOI,
-        TokenKind.SUIREN,
-        TokenKind.SHOBU,
-        TokenKind.SUMIRE,
-        TokenKind.PANSY,
-    }
-)
-
-
-UNARY_OPS: Final[frozenset[TokenKind]] = frozenset(
-    {TokenKind.KESHI, TokenKind.KEITOU}
-)
 
 
 @dataclass(frozen=True)

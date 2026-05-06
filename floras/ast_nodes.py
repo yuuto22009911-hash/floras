@@ -1,118 +1,143 @@
-"""AST node definitions for Floras (v0.1.0 Core)."""
+"""AST node definitions for the Floras Bloom DSL."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import TypeAlias
 
-from floras.tokens import TokenKind
+# ---------------------------------------------------------------------------
+# Value types — primitive literals and references that appear as property values
+# ---------------------------------------------------------------------------
 
 
-@dataclass
-class Node:
+@dataclass(frozen=True)
+class NumberValue:
+    value: float
     line: int = 0
 
 
+@dataclass(frozen=True)
+class PercentValue:
+    """A percentage literal — value already converted (50% → 0.5)."""
+
+    value: float
+    line: int = 0
+
+
+@dataclass(frozen=True)
+class AngleValue:
+    """An angle in degrees (`90deg`) or turns (`0.25turn`, normalised to deg)."""
+
+    degrees: float
+    line: int = 0
+
+
+@dataclass(frozen=True)
+class Range:
+    """An inclusive numeric range used by scatter properties (`12..32`)."""
+
+    min: float
+    max: float
+    line: int = 0
+
+
+@dataclass(frozen=True)
+class HexColor:
+    """An RGB (or RGBA) colour, normalised to `#RRGGBB` or `#RRGGBBAA`."""
+
+    hex: str
+    line: int = 0
+
+
+@dataclass(frozen=True)
+class OklchColor:
+    l: float
+    c: float
+    h: float
+    line: int = 0
+
+
+@dataclass(frozen=True)
+class PaletteRef:
+    palette: str
+    token: str
+    tint_palette: str | None = None
+    tint_token: str | None = None
+    tint_amount: float = 0.0
+    line: int = 0
+
+
+@dataclass(frozen=True)
+class IdentValue:
+    """A bare identifier reference — `center`, `auto`, `random`, or user names."""
+
+    name: str
+    line: int = 0
+
+
+@dataclass(frozen=True)
+class BoolValue:
+    value: bool
+    line: int = 0
+
+
+@dataclass(frozen=True)
+class StringValue:
+    value: str
+    line: int = 0
+
+
+Value: TypeAlias = (
+    NumberValue
+    | PercentValue
+    | AngleValue
+    | Range
+    | HexColor
+    | OklchColor
+    | PaletteRef
+    | IdentValue
+    | BoolValue
+    | StringValue
+)
+ColorValue: TypeAlias = HexColor | OklchColor | PaletteRef
+
+
 # ---------------------------------------------------------------------------
-# Statements
+# Top-level declarations
 # ---------------------------------------------------------------------------
 
 
 @dataclass
-class LetStmt(Node):
-    name: str = ""
-    value: Expr | None = None
+class PaletteDecl:
+    name: str
+    tokens: dict[str, ColorValue]
+    line: int = 0
 
 
 @dataclass
-class FnDecl(Node):
-    name: str = ""
-    params: list[str] = field(default_factory=list)
-    body: list[Node] = field(default_factory=list)
+class StrokeSpec:
+    color: ColorValue
+    width: float
+    line: int = 0
 
 
 @dataclass
-class IfStmt(Node):
-    cond: Expr | None = None
-    then_branch: list[Node] = field(default_factory=list)
-    else_branch: list[Node] | None = None
+class BloomDecl:
+    name: str
+    properties: dict[str, Value | StrokeSpec] = field(default_factory=dict)
+    line: int = 0
 
 
 @dataclass
-class WhileStmt(Node):
-    cond: Expr | None = None
-    body: list[Node] = field(default_factory=list)
+class Program:
+    palettes: list[PaletteDecl] = field(default_factory=list)
+    blooms: list[BloomDecl] = field(default_factory=list)
+    exports: list[ExportDecl] = field(default_factory=list)
+    line: int = 1
 
 
 @dataclass
-class ReturnStmt(Node):
-    value: Expr | None = None
-
-
-@dataclass
-class ExprStmt(Node):
-    expr: Expr | None = None
-
-
-@dataclass
-class Program(Node):
-    statements: list[Node] = field(default_factory=list)
-
-
-# ---------------------------------------------------------------------------
-# Expressions
-# ---------------------------------------------------------------------------
-
-
-@dataclass
-class Expr(Node):
-    pass
-
-
-@dataclass
-class NumberLit(Expr):
-    value: float = 0.0
-
-
-@dataclass
-class StringLit(Expr):
-    value: str = ""
-
-
-@dataclass
-class BoolLit(Expr):
-    value: bool = False
-
-
-@dataclass
-class NullLit(Expr):
-    pass
-
-
-@dataclass
-class Identifier(Expr):
-    name: str = ""
-
-
-@dataclass
-class Assign(Expr):
-    name: str = ""
-    value: Expr | None = None
-
-
-@dataclass
-class Binary(Expr):
-    op: TokenKind = TokenKind.MOMO
-    left: Expr | None = None
-    right: Expr | None = None
-
-
-@dataclass
-class Unary(Expr):
-    op: TokenKind = TokenKind.KEITOU
-    operand: Expr | None = None
-
-
-@dataclass
-class Call(Expr):
-    callee: Expr | None = None
-    args: list[Expr] = field(default_factory=list)
+class ExportDecl:
+    target: str
+    path: str
+    line: int = 0

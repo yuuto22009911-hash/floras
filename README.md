@@ -1,25 +1,31 @@
-# Floras
+# Floras Bloom
 
-> すべての構文要素を花の名前で表現する、Python 製の小さなインタプリタ言語。
+> 花を**宣言的に描いて束ね**、SVG / HTML / CSS に出力する、デザイナー向けの花テーマ DSL。
 
-```floras
-sakura name tsuyukusa bara_kuchi world bara_tojiru nadeshiko
-yuri greet kobushi n mokuren ajisai
-  botan kobushi kobushi bara_kuchi Hello,  bara_tojiru momo n mokuren mokuren nadeshiko
-kikyou
-greet kobushi name mokuren nadeshiko
+```bloom
+bloom sakura {
+  petals 5;
+  size 240;
+  color #FFB7C5;
+  petal-curl 0.4;
+  petal-notch 0.45;
+  stamen-count 14;
+  stamen-color #C44536;
+  stroke #2C2825 width 1.2;
+}
 ```
 
-```
-$ floras run examples/hello.floras
-Hello, world
+```bash
+$ floras render sakura.bloom --out sakura.svg
 ```
 
-## Why Floras
+→ Tailwind / shadcn / Squarespace / Figma 等にそのまま貼れる SVG が手に入る。
 
-- **すべての構文要素が花**: キーワードだけでなく `(` `)` `{` `}` `;` `,` `==` `+` `*` まで全て花名で表現する。
-- **学習価値**: Lexer / Parser / Tree-walking Evaluator の最小完動品を読みきれる規模で実装。
-- **依存ゼロ**: Python 標準ライブラリのみで動く。
+## なぜ Floras Bloom？
+
+- **花は構造である**: 花弁数・反り・雄しべ・配置を pure data で宣言 → 拡大・縮小・色替え・量産が無料。
+- **デザイナー語彙で書く**: `bloom` `palette` `bouquet` `scatter` — CSS / Tailwind の延長で読める命名。
+- **出力は標準形式のみ**: SVG / HTML / CSS。独自フォーマットを作らず、Figma / Vercel / Tailwind とそのまま共存。
 
 ## Install
 
@@ -29,139 +35,96 @@ cd floras
 pip install -e ".[dev]"
 ```
 
-Python 3.11+ が必要。外部依存はゼロ（dev 環境のみ pytest / mypy / ruff）。
+Python 3.11+ 必須。外部依存ゼロ（dev のみ pytest / mypy / ruff）。
 
 ## Quickstart
 
 ```bash
-floras run examples/hello.floras       # スクリプト実行
-floras run examples/fizzbuzz.floras    # FizzBuzz
-floras run examples/fib.floras         # フィボナッチ
-floras repl                            # 対話モード
+floras render examples/sakura.bloom --out sakura.svg     # ファイル出力
+floras render examples/yuri.bloom                        # 標準出力
+floras render examples/yuri.bloom --ast                  # AST を JSON で
 floras --version
-floras run examples/hello.floras --ast # AST を JSON で表示
 ```
 
-## Token Map（v0.1.0 Core）
+## v0.1.0 で書ける範囲
 
-### キーワード
-| Floras | 役割 |
-|--------|------|
-| `sakura` | 変数宣言（let） |
-| `yuri` | 関数定義（fn） |
-| `bara` / `tsubaki` | if / else |
-| `ume` | while |
-| `ran` | return |
-| `shion` | 行コメント |
-| `hasu` / `asagao` / `tanpopo` | true / false / null |
-| `botan` / `ayame` | print / input |
+- **`bloom`** — 1 つの花の構造（花弁・雄しべ・茎・葉）を宣言
+- **`palette`** — ブランド色を一括管理し、`brand.500` のドット記法で参照
+- **`export`** — 出力先ファイルパスを宣言
+- **色**: `#RRGGBB` / `oklch(L C H)` / `palette.token` / `palette.token tinted other.token 0.3`
+- **数値**: `42` / `3.14` / `12px` / `50%` / `90deg` / `0.25turn`
+- **配置パターン**: `arrange ring` (既定) / `arrange spiral` (黄金角)
+- **コメント**: `shion 行末まで`
 
-### 括弧
-| Floras | 役割 |
-|--------|------|
-| `kobushi` / `mokuren` | `(` / `)` |
-| `ajisai` / `kikyou` | `{` / `}` |
-| `kosumosu` / `dahlia` | `[` / `]`（v0.2.0 予約） |
+## サンプル 5 種
 
-### 区切り・代入
-| Floras | 役割 |
-|--------|------|
-| `nadeshiko` | `;` |
-| `kasumi` | `,` |
-| `tsuyukusa` | `=` |
+| ファイル | 花 | 特徴 |
+|---------|-----|-----|
+| [`examples/sakura.bloom`](examples/sakura.bloom) | 桜 | 5 弁・切れ込み付き |
+| [`examples/bara.bloom`](examples/bara.bloom) | 薔薇 | 28 弁スパイラル・OKLCH 色 |
+| [`examples/kiku.bloom`](examples/kiku.bloom) | 菊 | 24 弁・細長い花弁 |
+| [`examples/cosmos.bloom`](examples/cosmos.bloom) | コスモス | 茎+葉つき |
+| [`examples/yuri.bloom`](examples/yuri.bloom) | 百合 | palette 連携 |
 
-### 比較
-| Floras | 役割 |
-|--------|------|
-| `wasurenagusa` | `==` |
-| `azami` | `!=` |
-| `fukujusou` | `<` |
-| `tachiaoi` | `>` |
-| `suiren` | `<=` |
-| `shobu` | `>=` |
+## 構文ガイド
 
-### 算術
-| Floras | 役割 |
-|--------|------|
-| `momo` | `+` |
-| `keitou` | `-`（単項マイナスにも） |
-| `marigold` | `*` |
-| `suzuran` | `/` |
-| `renge` | `%` |
-
-### 論理
-| Floras | 役割 |
-|--------|------|
-| `sumire` | `&&` |
-| `pansy` | `\|\|` |
-| `keshi` | `!` |
-
-### 文字列リテラル
-`bara_kuchi <任意テキスト> bara_tojiru` で囲む。例: `bara_kuchi Hello bara_tojiru`。
-
-## 構文ルール（D-05: 演算子優先順位なし）
-
-すべての二項演算子は同順位・左結合。**異なる演算子の混在には括弧 `kobushi ... mokuren` が必須**。
-
-```floras
-shion OK: 同一演算子の連続（左結合）
-1 momo 2 momo 3 nadeshiko
-
-shion OK: 括弧で混在
-kobushi 1 momo 2 mokuren marigold 3 nadeshiko
-
-shion NG: 括弧なしの混在 → SyntaxError
-1 momo 2 marigold 3 nadeshiko
+### 単一の花（最小例）
+```bloom
+bloom sakura {
+  petals 5;
+  size 200;
+  color #FFB7C5;
+}
 ```
 
-## サンプル
+### palette を使う
+```bloom
+palette monofloras {
+  primary  oklch(0.85 0.07 80);
+  ink      #2C2825;
+  accent   #C77D4E;
+}
 
-### Hello
-```floras
-sakura name tsuyukusa bara_kuchi world bara_tojiru nadeshiko
-yuri greet kobushi n mokuren ajisai
-  botan kobushi kobushi bara_kuchi Hello,  bara_tojiru momo n mokuren mokuren nadeshiko
-kikyou
-greet kobushi name mokuren nadeshiko
+bloom yuri {
+  petals 6;
+  color monofloras.primary;
+  stroke monofloras.ink width 1.2;
+}
 ```
 
-### FizzBuzz
-[`examples/fizzbuzz.floras`](examples/fizzbuzz.floras) を参照。
-
-### フィボナッチ
-```floras
-yuri fib kobushi n mokuren ajisai
-  bara kobushi n fukujusou 2 mokuren ajisai
-    ran n nadeshiko
-  kikyou
-  ran kobushi fib kobushi n keitou 1 mokuren mokuren momo fib kobushi n keitou 2 mokuren mokuren nadeshiko
-kikyou
-botan kobushi fib kobushi 10 mokuren mokuren nadeshiko
+### tinted で色を混ぜる
+```bloom
+palette b {
+  rose   #FF0066;
+  paper  #FFFFFF;
+}
+bloom soft_rose {
+  color b.rose tinted b.paper 0.3;   shion ピンク寄りに 30% paper を混ぜる
+}
 ```
 
-## エラー
+## エラーメッセージ
 
 ```
-Floras NameError at line 1: 'mystery' is not defined
-Floras SyntaxError at line 3: expected nadeshiko but got kikyou
-Floras ArityError at line 5: 'add' expects 2 args, got 1
-Floras RuntimeError at line 7: division by zero
+Floras NameError at line 7: palette token 'brand.999' is not defined
+Floras SyntaxError at line 3: expected ';' after bloom property
+Floras ValidationError at line 12: 'petal-curl' must be in [0, 1]
 ```
 
 ## ロードマップ
 
 | Version | 機能 |
 |---------|------|
-| **v0.1.0**（現在） | Core 言語 + REPL |
-| v0.2.0 | 花言葉エラー（Poesy） |
-| v0.3.0 | `kakitsubata` 花占い演算子 |
-| v0.4.0 | `kafun` テスト DSL |
-| v0.5.0 | 季節モード（二十四節気） |
-| v0.6.0 | `floras garden` AST 可視化 |
-| v0.7.0 | `kareru` ライフタイム |
+| **v0.1.0**（現在） | 単一 bloom + palette → SVG |
+| v0.2.0 | palette トークンを export → CSS / Tailwind / JSON |
+| v0.3.0 | bouquet（複数の花を 1 キャンバスに配置） |
+| v0.4.0 | scatter（procedural 配置、要 seed） |
+| v0.5.0 | motif（再利用可能パターン） |
+| v0.6.0 | `floras preview <dir>` ライブリロードサーバ |
+| v0.7.0 | tokens.css / tailwind 形式の export |
 | v1.0.0 | Web プレイグラウンド |
 
-詳細は `.claude/specs/language-core/` の requirements / design / tasks を参照。
+詳細は `.claude/specs/bloom-dsl/` の requirements / design / tasks を参照。
 
 ## Development
 

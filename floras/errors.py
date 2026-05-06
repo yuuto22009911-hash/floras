@@ -1,14 +1,9 @@
-"""Error hierarchy for Floras. All errors carry a 1-origin source line number."""
+"""Error hierarchy for Floras Bloom. All errors carry a 1-origin source line."""
 
 from __future__ import annotations
 
 
 class FlorasError(Exception):
-    """Base class for all errors raised by the Floras pipeline.
-
-    The CLI layer is responsible for catching these and emitting them to stderr.
-    """
-
     kind: str = "Error"
 
     def __init__(self, line: int, message: str) -> None:
@@ -25,16 +20,16 @@ class FlorasNameError(FlorasError):
     kind = "NameError"
 
 
-class FlorasTypeError(FlorasError):
-    kind = "TypeError"
-
-
-class FlorasArityError(FlorasError):
-    kind = "ArityError"
+class FlorasValidationError(FlorasError):
+    kind = "ValidationError"
 
 
 class FlorasRuntimeError(FlorasError):
     kind = "RuntimeError"
+
+
+class FlorasCLIError(FlorasError):
+    kind = "CLIError"
 
 
 class FlorasInternalError(FlorasError):

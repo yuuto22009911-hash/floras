@@ -1,138 +1,121 @@
-"""Parser tests — minimum coverage of each rule and the D-05 mixed-op rule."""
+"""Parser tests."""
 
 from __future__ import annotations
 
 import pytest
 
 from floras.ast_nodes import (
-    Assign,
-    Binary,
-    Call,
-    ExprStmt,
-    FnDecl,
-    Identifier,
-    IfStmt,
-    LetStmt,
-    NumberLit,
+    BloomDecl,
+    HexColor,
+    NumberValue,
+    OklchColor,
+    PaletteDecl,
+    PaletteRef,
     Program,
-    ReturnStmt,
-    StringLit,
-    Unary,
-    WhileStmt,
+    Range,
+    StrokeSpec,
 )
 from floras.errors import FlorasSyntaxError
 from floras.lexer import tokenize
 from floras.parser import Parser
-from floras.tokens import TokenKind
 
 
 def parse(source: str) -> Program:
     return Parser(tokenize(source)).parse_program()
 
 
-def test_let_statement() -> None:
-    program = parse("sakura x tsuyukusa 1 nadeshiko")
-    [stmt] = program.statements
-    assert isinstance(stmt, LetStmt)
-    assert stmt.name == "x"
-    assert isinstance(stmt.value, NumberLit)
-    assert stmt.value.value == 1.0
+def test_minimal_bloom_decl() -> None:
+    p = parse("bloom sakura { petals 5; size 200; color #FFB7C5; }")
+    assert len(p.blooms) == 1
+    bloom = p.blooms[0]
+    assert isinstance(bloom, BloomDecl)
+    assert bloom.name == "sakura"
+    assert bloom.properties["petals"] == NumberValue(value=5.0, line=1)
+    assert isinstance(bloom.properties["color"], HexColor)
+    assert bloom.properties["color"].hex == "#FFB7C5"
 
 
-def test_function_declaration_with_params() -> None:
-    program = parse(
-        "yuri add kobushi a kasumi b mokuren ajisai "
-        "ran kobushi a momo b mokuren nadeshiko "
-        "kikyou"
+def test_palette_decl() -> None:
+    src = (
+        "palette brand { primary #FFB7C5; 500 oklch(0.78 0.13 12); ink #2C2825; }"
     )
-    [stmt] = program.statements
-    assert isinstance(stmt, FnDecl)
-    assert stmt.name == "add"
-    assert stmt.params == ["a", "b"]
-    assert isinstance(stmt.body[0], ReturnStmt)
+    p = parse(src)
+    assert len(p.palettes) == 1
+    pal = p.palettes[0]
+    assert isinstance(pal, PaletteDecl)
+    assert pal.name == "brand"
+    primary = pal.tokens["primary"]
+    assert isinstance(primary, HexColor) and primary.hex == "#FFB7C5"
+    assert isinstance(pal.tokens["500"], OklchColor)
+    ink = pal.tokens["ink"]
+    assert isinstance(ink, HexColor) and ink.hex == "#2C2825"
 
 
-def test_if_else_chain() -> None:
-    program = parse(
-        "bara kobushi 1 mokuren ajisai kikyou "
-        "tsubaki bara kobushi 2 mokuren ajisai kikyou "
-        "tsubaki ajisai kikyou"
-    )
-    [stmt] = program.statements
-    assert isinstance(stmt, IfStmt)
-    assert stmt.else_branch is not None
-    assert isinstance(stmt.else_branch[0], IfStmt)
+def test_palette_reference_in_bloom() -> None:
+    src = "palette b { primary #FFB7C5; }\nbloom s { color b.primary; }"
+    p = parse(src)
+    bloom = p.blooms[0]
+    color = bloom.properties["color"]
+    assert isinstance(color, PaletteRef)
+    assert color.palette == "b"
+    assert color.token == "primary"
 
 
-def test_while_loop() -> None:
-    program = parse("ume kobushi 1 mokuren ajisai kikyou")
-    [stmt] = program.statements
-    assert isinstance(stmt, WhileStmt)
+def test_palette_reference_with_tint() -> None:
+    src = "bloom s { color brand.500 tinted brand.50 0.3; }"
+    p = parse(src)
+    color = p.blooms[0].properties["color"]
+    assert isinstance(color, PaletteRef)
+    assert color.tint_palette == "brand"
+    assert color.tint_token == "50"
+    assert color.tint_amount == 0.3
 
 
-def test_assignment_expression() -> None:
-    program = parse("x tsuyukusa 5 nadeshiko")
-    [stmt] = program.statements
-    assert isinstance(stmt, ExprStmt)
-    assert isinstance(stmt.expr, Assign)
-    assert stmt.expr.name == "x"
+def test_stroke_property() -> None:
+    p = parse("bloom s { stroke #2C2825 width 1.5; }")
+    spec = p.blooms[0].properties["stroke"]
+    assert isinstance(spec, StrokeSpec)
+    assert isinstance(spec.color, HexColor)
+    assert spec.color.hex == "#2C2825"
+    assert spec.width == 1.5
 
 
-def test_same_operator_chain_is_left_associative() -> None:
-    program = parse("1 momo 2 momo 3 nadeshiko")
-    [stmt] = program.statements
-    assert isinstance(stmt, ExprStmt)
-    expr = stmt.expr
-    assert isinstance(expr, Binary)
-    # Left-associative: ((1+2)+3) → outer right is NumberLit(3), outer left is Binary.
-    assert isinstance(expr.right, NumberLit) and expr.right.value == 3.0
-    assert isinstance(expr.left, Binary)
+def test_range_in_value_position_is_parsed() -> None:
+    p = parse("bloom s { size 12..32; }")
+    val = p.blooms[0].properties["size"]
+    assert isinstance(val, Range)
+    assert val.min == 12.0 and val.max == 32.0
 
 
-def test_mixed_operators_without_parens_raise() -> None:
+def test_export_decl() -> None:
+    p = parse('bloom s { petals 5; }\nexport s to "out.svg";')
+    assert len(p.exports) == 1
+    assert p.exports[0].target == "s"
+    assert p.exports[0].path == "out.svg"
+
+
+def test_duplicate_property_in_bloom_raises() -> None:
     with pytest.raises(FlorasSyntaxError):
-        parse("1 momo 2 marigold 3 nadeshiko")
+        parse("bloom s { petals 5; petals 8; }")
 
 
-def test_grouping_allows_mixed_operators() -> None:
-    program = parse("kobushi 1 momo 2 mokuren marigold 3 nadeshiko")
-    [stmt] = program.statements
-    assert isinstance(stmt, ExprStmt)
-    expr = stmt.expr
-    assert isinstance(expr, Binary)
-    assert expr.op == TokenKind.MARIGOLD
-
-
-def test_unary_minus_and_not() -> None:
-    program = parse("keitou 5 nadeshiko")
-    [stmt] = program.statements
-    assert isinstance(stmt, ExprStmt)
-    assert isinstance(stmt.expr, Unary)
-    assert stmt.expr.op == TokenKind.KEITOU
-
-
-def test_function_call_with_args() -> None:
-    program = parse("add kobushi 1 kasumi 2 mokuren nadeshiko")
-    [stmt] = program.statements
-    assert isinstance(stmt, ExprStmt)
-    assert isinstance(stmt.expr, Call)
-    assert isinstance(stmt.expr.callee, Identifier)
-    assert len(stmt.expr.args) == 2
-
-
-def test_string_literal_as_expression() -> None:
-    program = parse("bara_kuchi hi bara_tojiru nadeshiko")
-    [stmt] = program.statements
-    assert isinstance(stmt, ExprStmt)
-    assert isinstance(stmt.expr, StringLit)
-    assert stmt.expr.value == "hi"
-
-
-def test_missing_nadeshiko_is_error() -> None:
+def test_duplicate_palette_token_raises() -> None:
     with pytest.raises(FlorasSyntaxError):
-        parse("sakura x tsuyukusa 1")
+        parse("palette b { primary #FFF; primary #000; }")
 
 
-def test_unexpected_token_is_error() -> None:
+def test_unexpected_top_level_token_raises() -> None:
     with pytest.raises(FlorasSyntaxError):
-        parse("kasumi nadeshiko")
+        parse("petals 5;")
+
+
+def test_missing_semicolon_raises() -> None:
+    with pytest.raises(FlorasSyntaxError):
+        parse("bloom s { petals 5 }")
+
+
+def test_oklch_in_value_position() -> None:
+    p = parse("bloom s { color oklch(0.78 0.13 12); }")
+    color = p.blooms[0].properties["color"]
+    assert isinstance(color, OklchColor)
+    assert color.l == 0.78 and color.c == 0.13 and color.h == 12.0

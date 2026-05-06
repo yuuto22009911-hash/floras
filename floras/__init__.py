@@ -1,46 +1,43 @@
-"""Floras — a small interpreted language whose every syntactic element is a flower name."""
+"""Floras Bloom — a flower-themed declarative DSL that emits SVG / HTML / CSS."""
+
+from __future__ import annotations
 
 __version__ = "0.1.0"
 
 from floras.errors import (
-    FlorasArityError,
+    FlorasCLIError,
     FlorasError,
     FlorasInternalError,
     FlorasNameError,
     FlorasRuntimeError,
     FlorasSyntaxError,
-    FlorasTypeError,
+    FlorasValidationError,
 )
 
 __all__ = [
-    "FlorasArityError",
+    "FlorasCLIError",
     "FlorasError",
     "FlorasInternalError",
     "FlorasNameError",
     "FlorasRuntimeError",
     "FlorasSyntaxError",
-    "FlorasTypeError",
+    "FlorasValidationError",
     "__version__",
-    "run",
+    "render",
 ]
 
 
-def run(source: str) -> str:
-    """Lex, parse, and evaluate `source`. Returns captured stdout as a string.
+def render(source: str, *, entry: str | None = None) -> str:
+    """Lex / parse / compose / render a `.bloom` source string into SVG.
 
-    Designed for the future Web Playground (v1.0.0): single entry point that
-    avoids touching the real stdout. v0.1.0 uses it for tests.
+    The returned string is a complete, standalone `<svg>...</svg>` document.
     """
-    import io
-    from contextlib import redirect_stdout
-
-    from floras.evaluator import Evaluator
+    from floras.compose import compose
     from floras.lexer import tokenize
     from floras.parser import Parser
+    from floras.renderers.svg import render_svg
 
     tokens = tokenize(source)
     program = Parser(tokens).parse_program()
-    buf = io.StringIO()
-    with redirect_stdout(buf):
-        Evaluator().evaluate(program)
-    return buf.getvalue()
+    scene = compose(program, entry=entry)
+    return render_svg(scene)

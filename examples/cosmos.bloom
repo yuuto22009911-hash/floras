@@ -1,0 +1,16 @@
+shion コスモス ─ 8 弁、茎と葉つき
+bloom cosmos {
+  petals 8;
+  size 220;
+  color oklch(0.78 0.13 350);
+  petal-curl 0.3;
+  petal-notch 0.15;
+  petal-width 38;
+  petal-height 52;
+  stamen-count 18;
+  stamen-color #C68A2E;
+  stem true;
+  stem-length 200;
+  stem-color #4A7C59;
+  leaf-count 4;
+}

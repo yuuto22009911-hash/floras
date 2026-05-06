@@ -9,13 +9,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0] - 2026-05-07
 
+### Floras pivot
+This release replaces the previous "general-purpose flower-named programming
+language" experiment with a focused designer DSL: **Floras Bloom**. The old
+language implementation is preserved at git tag/commit `4755d9f` for reference;
+the spec under `.claude/specs/language-core/` is marked SUPERSEDED.
+
 ### Added
-- Core language: lexer, parser, tree-walking evaluator.
-- Flower-name token map (Glossary): keywords, brackets, punctuation, comparison, arithmetic, logical operators.
-- String literal pair `bara_kuchi ... bara_tojiru`.
-- Line comment `shion ...`.
-- Statements: `sakura` (let), `yuri` (fn), `bara`/`tsubaki` (if/else), `ume` (while), `ran` (return).
-- Builtins: `botan` (print), `ayame` (input).
-- CLI: `floras run`, `floras repl`, `floras --version`, `--ast`, `--no-poesy` (flag reserved, no-op until v0.2.0).
-- Examples: `hello.floras`, `fizzbuzz.floras`, `fib.floras`.
-- Test suite covering lexer, parser, evaluator, and end-to-end examples.
+- `.bloom` source format with `palette`, `bloom`, and `export` top-level
+  declarations.
+- Lexer with numeric suffixes (`12px` / `50%` / `90deg` / `0.25turn`),
+  hex colours (`#FFB7C5` / `#FFB7C5AA` / 3- and 4-digit shorthands),
+  range operator `..`, and `oklch(L C H)` literals.
+- Parser building a typed AST (`PaletteDecl`, `BloomDecl`, `ExportDecl`,
+  values of type number / percent / angle / colour / palette-ref).
+- Pure-function geometry primitives: petal (with curl + notch), stamen ring,
+  leaf, stem.
+- Compose pipeline that resolves palette references and validates property
+  ranges before rendering.
+- Standard-library OKLCH → sRGB conversion (Björn Ottosson, 2020).
+- Tinted blends: `color brand.500 tinted brand.50 0.3`.
+- SVG renderer producing `viewBox`-anchored output with coordinates rounded
+  to 2 decimal places and deterministic byte-identical output.
+- CLI: `floras render <file> [--out <path>] [--entry <name>] [--ast]` and
+  `floras --version`.
+- Five example flowers in `examples/`: sakura, bara, kiku, cosmos, yuri.
+- 60 tests covering lexer, parser, geometry, compose, render, CLI, and E2E.
+
+### Removed
+- The previous tree-walking interpreter and all related infrastructure
+  (lexer/parser/evaluator/REPL) for the general-purpose flower language.
