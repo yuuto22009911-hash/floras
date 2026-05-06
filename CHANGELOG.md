@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-05-07
+
+### Added
+- `bouquet` declaration: top-level construct that renders multiple blooms onto a
+  single canvas. Syntax:
+  ```bloom
+  bouquet hero {
+    canvas 1200 x 630;
+    background haru.cream;
+    place yuri at (380, 320);
+    place sakura at center { size 280; color haru.pink; };
+  }
+  ```
+- `canvas <W> x <H>;` declares the SVG `viewBox`.
+- `background <color>;` paints a full-canvas rectangle behind all blooms.
+- `place <bloom> at (x, y);` and `place <bloom> at center;` for explicit and
+  centred placements.
+- Optional `{ … overrides; … }` block per `place` so a single bloom decl can be
+  reused at different sizes / colours / strokes within one bouquet.
+- CLI `--entry <name>` resolves to a bouquet when ambiguous; a single bouquet
+  among helper blooms is the default entry without `--entry`.
+- `examples/hero.bloom` — 1200×630 hero with a yuri + 3 sakura on a paper
+  background.
+- 5 new tests covering bouquet / placement / `at center` / overrides /
+  unknown-bloom errors / single-bouquet entry inference.
+- `docs/build_gallery.py` produces a self-contained `docs/gallery.html` showing
+  every example with its source code.
+
 ## [0.1.0] - 2026-05-07
 
 ### Floras pivot

@@ -46,10 +46,13 @@ floras render examples/yuri.bloom --ast                  # AST を JSON で
 floras --version
 ```
 
-## v0.1.0 で書ける範囲
+## 書ける範囲（〜 v0.3.0）
 
 - **`bloom`** — 1 つの花の構造（花弁・雄しべ・茎・葉）を宣言
 - **`palette`** — ブランド色を一括管理し、`brand.500` のドット記法で参照
+- **`bouquet`** — `canvas W x H;` のキャンバスに複数の bloom を `place ... at` で配置
+- **`background`** — bouquet のキャンバスに塗る背景色
+- **`place ... { override; }`** — 1 つの bloom を異なる size / color で再利用
 - **`export`** — 出力先ファイルパスを宣言
 - **色**: `#RRGGBB` / `oklch(L C H)` / `palette.token` / `palette.token tinted other.token 0.3`
 - **数値**: `42` / `3.14` / `12px` / `50%` / `90deg` / `0.25turn`
@@ -58,13 +61,16 @@ floras --version
 
 ## サンプル 5 種
 
-| ファイル | 花 | 特徴 |
+| ファイル | 花 / 構成 | 特徴 |
 |---------|-----|-----|
 | [`examples/sakura.bloom`](examples/sakura.bloom) | 桜 | 5 弁・切れ込み付き |
 | [`examples/bara.bloom`](examples/bara.bloom) | 薔薇 | 28 弁スパイラル・OKLCH 色 |
 | [`examples/kiku.bloom`](examples/kiku.bloom) | 菊 | 24 弁・細長い花弁 |
 | [`examples/cosmos.bloom`](examples/cosmos.bloom) | コスモス | 茎+葉つき |
 | [`examples/yuri.bloom`](examples/yuri.bloom) | 百合 | palette 連携 |
+| [`examples/hero.bloom`](examples/hero.bloom) | Hero 1200×630 | bouquet で 4 つの花を配置 |
+
+ギャラリー (全サンプルと出力 SVG): `python docs/build_gallery.py` で `docs/gallery.html` を生成。
 
 ## 構文ガイド
 
@@ -115,9 +121,9 @@ Floras ValidationError at line 12: 'petal-curl' must be in [0, 1]
 
 | Version | 機能 |
 |---------|------|
-| **v0.1.0**（現在） | 単一 bloom + palette → SVG |
+| v0.1.0 | 単一 bloom + palette → SVG |
 | v0.2.0 | palette トークンを export → CSS / Tailwind / JSON |
-| v0.3.0 | bouquet（複数の花を 1 キャンバスに配置） |
+| **v0.3.0**（現在） | bouquet（複数の花を 1 キャンバスに配置） |
 | v0.4.0 | scatter（procedural 配置、要 seed） |
 | v0.5.0 | motif（再利用可能パターン） |
 | v0.6.0 | `floras preview <dir>` ライブリロードサーバ |

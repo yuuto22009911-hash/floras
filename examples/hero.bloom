@@ -1,0 +1,48 @@
+shion ヒーローセクション ─ 桜と百合を 1200x630 のキャンバスに配置
+palette haru {
+  pink   #FFB7C5;
+  cream  #FAF7F2;
+  ink    #2C2825;
+  accent #C77D4E;
+}
+
+bloom sakura {
+  petals 5;
+  size 280;
+  color haru.pink;
+  petal-curl 0.4;
+  petal-notch 0.45;
+  stamen-count 14;
+  stamen-color haru.ink;
+  stroke haru.ink width 1.2;
+}
+
+bloom yuri {
+  petals 6;
+  size 240;
+  color haru.cream;
+  petal-curl 0.5;
+  petal-notch 0;
+  petal-width 50;
+  petal-height 110;
+  stamen-count 6;
+  stamen-radius 8;
+  stamen-color haru.accent;
+  stroke haru.ink width 1.2;
+}
+
+bouquet hero {
+  canvas 1200 x 630;
+  background haru.cream;
+
+  place yuri at (380, 320);
+  place sakura at (820, 320);
+  place sakura at (1080, 470) {
+    size 140;
+    color haru.pink tinted haru.cream 0.4;
+  };
+  place sakura at (160, 480) {
+    size 120;
+    color haru.pink tinted haru.cream 0.5;
+  };
+}

@@ -17,6 +17,7 @@ from floras.ast_nodes import (
     PaletteDecl,
     PaletteRef,
     PercentValue,
+    Placement,
     Range,
     StrokeSpec,
     Value,
@@ -48,6 +49,35 @@ _BLOOM_DEFAULTS: dict[str, Any] = {
     "leaf-count": 0,
     "arrange": "ring",
 }
+
+
+def resolve_placement(
+    bloom_decl: BloomDecl,
+    placement: Placement,
+    palettes: dict[str, dict[str, HexColor]],
+    canvas_width: float,
+    canvas_height: float,
+) -> BloomInstance:
+    """Resolve a `place` statement into a positioned BloomInstance.
+
+    Override values are merged into a temporary BloomDecl so that placement
+    overrides take priority over the bloom's own declaration values.
+    """
+    merged = BloomDecl(
+        name=bloom_decl.name,
+        properties={**bloom_decl.properties, **placement.overrides},
+        line=placement.line,
+    )
+    instance = resolve_bloom(merged, palettes)
+
+    if placement.coord.is_center:
+        x = canvas_width / 2.0
+        y = canvas_height / 2.0
+    else:
+        assert placement.coord.x is not None and placement.coord.y is not None
+        x = placement.coord.x
+        y = placement.coord.y
+    return instance.with_position(x, y)
 
 
 def build_palette_table(palettes: dict[str, PaletteDecl]) -> dict[str, dict[str, HexColor]]:

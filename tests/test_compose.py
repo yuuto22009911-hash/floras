@@ -93,6 +93,70 @@ def test_multiple_blooms_without_entry_raises() -> None:
         _scene("bloom a { petals 4; }\nbloom b { petals 7; }")
 
 
+def test_bouquet_renders_with_canvas_size_and_background() -> None:
+    src = (
+        "bloom s { petals 5; size 200; color #FFB7C5; }\n"
+        "bouquet hero {\n"
+        "  canvas 1200 x 630;\n"
+        "  background #FAF7F2;\n"
+        "  place s at (300, 315);\n"
+        "  place s at (900, 315);\n"
+        "}"
+    )
+    scene = _scene(src)
+    assert scene.canvas == (1200.0, 630.0)
+    assert scene.background is not None and scene.background.hex == "#FAF7F2"
+    assert len(scene.items) == 2
+
+
+def test_bouquet_place_at_center_resolves_to_canvas_centre() -> None:
+    src = (
+        "bloom s { petals 5; size 200; color #FFB7C5; }\n"
+        "bouquet hero {\n"
+        "  canvas 1000 x 600;\n"
+        "  place s at center;\n"
+        "}"
+    )
+    scene = _scene(src)
+    inst = scene.items[0]
+    assert inst.x == 500.0 and inst.y == 300.0
+
+
+def test_bouquet_placement_overrides_take_priority_over_bloom_decl() -> None:
+    src = (
+        "bloom s { petals 5; size 200; color #FFB7C5; }\n"
+        "bouquet hero {\n"
+        "  canvas 600 x 600;\n"
+        "  place s at center { size 80; color #FF0000; };\n"
+        "}"
+    )
+    inst = _scene(src).items[0]
+    assert inst.size == 80.0
+    assert inst.color.hex == "#FF0000"
+
+
+def test_bouquet_with_unknown_bloom_raises_name_error() -> None:
+    src = (
+        "bouquet hero {\n"
+        "  canvas 600 x 600;\n"
+        "  place ghost at center;\n"
+        "}"
+    )
+    with pytest.raises(FlorasNameError):
+        _scene(src)
+
+
+def test_single_bouquet_is_default_entry_with_helper_blooms() -> None:
+    src = (
+        "bloom s { petals 5; }\n"
+        "bloom t { petals 8; }\n"
+        "bouquet hero { canvas 400 x 400; place s at center; }"
+    )
+    scene = _scene(src)
+    assert scene.canvas == (400.0, 400.0)
+    assert scene.items[0].bloom_name == "s"
+
+
 def test_oklch_red_converts_to_recognisable_hex() -> None:
     from floras.ast_nodes import OklchColor
 

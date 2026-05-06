@@ -6,7 +6,9 @@ from floras.ast_nodes import (
     AngleValue,
     BloomDecl,
     BoolValue,
+    BouquetDecl,
     ColorValue,
+    Coord,
     ExportDecl,
     HexColor,
     IdentValue,
@@ -15,6 +17,7 @@ from floras.ast_nodes import (
     PaletteDecl,
     PaletteRef,
     PercentValue,
+    Placement,
     Program,
     Range,
     StringValue,
@@ -49,13 +52,16 @@ class Parser:
                 program.palettes.append(self._parse_palette())
             elif tok.kind == TokenKind.BLOOM:
                 program.blooms.append(self._parse_bloom())
+            elif tok.kind == TokenKind.BOUQUET:
+                program.bouquets.append(self._parse_bouquet())
             elif tok.kind == TokenKind.EXPORT:
                 program.exports.append(self._parse_export())
             else:
                 raise FlorasSyntaxError(
                     tok.line,
                     f"expected top-level declaration "
-                    f"(palette / bloom / export), got '{tok.lexeme or tok.kind.value}'",
+                    f"(palette / bloom / bouquet / export), "
+                    f"got '{tok.lexeme or tok.kind.value}'",
                 )
         return program
 
@@ -130,6 +136,113 @@ class Parser:
             bloom.properties[key] = self._parse_value()
 
         self._consume(TokenKind.SEMI, "expected ';' after bloom property")
+
+    # ------------------------------------------------------------- bouquet
+
+    def _parse_bouquet(self) -> BouquetDecl:
+        kw = self._consume(TokenKind.BOUQUET)
+        name = self._consume_ident("expected bouquet name").lexeme
+        self._consume(TokenKind.LBRACE, "expected '{' after bouquet name")
+
+        # The first statement MUST be `canvas W x H;`.
+        canvas_w, canvas_h = self._parse_canvas_decl()
+        bouquet = BouquetDecl(
+            name=name,
+            canvas_width=canvas_w,
+            canvas_height=canvas_h,
+            line=kw.line,
+        )
+
+        while not self._check(TokenKind.RBRACE) and not self._check(TokenKind.EOF):
+            tok = self._peek()
+            if tok.kind == TokenKind.BACKGROUND:
+                if bouquet.background is not None:
+                    raise FlorasSyntaxError(
+                        tok.line, "duplicate 'background' in bouquet"
+                    )
+                self._advance()
+                bouquet.background = self._parse_color_value()
+                self._consume(TokenKind.SEMI, "expected ';' after background")
+            elif tok.kind == TokenKind.PLACE:
+                bouquet.placements.append(self._parse_placement())
+            else:
+                raise FlorasSyntaxError(
+                    tok.line,
+                    f"expected 'background' or 'place' inside bouquet, "
+                    f"got '{tok.lexeme or tok.kind.value}'",
+                )
+
+        self._consume(TokenKind.RBRACE, "expected '}' to close bouquet")
+        return bouquet
+
+    def _parse_canvas_decl(self) -> tuple[float, float]:
+        self._consume(TokenKind.CANVAS, "bouquet must begin with 'canvas <W> x <H>;'")
+        w_tok = self._consume_number("expected canvas width")
+        # `1200 x 630` — the `x` is lexed as the X_KW reserved keyword token.
+        self._consume(TokenKind.X_KW, "expected 'x' between canvas dimensions")
+        h_tok = self._consume_number("expected canvas height")
+        self._consume(TokenKind.SEMI, "expected ';' after canvas declaration")
+        assert isinstance(w_tok.value, float) and isinstance(h_tok.value, float)
+        return float(w_tok.value), float(h_tok.value)
+
+    def _parse_placement(self) -> Placement:
+        kw = self._consume(TokenKind.PLACE)
+        target = self._consume_ident("expected bloom name after 'place'").lexeme
+        self._consume(TokenKind.AT, "expected 'at' after place target")
+        coord = self._parse_coord()
+
+        overrides: dict[str, Value | StrokeSpec] = {}
+        if self._check(TokenKind.LBRACE):
+            self._advance()
+            while not self._check(TokenKind.RBRACE) and not self._check(TokenKind.EOF):
+                self._parse_placement_override(overrides)
+            self._consume(TokenKind.RBRACE, "expected '}' to close place block")
+        self._consume(TokenKind.SEMI, "expected ';' after place statement")
+        return Placement(
+            target=target, coord=coord, overrides=overrides, line=kw.line
+        )
+
+    def _parse_placement_override(
+        self, overrides: dict[str, Value | StrokeSpec]
+    ) -> None:
+        key_tok = self._advance()
+        key = key_tok.lexeme
+        if key in overrides:
+            raise FlorasSyntaxError(
+                key_tok.line, f"duplicate placement override '{key}'"
+            )
+        if key == "stroke":
+            color = self._parse_color_value()
+            self._consume(TokenKind.WIDTH, "expected 'width' after stroke colour")
+            width_tok = self._consume_number("expected stroke width number")
+            assert width_tok.value is not None
+            overrides[key] = StrokeSpec(
+                color=color,
+                width=float(width_tok.value),  # type: ignore[arg-type]
+                line=key_tok.line,
+            )
+        elif key in {"color", "stamen-color", "stem-color"}:
+            overrides[key] = self._parse_color_value()
+        else:
+            overrides[key] = self._parse_value()
+        self._consume(TokenKind.SEMI, "expected ';' after placement override")
+
+    def _parse_coord(self) -> Coord:
+        tok = self._peek()
+        if tok.kind == TokenKind.CENTER:
+            self._advance()
+            return Coord(is_center=True, line=tok.line)
+        if tok.kind == TokenKind.LPAREN:
+            self._advance()
+            x_tok = self._consume_number("expected x coordinate")
+            self._consume(TokenKind.COMMA, "expected ',' between coordinates")
+            y_tok = self._consume_number("expected y coordinate")
+            self._consume(TokenKind.RPAREN, "expected ')' to close coordinate")
+            assert isinstance(x_tok.value, float) and isinstance(y_tok.value, float)
+            return Coord(x=float(x_tok.value), y=float(y_tok.value), line=tok.line)
+        raise FlorasSyntaxError(
+            tok.line, f"expected 'center' or '(x, y)', got '{tok.lexeme or tok.kind.value}'"
+        )
 
     # -------------------------------------------------------------- export
 
