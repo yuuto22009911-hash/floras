@@ -1,4 +1,4 @@
-"""Token definitions for the Floras Bloom DSL (v0.1.0)."""
+"""Token definitions for the Floras Bloom DSL (all-Japanese surface)."""
 
 from __future__ import annotations
 
@@ -8,17 +8,16 @@ from typing import Final
 
 
 class TokenKind(StrEnum):
-    # Atoms / literals
+    # ----- Atoms / literals (internal labels — never appear in source) -----
     NUMBER = "NUMBER"
-    PIXEL = "PIXEL"          # 12px
+    PIXEL = "PIXEL"          # 12点
     PERCENT = "PERCENT"      # 50%
-    DEG = "DEG"              # 90deg
-    TURN = "TURN"            # 0.25turn
-    HEX_COLOR = "HEX_COLOR"  # #FFB7C5 / #FFB7C5AA
-    STRING = "STRING"        # "..."
+    DEG = "DEG"              # 90度
+    TURN = "TURN"            # 0.25周
+    STRING = "STRING"
     IDENT = "IDENT"
 
-    # Punctuation
+    # ----- Punctuation (no alphabet) -----
     LBRACE = "{"
     RBRACE = "}"
     LPAREN = "("
@@ -27,132 +26,105 @@ class TokenKind(StrEnum):
     COMMA = ","
     DOT = "."
     DOTDOT = ".."
+    TIMES = "×"  # canvas separator: 画布 1200 × 630
 
-    # Top-level keywords
-    PALETTE = "palette"
-    BLOOM = "bloom"
-    MOTIF = "motif"
-    BOUQUET = "bouquet"
-    EXPORT = "export"
+    # ----- Top-level declarations -----
+    IROMIHON = "色見本"      # palette
+    HANA = "花"              # bloom
+    HANATABA = "花束"        # bouquet
+    KAKIDASHI = "書出"       # export
+    MOYOU = "模様"           # motif (reserved for v0.5.0)
 
-    # Statement keywords
-    CANVAS = "canvas"
-    BACKGROUND = "background"
-    PLACE = "place"
-    AT = "at"
-    SCATTER = "scatter"
-    SOURCE = "source"
-    COUNT = "count"
-    AREA = "area"
-    SEED = "seed"
-    SIZE = "size"
-    ROTATION = "rotation"
-    COLOR = "color"
-    STROKE = "stroke"
-    WIDTH = "width"
-    HEIGHT = "height"
-    FROM = "from"
-    TO = "to"
-    PETALS = "petals"
-    PETAL_WIDTH = "petal-width"
-    PETAL_HEIGHT = "petal-height"
-    PETAL_CURL = "petal-curl"
-    PETAL_NOTCH = "petal-notch"
-    STAMEN_COUNT = "stamen-count"
-    STAMEN_RADIUS = "stamen-radius"
-    STAMEN_COLOR = "stamen-color"
-    STEM = "stem"
-    STEM_LENGTH = "stem-length"
-    STEM_COLOR = "stem-color"
-    LEAF_COUNT = "leaf-count"
-    ARRANGE = "arrange"
-    TINTED = "tinted"
+    # ----- Statement keywords -----
+    GAFU = "画布"            # canvas
+    HAIKEI = "背景"          # background
+    OKU = "置く"             # place
+    NI = "に"                # at
+    CHIRASU = "散らす"       # scatter
+    MOTO = "元"              # source
+    KAZU = "数"              # count
+    RYOUIKI = "領域"         # area
+    TANE = "種"              # seed
+    OOKISA = "大きさ"        # size
+    KAITEN = "回転"          # rotation
+    IRO = "色"               # color (property name)
+    CHIKAKU_IRO = "知覚色"   # OKLCH function: 知覚色(L C H)
+    RINKAKU = "輪郭"         # stroke
+    HABA = "幅"              # width
+    TAKASA = "高さ"          # height
+    HE = "へ"                # to (export X へ "path")
+    KAKEN_SU = "花弁数"      # petals
+    KAKEN_HABA = "花弁幅"    # petal-width
+    KAKEN_TAKE = "花弁丈"    # petal-height
+    KAKEN_SORI = "花弁反り"  # petal-curl
+    KAKEN_KIRIKOMI = "花弁切込"  # petal-notch
+    OSHIBE_SU = "雄蕊数"     # stamen-count
+    OSHIBE_HANKEI = "雄蕊半径"  # stamen-radius
+    OSHIBE_IRO = "雄蕊色"    # stamen-color
+    KUKI = "茎"              # stem
+    KUKI_TAKE = "茎丈"       # stem-length
+    KUKI_IRO = "茎色"        # stem-color
+    HASU_SU = "葉数"         # leaf-count
+    NARABI = "並び"          # arrange
+    MAZE = "混ぜ"            # tinted
 
-    # Area sub-keywords
-    RING = "ring"
-    RECT = "rect"
-    GRID = "grid"
-    PATH = "path"
+    # ----- Area sub-keywords -----
+    WA = "輪"                # ring  (also 'ring' arrange)
+    KUKEI = "矩形"           # rect
+    KOUSHI = "格子"          # grid
 
-    # Arrange sub-keywords
-    SPIRAL = "spiral"
+    # ----- Arrange sub-keywords -----
+    RASEN = "螺旋"           # spiral
 
-    # Built-in constants
-    CENTER = "center"
-    AUTO = "auto"
-    RANDOM = "random"
-    TRUE = "true"
-    FALSE = "false"
-    NONE_KW = "none"
+    # ----- Built-in constants -----
+    CHUUOU = "中央"          # center
+    JIDOU = "自動"           # auto
+    RANSUU = "乱数"          # random
+    SHIN = "真"              # true
+    GI = "偽"                # false
+    MU = "無"                # null
 
-    # Other reserved words
-    OKLCH = "oklch"  # function-like literal: `oklch(L C H)`
-    COLS = "cols"
-    ROWS = "rows"
-    INNER = "inner"
-    OUTER = "outer"
-    X_KW = "x"  # canvas size separator: `1200 x 630`
+    # ----- Other reserved -----
+    RETSU = "列"             # cols
+    GYOU = "行"              # rows
+    UCHI = "内"              # inner
+    SOTO = "外"              # outer
 
-    # Meta
+    # ----- Comment marker (consumed by lexer, no token emitted) -----
+    KOME = "※"
+
+    # ----- Meta -----
     EOF = "EOF"
 
 
-# Lexemes that should resolve to a keyword TokenKind. Identifiers not present
-# in this map are emitted as TokenKind.IDENT (ordinary user identifiers).
+# Mapping from source lexeme to TokenKind for keyword recognition.
+# Identifiers not present in this map are emitted as TokenKind.IDENT.
 KEYWORDS: Final[dict[str, TokenKind]] = {
-    "palette": TokenKind.PALETTE,
-    "bloom": TokenKind.BLOOM,
-    "motif": TokenKind.MOTIF,
-    "bouquet": TokenKind.BOUQUET,
-    "export": TokenKind.EXPORT,
-    "canvas": TokenKind.CANVAS,
-    "background": TokenKind.BACKGROUND,
-    "place": TokenKind.PLACE,
-    "at": TokenKind.AT,
-    "scatter": TokenKind.SCATTER,
-    "source": TokenKind.SOURCE,
-    "count": TokenKind.COUNT,
-    "area": TokenKind.AREA,
-    "seed": TokenKind.SEED,
-    "size": TokenKind.SIZE,
-    "rotation": TokenKind.ROTATION,
-    "color": TokenKind.COLOR,
-    "stroke": TokenKind.STROKE,
-    "width": TokenKind.WIDTH,
-    "height": TokenKind.HEIGHT,
-    "from": TokenKind.FROM,
-    "to": TokenKind.TO,
-    "petals": TokenKind.PETALS,
-    "petal-width": TokenKind.PETAL_WIDTH,
-    "petal-height": TokenKind.PETAL_HEIGHT,
-    "petal-curl": TokenKind.PETAL_CURL,
-    "petal-notch": TokenKind.PETAL_NOTCH,
-    "stamen-count": TokenKind.STAMEN_COUNT,
-    "stamen-radius": TokenKind.STAMEN_RADIUS,
-    "stamen-color": TokenKind.STAMEN_COLOR,
-    "stem": TokenKind.STEM,
-    "stem-length": TokenKind.STEM_LENGTH,
-    "stem-color": TokenKind.STEM_COLOR,
-    "leaf-count": TokenKind.LEAF_COUNT,
-    "arrange": TokenKind.ARRANGE,
-    "tinted": TokenKind.TINTED,
-    "ring": TokenKind.RING,
-    "rect": TokenKind.RECT,
-    "grid": TokenKind.GRID,
-    "path": TokenKind.PATH,
-    "spiral": TokenKind.SPIRAL,
-    "center": TokenKind.CENTER,
-    "auto": TokenKind.AUTO,
-    "random": TokenKind.RANDOM,
-    "true": TokenKind.TRUE,
-    "false": TokenKind.FALSE,
-    "none": TokenKind.NONE_KW,
-    "oklch": TokenKind.OKLCH,
-    "cols": TokenKind.COLS,
-    "rows": TokenKind.ROWS,
-    "inner": TokenKind.INNER,
-    "outer": TokenKind.OUTER,
-    "x": TokenKind.X_KW,
+    k.value: k
+    for k in TokenKind
+    if k.value
+    not in {
+        "NUMBER",
+        "PIXEL",
+        "PERCENT",
+        "DEG",
+        "TURN",
+        "STRING",
+        "IDENT",
+        "EOF",
+        # punctuation/marker tokens are dispatched directly by the lexer,
+        # not by keyword lookup.
+        "{",
+        "}",
+        "(",
+        ")",
+        ";",
+        ",",
+        ".",
+        "..",
+        "×",
+        "※",
+    }
 }
 
 

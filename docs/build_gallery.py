@@ -13,12 +13,13 @@ DOCS = ROOT / "docs"
 
 
 ITEMS: list[dict[str, str]] = [
-    {"name": "sakura", "title": "桜", "subtitle": "5 弁 + 切れ込み"},
-    {"name": "bara", "title": "薔薇", "subtitle": "28 弁スパイラル / OKLCH"},
-    {"name": "kiku", "title": "菊", "subtitle": "24 弁 / 細長い花弁"},
-    {"name": "cosmos", "title": "コスモス", "subtitle": "茎 + 葉 4 枚"},
-    {"name": "yuri", "title": "百合", "subtitle": "palette 連携"},
-    {"name": "hero", "title": "Hero", "subtitle": "1200×630 bouquet (v0.3.0)"},
+    {"name": "桜", "title": "桜", "subtitle": "5 弁 + 切れ込み"},
+    {"name": "薔薇", "title": "薔薇", "subtitle": "28 弁螺旋 / 知覚色"},
+    {"name": "菊", "title": "菊", "subtitle": "24 弁 / 細長い花弁"},
+    {"name": "コスモス", "title": "コスモス", "subtitle": "茎 + 葉 4 枚"},
+    {"name": "百合", "title": "百合", "subtitle": "色見本 連携"},
+    {"name": "ヒーロー", "title": "ヒーロー", "subtitle": "1200×630 花束 (v0.3.0)"},
+    {"name": "桜吹雪", "title": "桜吹雪", "subtitle": "散らす ─ 60 弁 (v0.4.0)"},
 ]
 
 
@@ -28,7 +29,7 @@ def build() -> None:
         bloom_path = EXAMPLES / f"{item['name']}.bloom"
         source = bloom_path.read_text(encoding="utf-8")
         svg = floras.render(source)
-        wide = " wide" if item["name"] == "hero" else ""
+        wide = " wide" if item["name"] in {"ヒーロー", "桜吹雪"} else ""
         cards.append(
             f'  <figure class="card{wide}">\n'
             f'    <div class="preview{wide}">{svg}</div>\n'

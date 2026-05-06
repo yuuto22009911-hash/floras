@@ -1,4 +1,4 @@
-"""Lexer tests."""
+"""Lexer tests for the all-Japanese DSL surface."""
 
 from __future__ import annotations
 
@@ -18,40 +18,41 @@ def test_empty_source_emits_only_eof() -> None:
 
 
 def test_top_level_keywords() -> None:
-    assert kinds("palette bloom motif bouquet export") == [
-        TokenKind.PALETTE,
-        TokenKind.BLOOM,
-        TokenKind.MOTIF,
-        TokenKind.BOUQUET,
-        TokenKind.EXPORT,
+    assert kinds("色見本 花 花束 書出") == [
+        TokenKind.IROMIHON,
+        TokenKind.HANA,
+        TokenKind.HANATABA,
+        TokenKind.KAKIDASHI,
         TokenKind.EOF,
     ]
 
 
-def test_kebab_case_property_keywords() -> None:
-    assert kinds("petal-width petal-height petal-curl petal-notch") == [
-        TokenKind.PETAL_WIDTH,
-        TokenKind.PETAL_HEIGHT,
-        TokenKind.PETAL_CURL,
-        TokenKind.PETAL_NOTCH,
+def test_compound_property_keywords() -> None:
+    assert kinds("花弁数 花弁幅 花弁丈 花弁反り 花弁切込") == [
+        TokenKind.KAKEN_SU,
+        TokenKind.KAKEN_HABA,
+        TokenKind.KAKEN_TAKE,
+        TokenKind.KAKEN_SORI,
+        TokenKind.KAKEN_KIRIKOMI,
         TokenKind.EOF,
     ]
 
 
-def test_punctuation() -> None:
-    assert kinds("{}();,") == [
+def test_punctuation_and_canvas_separator() -> None:
+    assert kinds("{}();, ×") == [
         TokenKind.LBRACE,
         TokenKind.RBRACE,
         TokenKind.LPAREN,
         TokenKind.RPAREN,
         TokenKind.SEMI,
         TokenKind.COMMA,
+        TokenKind.TIMES,
         TokenKind.EOF,
     ]
 
 
-def test_number_and_suffixes() -> None:
-    tokens = tokenize("42 3.14 12px 50% 90deg 0.25turn")
+def test_number_with_japanese_suffixes() -> None:
+    tokens = tokenize("42 3.14 12点 50% 90度 0.25周")
     assert tokens[0].kind == TokenKind.NUMBER and tokens[0].value == 42.0
     assert tokens[1].kind == TokenKind.NUMBER and tokens[1].value == 3.14
     assert tokens[2].kind == TokenKind.PIXEL and tokens[2].value == 12.0
@@ -62,25 +63,11 @@ def test_number_and_suffixes() -> None:
 
 def test_unknown_numeric_suffix_raises() -> None:
     with pytest.raises(FlorasSyntaxError):
-        tokenize("12rad")
-
-
-def test_hex_color_three_six_eight_digits() -> None:
-    tokens = tokenize("#FFB #FFB7C5 #FFB7C5AA")
-    assert tokens[0].kind == TokenKind.HEX_COLOR and tokens[0].value == "#FFFFBB"
-    assert tokens[1].kind == TokenKind.HEX_COLOR and tokens[1].value == "#FFB7C5"
-    assert tokens[2].kind == TokenKind.HEX_COLOR and tokens[2].value == "#FFB7C5AA"
-
-
-def test_invalid_hex_length_raises() -> None:
-    # 5-digit hex is invalid; only 3, 4, 6, 8 digits are accepted.
-    with pytest.raises(FlorasSyntaxError):
-        tokenize("#FFB7C")
+        tokenize("12秒")
 
 
 def test_range_operator() -> None:
-    tokens = tokenize("12..32")
-    assert [t.kind for t in tokens] == [
+    assert kinds("12..32") == [
         TokenKind.NUMBER,
         TokenKind.DOTDOT,
         TokenKind.NUMBER,
@@ -88,21 +75,39 @@ def test_range_operator() -> None:
     ]
 
 
-def test_palette_dot_reference_is_lexed_as_three_tokens() -> None:
-    tokens = tokenize("brand.500")
+def test_palette_dot_reference_lexes_three_tokens() -> None:
+    tokens = tokenize("春.桜色")
     assert [t.kind for t in tokens] == [
         TokenKind.IDENT,
         TokenKind.DOT,
-        TokenKind.NUMBER,
+        TokenKind.IDENT,
         TokenKind.EOF,
     ]
-    assert tokens[0].lexeme == "brand"
+    assert tokens[0].lexeme == "春"
+    assert tokens[2].lexeme == "桜色"
 
 
-def test_string_literal_with_escape() -> None:
-    tokens = tokenize(r'"hello\\ \"world\""')
+def test_japanese_identifier_with_digits() -> None:
+    tokens = tokenize("桜500 五百")
+    assert tokens[0].kind == TokenKind.IDENT and tokens[0].lexeme == "桜500"
+    assert tokens[1].kind == TokenKind.IDENT and tokens[1].lexeme == "五百"
+
+
+def test_komejirushi_starts_a_line_comment() -> None:
+    tokens = tokenize("※ これはコメント\n花 桜")
+    assert tokens[0].kind == TokenKind.HANA
+    assert tokens[0].line == 2
+
+
+def test_string_with_path_keeps_alphabet_in_data() -> None:
+    tokens = tokenize('"hero.svg"')
     assert tokens[0].kind == TokenKind.STRING
-    assert tokens[0].value == r'hello\ "world"'
+    assert tokens[0].value == "hero.svg"
+
+
+def test_alphabet_outside_string_is_rejected() -> None:
+    with pytest.raises(FlorasSyntaxError):
+        tokenize("bloom")
 
 
 def test_unterminated_string_raises() -> None:
@@ -110,12 +115,11 @@ def test_unterminated_string_raises() -> None:
         tokenize('"unclosed')
 
 
-def test_line_comment_skipped_and_line_count_advances() -> None:
-    tokens = tokenize("shion top comment\nbloom sakura")
-    assert tokens[0].kind == TokenKind.BLOOM
-    assert tokens[0].line == 2
-
-
 def test_unknown_character_raises() -> None:
     with pytest.raises(FlorasSyntaxError):
         tokenize("@")
+
+
+def test_chikaku_iro_lexes_as_keyword() -> None:
+    tokens = tokenize("知覚色(0.78 0.13 12)")
+    assert tokens[0].kind == TokenKind.CHIKAKU_IRO

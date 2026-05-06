@@ -146,7 +146,7 @@ class ExportDecl:
 
 @dataclass(frozen=True)
 class Coord:
-    """A 2D coordinate, either explicit (x, y) or the symbolic `center`."""
+    """A 2D coordinate, either explicit (x, y) or the symbolic `中央`."""
 
     x: float | None = None
     y: float | None = None
@@ -162,6 +162,50 @@ class Placement:
     line: int = 0
 
 
+@dataclass(frozen=True)
+class AreaCanvas:
+    """The full canvas (`領域 画布`)."""
+
+
+@dataclass(frozen=True)
+class AreaRing:
+    center_x: float
+    center_y: float
+    inner: float
+    outer: float
+
+
+@dataclass(frozen=True)
+class AreaRect:
+    x1: float
+    y1: float
+    x2: float
+    y2: float
+
+
+@dataclass(frozen=True)
+class AreaGrid:
+    cols: int
+    rows: int
+
+
+AreaSpec: TypeAlias = AreaCanvas | AreaRing | AreaRect | AreaGrid
+
+
+@dataclass
+class ScatterDecl:
+    """A procedural scatter inside a bouquet (`散らす ... { ... }`)."""
+
+    source: str
+    count: int | str  # int or "自動"
+    area: AreaSpec
+    seed: int
+    size: Value | None = None
+    rotation: Value | None = None
+    color: ColorValue | None = None
+    line: int = 0
+
+
 @dataclass
 class BouquetDecl:
     name: str
@@ -169,4 +213,5 @@ class BouquetDecl:
     canvas_height: float = 0.0
     background: ColorValue | None = None
     placements: list[Placement] = field(default_factory=list)
+    scatters: list[ScatterDecl] = field(default_factory=list)
     line: int = 0

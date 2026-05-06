@@ -31,23 +31,24 @@ _LEAF_GREEN = HexColor(hex="#4A7C59")
 
 
 # Keys whose default values fill out a BloomInstance when the user omits them.
+# Property names mirror the Japanese DSL keywords.
 _BLOOM_DEFAULTS: dict[str, Any] = {
-    "petals": 5,
-    "size": 200.0,
-    "color": _PINK,
-    "rotation": 0.0,
-    "petal-width": None,    # derived from size if absent
-    "petal-height": None,   # derived from size if absent
-    "petal-curl": 0.4,
-    "petal-notch": 0.0,
-    "stamen-count": 12,
-    "stamen-radius": None,  # derived from size if absent
-    "stamen-color": _INK,
-    "stem": False,
-    "stem-length": None,    # derived from size if absent
-    "stem-color": _LEAF_GREEN,
-    "leaf-count": 0,
-    "arrange": "ring",
+    "花弁数": 5,
+    "大きさ": 200.0,
+    "色": _PINK,
+    "回転": 0.0,
+    "花弁幅": None,    # derived from size if absent
+    "花弁丈": None,    # derived from size if absent
+    "花弁反り": 0.4,
+    "花弁切込": 0.0,
+    "雄蕊数": 12,
+    "雄蕊半径": None,  # derived from size if absent
+    "雄蕊色": _INK,
+    "茎": False,
+    "茎丈": None,      # derived from size if absent
+    "茎色": _LEAF_GREEN,
+    "葉数": 0,
+    "並び": "輪",
 }
 
 
@@ -101,78 +102,78 @@ def resolve_bloom(
             return _value_to_native(v, palettes)
         return _BLOOM_DEFAULTS[key]
 
-    petals = int(_val("petals"))
+    petals = int(_val("花弁数"))
     if petals < 1:
-        raise FlorasValidationError(decl.line, "'petals' must be at least 1")
+        raise FlorasValidationError(decl.line, "'花弁数' must be at least 1")
 
-    size = float(_val("size"))
+    size = float(_val("大きさ"))
     if size <= 0.0:
-        raise FlorasValidationError(decl.line, "'size' must be positive")
+        raise FlorasValidationError(decl.line, "'大きさ' must be positive")
 
-    rotation_raw = _val("rotation")
+    rotation_raw = _val("回転")
     rotation = _coerce_angle(rotation_raw, decl.line)
 
-    petal_width_raw = _val("petal-width")
+    petal_width_raw = _val("花弁幅")
     petal_width = float(petal_width_raw) if petal_width_raw is not None else size * 0.20
-    petal_height_raw = _val("petal-height")
+    petal_height_raw = _val("花弁丈")
     petal_height = float(petal_height_raw) if petal_height_raw is not None else size * 0.42
 
-    curl = float(_val("petal-curl"))
+    curl = float(_val("花弁反り"))
     if not 0.0 <= curl <= 1.0:
-        raise FlorasValidationError(decl.line, "'petal-curl' must be in [0, 1]")
-    notch = float(_val("petal-notch"))
+        raise FlorasValidationError(decl.line, "'花弁反り' must be in [0, 1]")
+    notch = float(_val("花弁切込"))
     if not 0.0 <= notch <= 1.0:
-        raise FlorasValidationError(decl.line, "'petal-notch' must be in [0, 1]")
+        raise FlorasValidationError(decl.line, "'花弁切込' must be in [0, 1]")
 
-    stamen_count = int(_val("stamen-count"))
+    stamen_count = int(_val("雄蕊数"))
     if stamen_count < 0:
-        raise FlorasValidationError(decl.line, "'stamen-count' must be >= 0")
-    stamen_radius_raw = _val("stamen-radius")
+        raise FlorasValidationError(decl.line, "'雄蕊数' must be >= 0")
+    stamen_radius_raw = _val("雄蕊半径")
     stamen_radius = (
         float(stamen_radius_raw) if stamen_radius_raw is not None else size * 0.025
     )
 
-    stem_flag = bool(_val("stem"))
-    stem_length_raw = _val("stem-length")
+    stem_flag = bool(_val("茎"))
+    stem_length_raw = _val("茎丈")
     stem_length = (
         float(stem_length_raw) if stem_length_raw is not None else size * 0.6
     )
 
-    leaf_count = int(_val("leaf-count"))
+    leaf_count = int(_val("葉数"))
     if leaf_count < 0:
-        raise FlorasValidationError(decl.line, "'leaf-count' must be >= 0")
+        raise FlorasValidationError(decl.line, "'葉数' must be >= 0")
 
-    arrange_value = _val("arrange")
+    arrange_value = _val("並び")
     arrange_name = (
         arrange_value.name if isinstance(arrange_value, IdentValue) else str(arrange_value)
     )
-    if arrange_name not in {"ring", "spiral"}:
+    if arrange_name not in {"輪", "螺旋"}:
         raise FlorasValidationError(
-            decl.line, f"'arrange' must be 'ring' or 'spiral', got '{arrange_name}'"
+            decl.line, f"'並び' must be '輪' or '螺旋', got '{arrange_name}'"
         )
 
-    color_value = _val("color")
+    color_value = _val("色")
     if not isinstance(color_value, HexColor):
-        raise FlorasValidationError(decl.line, "'color' must resolve to a colour")
-    stamen_color = _val("stamen-color")
+        raise FlorasValidationError(decl.line, "'色' must resolve to a colour")
+    stamen_color = _val("雄蕊色")
     if not isinstance(stamen_color, HexColor):
-        raise FlorasValidationError(decl.line, "'stamen-color' must resolve to a colour")
-    stem_color = _val("stem-color")
+        raise FlorasValidationError(decl.line, "'雄蕊色' must resolve to a colour")
+    stem_color = _val("茎色")
     if not isinstance(stem_color, HexColor):
-        raise FlorasValidationError(decl.line, "'stem-color' must resolve to a colour")
+        raise FlorasValidationError(decl.line, "'茎色' must resolve to a colour")
 
     stroke_color: HexColor | None = None
     stroke_width: float = 0.0
-    if "stroke" in decl.properties:
-        spec = decl.properties["stroke"]
+    if "輪郭" in decl.properties:
+        spec = decl.properties["輪郭"]
         if not isinstance(spec, StrokeSpec):
             raise FlorasValidationError(
-                decl.line, "'stroke' must be specified as `<color> width <number>`"
+                decl.line, "'輪郭' must be specified as `<color> 幅 <number>`"
             )
         stroke_color = _color_to_hex(spec.color, palettes)
         stroke_width = spec.width
 
-    arrange_rotation = 137.508 if arrange_name == "spiral" else 360.0 / petals
+    arrange_rotation = 137.508 if arrange_name == "螺旋" else 360.0 / petals
 
     return BloomInstance(
         bloom_name=decl.name,

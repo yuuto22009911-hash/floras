@@ -1,31 +1,37 @@
 # Floras Bloom
 
-> 花を**宣言的に描いて束ね**、SVG / HTML / CSS に出力する、デザイナー向けの花テーマ DSL。
+> 花を**宣言的に描いて束ね、散らす**、SVG / HTML / CSS に出力する**全構文日本語のデザイナー DSL**。
 
 ```bloom
-bloom sakura {
-  petals 5;
-  size 240;
-  color #FFB7C5;
-  petal-curl 0.4;
-  petal-notch 0.45;
-  stamen-count 14;
-  stamen-color #C44536;
-  stroke #2C2825 width 1.2;
+※ 5 弁桜
+色見本 春 {
+  桜色 知覚色(0.85 0.10 12);
+  墨   知覚色(0.20 0.02 30);
+}
+
+花 桜 {
+  花弁数 5;
+  大きさ 240;
+  色 春.桜色;
+  花弁反り 0.4;
+  花弁切込 0.45;
+  雄蕊数 14;
+  輪郭 春.墨 幅 1.2;
 }
 ```
 
 ```bash
-$ floras render sakura.bloom --out sakura.svg
+$ floras render examples/桜.bloom --out 桜.svg
 ```
 
-→ Tailwind / shadcn / Squarespace / Figma 等にそのまま貼れる SVG が手に入る。
+→ Tailwind / shadcn / Squarespace / Figma にそのまま貼れる SVG。
 
-## なぜ Floras Bloom？
+## 言語の特徴
 
-- **花は構造である**: 花弁数・反り・雄しべ・配置を pure data で宣言 → 拡大・縮小・色替え・量産が無料。
-- **デザイナー語彙で書く**: `bloom` `palette` `bouquet` `scatter` — CSS / Tailwind の延長で読める命名。
-- **出力は標準形式のみ**: SVG / HTML / CSS。独自フォーマットを作らず、Figma / Vercel / Tailwind とそのまま共存。
+- **アルファベットを 1 文字も使わない**: キーワード・識別子・色・単位すべて日本語。文字列リテラル内のファイルパスのみデータとして例外。
+- **花は構造である**: `花弁数` `花弁反り` `雄蕊数` `茎` を pure data で宣言 → 拡大・縮小・色替え・量産が無料。
+- **手描き感を量産**: `散らす` で procedural 配置（要 `種`）。同じ `.bloom` は bit-identical な SVG を出す。
+- **依存ゼロ**: Python 標準ライブラリのみ。
 
 ## Install
 
@@ -40,94 +46,106 @@ Python 3.11+ 必須。外部依存ゼロ（dev のみ pytest / mypy / ruff）。
 ## Quickstart
 
 ```bash
-floras render examples/sakura.bloom --out sakura.svg     # ファイル出力
-floras render examples/yuri.bloom                        # 標準出力
-floras render examples/yuri.bloom --ast                  # AST を JSON で
+floras render examples/桜.bloom --out 桜.svg     # ファイル出力
+floras render examples/桜吹雪.bloom              # 標準出力
+floras render examples/桜吹雪.bloom --ast         # AST を JSON で
 floras --version
 ```
 
-## 書ける範囲（〜 v0.3.0）
+## 言語仕様（〜 v0.4.0）
 
-- **`bloom`** — 1 つの花の構造（花弁・雄しべ・茎・葉）を宣言
-- **`palette`** — ブランド色を一括管理し、`brand.500` のドット記法で参照
-- **`bouquet`** — `canvas W x H;` のキャンバスに複数の bloom を `place ... at` で配置
-- **`background`** — bouquet のキャンバスに塗る背景色
-- **`place ... { override; }`** — 1 つの bloom を異なる size / color で再利用
-- **`export`** — 出力先ファイルパスを宣言
-- **色**: `#RRGGBB` / `oklch(L C H)` / `palette.token` / `palette.token tinted other.token 0.3`
-- **数値**: `42` / `3.14` / `12px` / `50%` / `90deg` / `0.25turn`
-- **配置パターン**: `arrange ring` (既定) / `arrange spiral` (黄金角)
-- **コメント**: `shion 行末まで`
+### トップレベル宣言
+| Floras | 役割 |
+|---|---|
+| `色見本 名前 { ... }` | パレット（ブランド色を一括管理） |
+| `花 名前 { ... }` | 単一の花の構造定義 |
+| `花束 名前 { ... }` | 複数の花を 1 キャンバスに構成 |
+| `書出 対象 へ "path";` | 出力先指定 |
 
-## サンプル 5 種
+### 花のプロパティ
+| Floras | 意味 | 例 |
+|---|---|---|
+| `花弁数` | 花弁の数 | `花弁数 5;` |
+| `花弁幅` / `花弁丈` | 花弁の幅 / 丈 | `花弁幅 28;` |
+| `花弁反り` | ふくらみ 0..1 | `花弁反り 0.4;` |
+| `花弁切込` | 先端の切れ込み 0..1（桜の特徴） | `花弁切込 0.45;` |
+| `雄蕊数` / `雄蕊半径` / `雄蕊色` | 雄しべ | `雄蕊数 12;` |
+| `茎` / `茎丈` / `茎色` | 茎を生やす（真/偽） | `茎 真; 茎丈 200;` |
+| `葉数` | 葉の枚数 | `葉数 4;` |
+| `並び` | `輪`(既定) または `螺旋`(黄金角) | `並び 螺旋;` |
+| `大きさ` / `回転` / `色` | 全体の寸法・回転・色 | `大きさ 240;` |
+| `輪郭 色 幅 N;` | 線（色 + 太さ） | `輪郭 春.墨 幅 1.2;` |
 
-| ファイル | 花 / 構成 | 特徴 |
-|---------|-----|-----|
-| [`examples/sakura.bloom`](examples/sakura.bloom) | 桜 | 5 弁・切れ込み付き |
-| [`examples/bara.bloom`](examples/bara.bloom) | 薔薇 | 28 弁スパイラル・OKLCH 色 |
-| [`examples/kiku.bloom`](examples/kiku.bloom) | 菊 | 24 弁・細長い花弁 |
-| [`examples/cosmos.bloom`](examples/cosmos.bloom) | コスモス | 茎+葉つき |
-| [`examples/yuri.bloom`](examples/yuri.bloom) | 百合 | palette 連携 |
-| [`examples/hero.bloom`](examples/hero.bloom) | Hero 1200×630 | bouquet で 4 つの花を配置 |
+### 花束のプロパティ
+| Floras | 役割 |
+|---|---|
+| `画布 W × H;` | キャンバスサイズ（必須・先頭） |
+| `背景 色;` | 全面背景 |
+| `置く 花名 に 中央;` | 中央配置 |
+| `置く 花名 に (x, y);` | 座標指定 |
+| `置く 花名 に 中央 { 大きさ N; 色 ...; };` | 配置時オーバーライド |
+| `散らす { 元 花名; 数 N; 領域 ...; 種 N; }` | procedural 配置 |
 
-ギャラリー (全サンプルと出力 SVG): `python docs/build_gallery.py` で `docs/gallery.html` を生成。
+### 散らす(scatter) の領域
+| Floras | 意味 |
+|---|---|
+| `領域 画布;` | キャンバス全面に一様分布 |
+| `領域 輪 中央 (cx, cy) 内 r1 外 r2;` | リング内 |
+| `領域 矩形 (x1, y1) へ (x2, y2);` | 矩形内 |
+| `領域 格子 列 N 行 M;` | N×M グリッド（決定論的） |
 
-## 構文ガイド
+### 数値・色リテラル
+| 種類 | 例 |
+|---|---|
+| 整数 / 小数 | `42` `3.14` |
+| 単位付き数値 | `12点` (px) `50%` `90度` `0.25周` |
+| 範囲（散らす内のみ） | `12..32` |
+| 知覚色（OKLCH） | `知覚色(0.85 0.10 12)` |
+| パレット参照 | `春.桜色` |
+| 混色 | `春.桜色 混ぜ 春.紙 0.4` |
 
-### 単一の花（最小例）
-```bloom
-bloom sakura {
-  petals 5;
-  size 200;
-  color #FFB7C5;
-}
+### 定数とコメント
+| Floras | 意味 |
+|---|---|
+| `中央` | キャンバス中心 |
+| `自動` | grid 領域で N×M に合わせる |
+| `乱数` | 散らす内で seed 由来の乱数値 |
+| `真` / `偽` / `無` | bool / null |
+| `※ ...` (行末まで) | コメント |
+
+## サンプル一覧
+
+| ファイル | 内容 |
+|---|---|
+| [`examples/桜.bloom`](examples/桜.bloom) | 5 弁・切れ込み付きの桜 |
+| [`examples/薔薇.bloom`](examples/薔薇.bloom) | 28 弁螺旋の薔薇 / 知覚色 |
+| [`examples/菊.bloom`](examples/菊.bloom) | 24 弁の細長い菊 |
+| [`examples/コスモス.bloom`](examples/コスモス.bloom) | 茎+葉つきのコスモス |
+| [`examples/百合.bloom`](examples/百合.bloom) | 色見本連携の百合 |
+| [`examples/ヒーロー.bloom`](examples/ヒーロー.bloom) | 1200×630 花束 |
+| [`examples/桜吹雪.bloom`](examples/桜吹雪.bloom) | **散らす** で桜吹雪を演出 |
+
+`python docs/build_gallery.py` で `docs/gallery.html` を生成すると、全サンプルと出力 SVG とソースコードを 1 ページで確認できます。
+
+## エラー
+
 ```
-
-### palette を使う
-```bloom
-palette monofloras {
-  primary  oklch(0.85 0.07 80);
-  ink      #2C2825;
-  accent   #C77D4E;
-}
-
-bloom yuri {
-  petals 6;
-  color monofloras.primary;
-  stroke monofloras.ink width 1.2;
-}
-```
-
-### tinted で色を混ぜる
-```bloom
-palette b {
-  rose   #FF0066;
-  paper  #FFFFFF;
-}
-bloom soft_rose {
-  color b.rose tinted b.paper 0.3;   shion ピンク寄りに 30% paper を混ぜる
-}
-```
-
-## エラーメッセージ
-
-```
-Floras NameError at line 7: palette token 'brand.999' is not defined
+Floras NameError at line 7: palette token '春.見つからない' is not defined
 Floras SyntaxError at line 3: expected ';' after bloom property
-Floras ValidationError at line 12: 'petal-curl' must be in [0, 1]
+Floras ValidationError at line 12: '花弁反り' must be in [0, 1]
+Floras SyntaxError at line 5: scatter requires '種 <integer>;' for determinism
 ```
 
 ## ロードマップ
 
 | Version | 機能 |
-|---------|------|
-| v0.1.0 | 単一 bloom + palette → SVG |
-| v0.2.0 | palette トークンを export → CSS / Tailwind / JSON |
-| **v0.3.0**（現在） | bouquet（複数の花を 1 キャンバスに配置） |
-| v0.4.0 | scatter（procedural 配置、要 seed） |
-| v0.5.0 | motif（再利用可能パターン） |
-| v0.6.0 | `floras preview <dir>` ライブリロードサーバ |
-| v0.7.0 | tokens.css / tailwind 形式の export |
+|---|---|
+| v0.1.0 | 単一 花 + 色見本 → SVG |
+| v0.3.0 | 花束（複数の花を 1 キャンバスに配置） |
+| **v0.4.0**（現在） | **散らす（procedural 配置）+ 全構文日本語化** |
+| v0.5.0 | 模様（再利用可能パターン） |
+| v0.6.0 | preview ライブリロードサーバ |
+| v0.7.0 | 色見本 → CSS / Tailwind / JSON 書出 |
 | v1.0.0 | Web プレイグラウンド |
 
 詳細は `.claude/specs/bloom-dsl/` の requirements / design / tasks を参照。

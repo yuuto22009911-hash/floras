@@ -23,3 +23,21 @@ def test_examples_render_deterministically() -> None:
         first = floras.render(source)
         second = floras.render(source)
         assert first == second, f"{path.name} render is non-deterministic"
+
+
+def test_no_alphabet_in_any_example_source() -> None:
+    """The DSL surface must contain no ASCII alphabet characters at all.
+
+    File-path strings inside ``書出 ... へ "..."`` would technically be allowed
+    to contain alphabet, but our v0.1.0 examples don't use ``書出`` yet, so we
+    can assert on the entire source.
+    """
+    import re
+
+    for path in sorted(EXAMPLES.glob("*.bloom")):
+        source = path.read_text(encoding="utf-8")
+        # Strip out anything inside double-quoted strings before checking.
+        scrubbed = re.sub(r'"[^"]*"', "", source)
+        assert not re.search(r"[A-Za-z]", scrubbed), (
+            f"{path.name} contains alphabet characters in DSL surface"
+        )

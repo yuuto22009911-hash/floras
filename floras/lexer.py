@@ -1,20 +1,43 @@
-"""Lexer: turn `.bloom` source text into a list of tokens."""
+"""Lexer: turn `.bloom` source text into a list of tokens.
+
+Identifiers are made up of CJK Han / Hiragana / Katakana characters (with the
+katakana long-mark `ー` and middle-dot `・`), optionally extended with ASCII
+digits in continuation. ASCII alphabetic characters are not part of the
+language surface and trigger a syntax error if encountered outside of a
+string literal or a comment.
+"""
 
 from __future__ import annotations
 
 from floras.errors import FlorasSyntaxError
 from floras.tokens import KEYWORDS, Token, TokenKind
 
-_IDENT_START = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_"
-_IDENT_CONT = _IDENT_START + "0123456789-"
 _DIGITS = "0123456789"
-_HEX = "0123456789abcdefABCDEF"
 
 _NUMERIC_SUFFIXES: dict[str, TokenKind] = {
-    "px": TokenKind.PIXEL,
-    "deg": TokenKind.DEG,
-    "turn": TokenKind.TURN,
+    "点": TokenKind.PIXEL,
+    "度": TokenKind.DEG,
+    "周": TokenKind.TURN,
 }
+
+
+def _is_ident_start(ch: str) -> bool:
+    code = ord(ch)
+    if 0x3041 <= code <= 0x3096:  # Hiragana letters
+        return True
+    if 0x30A1 <= code <= 0x30FA:  # Katakana letters
+        return True
+    if ch in ("ー", "・"):  # katakana long-mark / middle-dot used inside names
+        return True
+    if 0x4E00 <= code <= 0x9FFF:  # CJK Unified Ideographs (Han)
+        return True
+    if 0x3400 <= code <= 0x4DBF:  # CJK Unified Ideographs Extension A
+        return True
+    return False
+
+
+def _is_ident_cont(ch: str) -> bool:
+    return _is_ident_start(ch) or ch in _DIGITS
 
 
 class _Lexer:
@@ -31,22 +54,44 @@ class _Lexer:
             if ch.isspace():
                 self._advance()
                 continue
-            if ch == "#":
-                self._read_hex_color()
-            elif ch in _DIGITS:
+            if ch == "※":
+                self._consume_comment()
+                continue
+            if ch == "×":
+                self._read_single_punct(TokenKind.TIMES)
+                continue
+            if ch in _DIGITS:
                 self._read_number()
-            elif ch == ".":
+                continue
+            if ch == ".":
                 self._read_dot()
-            elif ch in _IDENT_START:
+                continue
+            if _is_ident_start(ch):
                 self._read_identifier_or_keyword()
-            elif ch == '"':
+                continue
+            if ch == '"':
                 self._read_string()
-            elif ch in "{}();,":
+                continue
+            if ch in "{}();,":
                 self._read_punct(ch)
-            else:
-                raise FlorasSyntaxError(self.line, f"unexpected character {ch!r}")
+                continue
+            # ASCII alphabet is intentionally rejected to enforce the
+            # all-Japanese surface (not even hex / English keywords leak in).
+            raise FlorasSyntaxError(self.line, f"unexpected character {ch!r}")
         self.tokens.append(Token(TokenKind.EOF, "", self.line, self.col))
         return self.tokens
+
+    # ---- character classes / punct -----------------------------------------
+
+    def _consume_comment(self) -> None:
+        # `※ ... \n` — discard up to (and including) end of line.
+        while not self._at_end() and self._peek() != "\n":
+            self._advance()
+
+    def _read_single_punct(self, kind: TokenKind) -> None:
+        line, col = self.line, self.col
+        lexeme = self._advance()
+        self.tokens.append(Token(kind, lexeme, line, col))
 
     def _read_punct(self, ch: str) -> None:
         line, col = self.line, self.col
@@ -63,7 +108,6 @@ class _Lexer:
 
     def _read_dot(self) -> None:
         line, col = self.line, self.col
-        # `..` range operator vs single `.` (palette dot reference).
         if self.pos + 1 < len(self.src) and self.src[self.pos + 1] == ".":
             self._advance()
             self._advance()
@@ -72,32 +116,27 @@ class _Lexer:
         self._advance()
         self.tokens.append(Token(TokenKind.DOT, ".", line, col))
 
+    # ---- identifiers / keywords --------------------------------------------
+
     def _read_identifier_or_keyword(self) -> None:
         start_line, start_col = self.line, self.col
         start_pos = self.pos
-        while not self._at_end() and self._peek() in _IDENT_CONT:
+        while not self._at_end() and _is_ident_cont(self._peek()):
             self._advance()
-        # Identifiers must not end with a hyphen (`stem-` is invalid).
-        if self.src[self.pos - 1] == "-":
-            raise FlorasSyntaxError(
-                start_line,
-                f"identifier cannot end with '-': {self.src[start_pos:self.pos]!r}",
-            )
         lexeme = self.src[start_pos : self.pos]
 
-        if lexeme == "shion":
-            # Line comment: consume to end-of-line. The `shion` keyword itself
-            # is not emitted as a token.
-            while not self._at_end() and self._peek() != "\n":
-                self._advance()
+        kind = KEYWORDS.get(lexeme)
+        if kind is None:
+            self.tokens.append(Token(TokenKind.IDENT, lexeme, start_line, start_col))
             return
-
-        # Numeric suffixes like `12px` are handled in _read_number; if a bare
-        # identifier matches a known suffix here it is just a regular keyword
-        # mismatch and falls through to KEYWORDS lookup or IDENT.
-
-        kind = KEYWORDS.get(lexeme, TokenKind.IDENT)
+        # If the matched lexeme is also a numeric suffix (`点` `度` `周`) and we
+        # land here it means the suffix appeared as a standalone identifier.
+        # The numeric reader already absorbs valid suffixes, so a bare suffix
+        # word can be treated as a normal keyword/identifier — we just emit the
+        # keyword token. (This branch is mostly future-proofing.)
         self.tokens.append(Token(kind, lexeme, start_line, start_col))
+
+    # ---- numbers ------------------------------------------------------------
 
     def _read_number(self) -> None:
         start_line, start_col = self.line, self.col
@@ -105,7 +144,6 @@ class _Lexer:
         while not self._at_end() and self._peek() in _DIGITS:
             self._advance()
         is_float = False
-        # A '.' followed by a digit (and not another '.') is a fractional part.
         if (
             not self._at_end()
             and self._peek() == "."
@@ -120,53 +158,35 @@ class _Lexer:
         lexeme = self.src[start_pos : self.pos]
         value: float = float(lexeme) if is_float else float(int(lexeme))
 
-        # Look for a numeric suffix: `12px`, `50%`, `90deg`, `0.25turn`.
+        # Suffixes: `12点`, `50%`, `90度`, `0.25周`. The `%` sign is one byte
+        # of pure punctuation; the others are single CJK characters.
         kind = TokenKind.NUMBER
         if not self._at_end() and self._peek() == "%":
             self._advance()
             kind = TokenKind.PERCENT
             value = value / 100.0
             lexeme = self.src[start_pos : self.pos]
-        elif not self._at_end() and self._peek() in _IDENT_START:
+        elif not self._at_end() and self._peek() in _NUMERIC_SUFFIXES:
+            suffix = self._peek()
+            self._advance()
+            kind = _NUMERIC_SUFFIXES[suffix]
+            lexeme = self.src[start_pos : self.pos]
+        elif not self._at_end() and _is_ident_start(self._peek()):
+            # An unknown CJK character glued to a number is more useful as an
+            # explicit error than as silent identifier merging.
             suffix_start = self.pos
-            while not self._at_end() and self._peek() in _IDENT_CONT:
+            while not self._at_end() and _is_ident_cont(self._peek()):
                 self._advance()
             suffix = self.src[suffix_start : self.pos]
-            if suffix in _NUMERIC_SUFFIXES:
-                kind = _NUMERIC_SUFFIXES[suffix]
-                lexeme = self.src[start_pos : self.pos]
-            else:
-                raise FlorasSyntaxError(
-                    start_line, f"unknown numeric suffix: {suffix!r}"
-                )
+            raise FlorasSyntaxError(
+                start_line, f"unknown numeric suffix: {suffix!r}"
+            )
 
         self.tokens.append(
             Token(kind, lexeme, start_line, start_col, value=value)
         )
 
-    def _read_hex_color(self) -> None:
-        start_line, start_col = self.line, self.col
-        start_pos = self.pos
-        self._advance()  # consume '#'
-        digits_start = self.pos
-        while not self._at_end() and self._peek() in _HEX:
-            self._advance()
-        digits = self.src[digits_start : self.pos]
-        if len(digits) not in (3, 4, 6, 8):
-            raise FlorasSyntaxError(
-                start_line,
-                f"hex color must have 3, 4, 6, or 8 digits, got {len(digits)}",
-            )
-        lexeme = self.src[start_pos : self.pos]
-        # Normalise to 6 or 8 hex chars (#RGB → #RRGGBB).
-        if len(digits) == 3:
-            digits = "".join(c * 2 for c in digits)
-        elif len(digits) == 4:
-            digits = "".join(c * 2 for c in digits)
-        normalised = "#" + digits.upper()
-        self.tokens.append(
-            Token(TokenKind.HEX_COLOR, lexeme, start_line, start_col, value=normalised)
-        )
+    # ---- strings ------------------------------------------------------------
 
     def _read_string(self) -> None:
         start_line, start_col = self.line, self.col
@@ -195,6 +215,8 @@ class _Lexer:
                 value="".join(buf),
             )
         )
+
+    # ---- low-level cursor ---------------------------------------------------
 
     def _peek(self) -> str:
         return self.src[self.pos]

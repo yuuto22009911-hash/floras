@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-05-07
+
+### Changed — Language surface is now fully Japanese
+The DSL surface no longer contains any ASCII alphabet. Every keyword,
+identifier, numeric suffix, colour literal, and comment marker is expressed in
+Japanese (CJK Han / Hiragana / Katakana / `※` / `×`). Alphabet remains only
+inside string literals (file paths in `書出 ... へ "..."`) and in tooling
+output such as the SVG itself.
+
+Old → new mapping (highlights):
+- `palette` → `色見本`, `bloom` → `花`, `bouquet` → `花束`, `export` → `書出`
+- `canvas` → `画布`, `background` → `背景`, `place` → `置く`, `at` → `に`
+- `scatter` → `散らす`, `source` → `元`, `count` → `数`, `area` → `領域`,
+  `seed` → `種`
+- `petals` → `花弁数`, `petal-curl` → `花弁反り`, `petal-notch` → `花弁切込`,
+  `stamen-count` → `雄蕊数`, `stem` → `茎`, `leaf-count` → `葉数`,
+  `arrange` → `並び`, `tinted` → `混ぜ`, `width` → `幅`
+- `ring` → `輪`, `spiral` → `螺旋`, `rect` → `矩形`, `grid` → `格子`
+- `center` → `中央`, `auto` → `自動`, `random` → `乱数`,
+  `true/false/none` → `真/偽/無`
+- `12px` → `12点`, `90deg` → `90度`, `0.25turn` → `0.25周`
+- Comment marker `shion ...` → `※ ...`
+- Canvas separator `1200 x 630` → `1200 × 630` (U+00D7)
+
+The hex colour literal (`#FFB7C5`) is removed entirely — every colour is now
+either an OKLCH literal `知覚色(L C H)` or a palette reference `名前.要素`.
+
+### Added — Scatter (procedural placement)
+- `散らす { 元 花名; 数 N; 領域 ...; 種 N; }` inside a `花束`. Required `種`
+  keeps the output deterministic across runs.
+- Areas: `画布`, `輪 中央 (cx, cy) 内 r1 外 r2`,
+  `矩形 (x1, y1) へ (x2, y2)`, `格子 列 N 行 M`.
+- Optional per-scatter overrides: `大きさ`, `回転` (with `乱数` shorthand),
+  `色`.
+- `examples/桜吹雪.bloom`: 60 scattered petals + a centre sakura on a
+  1200×630 canvas — a real "cherry blossom storm" hero image in 30 lines.
+
+### Added — Tests
+- 12 new tests cover Japanese tokens, scatter areas, deterministic seeds,
+  scatter ranges, missing-seed errors, and an end-to-end alphabet check that
+  asserts no example contains any A-Z character outside string literals.
+- All 72 tests pass; coverage 88%; ruff and mypy strict both green.
+
+### Removed
+- All hex colour literal handling and the corresponding lexer / parser paths.
+- The `shion`, `bara_kuchi`, `bara_tojiru` tokens and every English keyword.
+
 ## [0.3.0] - 2026-05-07
 
 ### Added

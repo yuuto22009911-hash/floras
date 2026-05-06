@@ -8,6 +8,7 @@ from floras.compose.resolver import (
     resolve_bloom,
     resolve_placement,
 )
+from floras.compose.scatter import expand_scatter
 from floras.compose.scene import BloomInstance, Scene
 from floras.errors import FlorasNameError, FlorasValidationError
 
@@ -122,6 +123,13 @@ def _compose_bouquet(
         background = _color_to_hex(decl.background, palettes)
 
     items: list[BloomInstance] = []
+    # Scatters are rendered first so that explicit `place`d blooms layer on top.
+    for scatter in decl.scatters:
+        items.extend(
+            expand_scatter(
+                scatter, blooms, palettes, decl.canvas_width, decl.canvas_height
+            )
+        )
     for placement in decl.placements:
         if placement.target not in blooms:
             raise FlorasNameError(
