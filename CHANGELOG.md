@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-05-07
+
+### Added — `floras tokens` (palette export to CSS / Tailwind / JSON)
+- New CLI subcommand `floras tokens <file>.bloom [--out <path>] [--format css|tailwind|json]`.
+- Three output formats:
+  - **css** (default): `:root { --<palette>-<token>: #RRGGBB; ... }`. Modern
+    browsers accept non-ASCII identifiers in CSS custom properties, so
+    variable names land as `--春-桜色` directly.
+  - **tailwind**: `@theme { --color-<palette>-<token>: #RRGGBB; ... }` —
+    drops straight into a Tailwind v4 `app.css`.
+  - **json**: nested `{ "<palette>": { "<token>": "#RRGGBB" } }` for
+    consumption by build pipelines (TS / design tokens / Style Dictionary).
+- 10 new tests cover the three renderers, empty palettes, determinism,
+  CLI stdout / file output for all three formats, missing file (exit 2),
+  and syntax error in source (exit 1). All 97 tests pass; ruff and mypy
+  strict still green.
+
 ## [0.6.0] - 2026-05-07
 
 ### Added — `floras preview` (live reload)

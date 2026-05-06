@@ -15,6 +15,7 @@ from floras.errors import FlorasError, FlorasInternalError
 from floras.lexer import tokenize
 from floras.parser import Parser
 from floras.preview import run_preview
+from floras.renderers.css import render_css, render_json, render_tailwind
 from floras.renderers.svg import render_svg
 
 
@@ -44,12 +45,28 @@ def main(argv: list[str] | None = None) -> int:
         "--port", type=int, default=7878, help="HTTP port (default: 7878)"
     )
 
+    tokens_p = sub.add_parser(
+        "tokens", help="export 色見本 declarations to CSS / Tailwind / JSON"
+    )
+    tokens_p.add_argument("file", type=str, help="path to a .bloom source file")
+    tokens_p.add_argument(
+        "--out", type=str, default=None, help="output path (default: stdout)"
+    )
+    tokens_p.add_argument(
+        "--format",
+        choices=["css", "tailwind", "json"],
+        default="css",
+        help="output format (default: css)",
+    )
+
     args = parser.parse_args(argv)
 
     if args.command == "render":
         return _cmd_render(args.file, out=args.out, entry=args.entry, dump_ast=args.ast)
     if args.command == "preview":
         return run_preview(Path(args.directory), port=args.port)
+    if args.command == "tokens":
+        return _cmd_tokens(args.file, out=args.out, fmt=args.format)
 
     parser.print_help()
     return 0
@@ -87,6 +104,39 @@ def _cmd_render(filepath: str, *, out: str | None, entry: str | None, dump_ast: 
         out_path = Path(out)
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(svg, encoding="utf-8")
+    return 0
+
+
+def _cmd_tokens(filepath: str, *, out: str | None, fmt: str) -> int:
+    path = Path(filepath)
+    if not path.is_file():
+        sys.stderr.write(f"Floras Error: file not found: {filepath}\n")
+        return 2
+
+    source = path.read_text(encoding="utf-8")
+    try:
+        tokens = tokenize(source)
+        program = Parser(tokens).parse_program()
+    except FlorasError as exc:
+        sys.stderr.write(f"{exc}\n")
+        return 1
+
+    if fmt == "css":
+        body = render_css(program.palettes)
+    elif fmt == "tailwind":
+        body = render_tailwind(program.palettes)
+    elif fmt == "json":
+        body = render_json(program.palettes)
+    else:  # pragma: no cover - argparse already constrains the choices
+        sys.stderr.write(f"Floras CLIError: unknown format: {fmt}\n")
+        return 2
+
+    if out is None:
+        sys.stdout.write(body)
+    else:
+        out_path = Path(out)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(body, encoding="utf-8")
     return 0
 
 

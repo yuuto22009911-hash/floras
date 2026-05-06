@@ -46,10 +46,11 @@ Python 3.11+ 必須。外部依存ゼロ（dev のみ pytest / mypy / ruff）。
 ## Quickstart
 
 ```bash
-floras render examples/さくら.bloom --out さくら.svg     # ファイル出力
-floras render examples/桜吹雪.bloom                     # 標準出力
-floras render examples/桜吹雪.bloom --ast               # AST を JSON で
-floras preview examples/                               # ライブリロードプレビュー
+floras render examples/さくら.bloom --out さくら.svg          # ファイル出力
+floras render examples/桜吹雪.bloom                          # 標準出力
+floras render examples/桜吹雪.bloom --ast                    # AST を JSON で
+floras preview examples/                                    # ライブリロード
+floras tokens examples/ヒーロー.bloom --format tailwind      # 色見本 → CSS
 floras --version
 ```
 
@@ -134,6 +135,27 @@ floras --version
 
 `python docs/build_gallery.py` で `docs/gallery.html` を生成すると、全サンプルと出力 SVG とソースコードを 1 ページで確認できます。
 
+## フロントエンド統合 (`floras tokens`)
+
+`色見本` 宣言を 3 種類のフォーマットで書き出し、React/Tailwind プロジェクトから即参照できます。
+
+```bash
+floras tokens examples/ヒーロー.bloom --format css      --out tokens.css
+floras tokens examples/ヒーロー.bloom --format tailwind --out theme.css
+floras tokens examples/ヒーロー.bloom --format json     --out tokens.json
+```
+
+出力例（CSS, Tailwind v4 互換）:
+```css
+@theme {
+  --color-春-桜色: #FFB3BC;
+  --color-春-紙:   #F9F4EE;
+  --color-春-墨:   #231715;
+}
+```
+
+→ React で `<div className="bg-春-桜色">` のように Japanese 識別子のままクラス名で参照可能（モダンブラウザは CSS Custom Property に CJK を許容）。
+
 ## エラー
 
 ```
@@ -151,7 +173,8 @@ Floras SyntaxError at line 5: scatter requires '種 <integer>;' for determinism
 | v0.3.0 | 花束（複数の花を 1 キャンバスに配置） |
 | v0.4.0 | 散らす（procedural 配置）+ 全構文日本語化 |
 | v0.5.0 | 模様（再利用可能パターン）+ 花名ひらがな化 + 負数座標 |
-| **v0.6.0**（現在） | **`floras preview` ライブリロードサーバ** |
+| v0.6.0 | `floras preview` ライブリロードサーバ |
+| **v0.7.0**（現在） | **`floras tokens` で 色見本 を CSS / Tailwind / JSON へ書き出し** |
 | v0.7.0 | 色見本 → CSS / Tailwind / JSON 書出 |
 | v1.0.0 | Web プレイグラウンド |
 
