@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "floras"
-version = "0.7.0"
+version = "1.0.0"
 description = "A flower-themed declarative DSL that emits SVG / HTML / CSS for designers."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -12,7 +12,7 @@ license = { text = "MIT" }
 authors = [{ name = "yuuto" }]
 keywords = ["dsl", "svg", "design-tools", "floral", "generative", "design-system"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: End Users/Desktop",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3.11",

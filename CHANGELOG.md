@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-05-07
+
+### Added — Web プレイグラウンド (Pyodide)
+- New `playground/` directory with a single-file HTML playground that
+  runs Floras Bloom entirely in the browser via Pyodide. No backend, no
+  build step (vanilla HTML + CSS + JS).
+- Features:
+  - Editable `<textarea>` with the source on the left, live SVG preview
+    on the right.
+  - 6 built-in samples (さくら / ばら / こすもす / ヒーロー / 桜吹雪 / 枝).
+    Switching samples auto-renders.
+  - 描画 button + `⌘↩` / `Ctrl↩` shortcut.
+  - 共有 button base64-encodes the source into the URL hash. Loading the
+    URL on another machine restores the source automatically.
+  - Status badge in the header shows Pyodide load progress and turns into
+    "● live" when ready.
+  - Dark / light mode follows `prefers-color-scheme`.
+- `playground/build.sh` rebuilds the wheel and patches the version
+  reference in `index.html` after every version bump.
+- `playground/floras-1.0.0-py3-none-any.whl` is shipped alongside the
+  HTML so the playground works on any static host (Cloudflare Pages,
+  GitHub Pages, S3) — drop the directory and serve.
+
+### Changed
+- Package classifier upgraded to `Development Status :: 5 - Production/Stable`.
+- Version bumped from 0.7.0 → 1.0.0; the wheel is regenerated to match.
+
+### Quality gates
+- pytest 97 / 97 pass, ruff strict / mypy strict 0 errors.
+- Playground verified end-to-end: Pyodide boots in ~5–10 s on a fresh
+  load, then `さくら`, `桜吹雪` (60 scatter), and `枝 (模様)` all render
+  correctly inside the browser.
+
 ## [0.7.0] - 2026-05-07
 
 ### Added — `floras tokens` (palette export to CSS / Tailwind / JSON)

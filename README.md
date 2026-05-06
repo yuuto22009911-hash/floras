@@ -43,6 +43,15 @@ pip install -e ".[dev]"
 
 Python 3.11+ 必須。外部依存ゼロ（dev のみ pytest / mypy / ruff）。
 
+## ブラウザで試す
+
+`playground/index.html` を開けば、インストール不要で Floras Bloom が動きます（Pyodide でブラウザだけで Python を動かしています）。
+
+```bash
+python -m http.server 7879 --directory playground
+# → http://localhost:7879/
+```
+
 ## Quickstart
 
 ```bash
@@ -174,7 +183,8 @@ Floras SyntaxError at line 5: scatter requires '種 <integer>;' for determinism
 | v0.4.0 | 散らす（procedural 配置）+ 全構文日本語化 |
 | v0.5.0 | 模様（再利用可能パターン）+ 花名ひらがな化 + 負数座標 |
 | v0.6.0 | `floras preview` ライブリロードサーバ |
-| **v0.7.0**（現在） | **`floras tokens` で 色見本 を CSS / Tailwind / JSON へ書き出し** |
+| v0.7.0 | `floras tokens` で 色見本 を CSS / Tailwind / JSON へ書き出し |
+| **v1.0.0**（現在） | **Web プレイグラウンド（Pyodide でブラウザだけで実行）** |
 | v0.7.0 | 色見本 → CSS / Tailwind / JSON 書出 |
 | v1.0.0 | Web プレイグラウンド |
 
